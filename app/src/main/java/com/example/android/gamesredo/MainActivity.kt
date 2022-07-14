@@ -3,11 +3,16 @@ package com.example.android.gamesredo
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.gamesredo.databinding.ActivityMainBinding
+import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.repository.GameRepository
+import com.example.android.gamesredo.ui.today.TodayVMProviderFactory
+import com.example.android.gamesredo.ui.today.TodayViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val navView: BottomNavigationView = binding.navView
 
@@ -30,3 +36,43 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

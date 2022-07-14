@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.android.gamesredo.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.example.android.gamesredo.ui.today.TodayFragment"
+        android:label="@string/today_s_games"
+        tools:layout="@layout/fragment_today" />
 
     <fragment
         android:id="@+id/navigation_notifications"

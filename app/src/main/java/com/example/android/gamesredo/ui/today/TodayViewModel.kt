@@ -16,6 +16,13 @@ class TodayViewModel(
 ) : ViewModel() {
 
     val allGames: MutableLiveData<Resource<MlbResponse>> = MutableLiveData()
+
+    init {
+        getGames(1)
+    }
+
+
+
     fun getGames(sportId: Int) = viewModelScope.launch {
         allGames.postValue(Resource.Loading())
         val response = gameRepository.getGames(1)

@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -35,6 +36,13 @@ class GamesAdapter: RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
        val game = differ.currentList[position]
         holder.binding.apply {
+            if(game.status?.abstractGameCode.equals("Live")) {
+                awayTeam.setTextColor(Color.RED)
+                homeTeam.setTextColor(Color.RED)
+            } else if (game.status?.abstractGameState.equals("Preview")){
+                awayTeam.setTextColor(Color.DKGRAY)
+                homeTeam.setTextColor(Color.DKGRAY)
+            }
             awayTeam.text = game?.teams?.away?.team?.name
             homeTeam.text = game?.teams?.home?.team?.name
 

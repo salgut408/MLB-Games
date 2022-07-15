@@ -1,12 +1,15 @@
 package com.example.android.gamesredo.ui.today
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +21,9 @@ import com.example.android.gamesredo.databinding.FragmentTodayBinding
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.GamesAdapter
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TodayFragment : Fragment(R.layout.fragment_today) {
 
@@ -45,8 +51,10 @@ class TodayFragment : Fragment(R.layout.fragment_today) {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding?.todaysDate?.text = setDate()
         setUpRecyclerView()
         todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
@@ -81,6 +89,13 @@ class TodayFragment : Fragment(R.layout.fragment_today) {
         }
     }
 
+   @RequiresApi(Build.VERSION_CODES.O)
+   private fun setDate(): String {
+       val current = LocalDateTime.now()
+       val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+       val formatted = current.format(formatter)
+       return formatted
+   }
 
 }
 

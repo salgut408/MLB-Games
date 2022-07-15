@@ -6,4 +6,7 @@
     <string name="today_s_games">Today\'s Games</string>
     <string name="hometeam">HomeTeam</string>
     <string name="awayteam">awayTeam</string>
+    <string name="away_team">Away Team</string>
+    <string name="at">at</string>
+    <string name="home_team">Home Team</string>
 </resources>

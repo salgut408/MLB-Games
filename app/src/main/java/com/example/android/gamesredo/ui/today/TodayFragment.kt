@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.R
 import com.example.android.gamesredo.Resource
@@ -76,7 +77,7 @@ class TodayFragment : Fragment(R.layout.fragment_today) {
         gameAdapter = GamesAdapter()
         binding.rvGames.apply {
             adapter = gameAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = GridLayoutManager(this.context, 2)
         }
     }
 

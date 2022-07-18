@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Team name" />
+
+    <TextView
+        android:id="@+id/season"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/teamName"
+        app:layout_constraintTop_toBottomOf="@+id/teamName"
+        tools:text="season" />
+
+    <TextView
+        android:id="@+id/divisionRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/season"
+        app:layout_constraintTop_toBottomOf="@+id/season"
+        tools:text="division rank" />
+
+    <TextView
+        android:id="@+id/leagueRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/divisionRank"
+        app:layout_constraintTop_toBottomOf="@+id/divisionRank"
+        tools:text="League Record" />
+
+    <TextView
+        android:id="@+id/divisionLeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/leagueRecord"
+        app:layout_constraintTop_toBottomOf="@+id/leagueRecord"
+        tools:text="division Leader" />
+
+    <TextView
+        android:id="@+id/loses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/wins"
+        app:layout_constraintTop_toBottomOf="@+id/wins"
+        tools:text="9-loses" />
+
+    <TextView
+        android:id="@+id/wins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/divisionLeader"
+        app:layout_constraintTop_toBottomOf="@+id/divisionLeader"
+        tools:text="12-wins" />
+
+    <TextView
+        android:id="@+id/winPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/loses"
+        app:layout_constraintTop_toBottomOf="@+id/loses"
+        tools:text="20% win percent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

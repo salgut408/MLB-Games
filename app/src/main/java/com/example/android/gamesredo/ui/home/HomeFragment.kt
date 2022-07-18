@@ -1,38 +1,80 @@
 package com.example.android.gamesredo.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.gamesredo.AmericanLeagueStandingResponse
+import com.example.android.gamesredo.Resource
 import com.example.android.gamesredo.databinding.FragmentHomeBinding
+import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.repository.GameRepository
+import com.example.android.gamesredo.ui.adapters.StandingsAdapter
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    lateinit var homeViewModel: HomeViewModel
+    lateinit var standingsAdapter: StandingsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val gameRepository=GameRepository(VenueDatabase(context?.applicationContext!!))
+
+       val viewModelProviderFactory = HomeVMProviderFactory(gameRepository)
+        homeViewModel = ViewModelProvider(this,viewModelProviderFactory).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setUpRecyclerView()
+
+        homeViewModel.allTeamsRecords.observe(viewLifecycleOwner, Observer { response ->
+            when (response) {
+                is Resource.Success -> {
+                    response.data?.let { americanLeagueStandingResponse ->
+                        standingsAdapter.differ.submitList(americanLeagueStandingResponse.records[1].teamRecords)
+                    }
+                }
+                is Resource.Error -> {
+                    response.message?.let { message ->
+                        Log.e("tag", "response not successful")
+                    }
+                }
+                is Resource.Loading -> {
+                    Log.e("tag", "response loading")
+
+                }
+            }
+        })
+
+
+    }
+
+    private fun setUpRecyclerView() {
+        standingsAdapter = StandingsAdapter()
+        binding.rvStandings.apply {
+            adapter=standingsAdapter
+            layoutManager=LinearLayoutManager(this.context)
+        }
     }
 
     override fun onDestroyView() {

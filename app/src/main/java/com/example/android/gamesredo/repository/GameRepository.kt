@@ -10,4 +10,8 @@ class GameRepository(
 suspend fun getGames(sportId: Int) =
     RetrofitInstance.api.getGames(1)
 
+
+suspend fun getRecords(leagueId: Int) =
+    RetrofitInstance.api.getStandings(103)
+
 }

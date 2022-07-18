@@ -51,7 +51,10 @@ class HomeFragment : Fragment() {
             when (response) {
                 is Resource.Success -> {
                     response.data?.let { americanLeagueStandingResponse ->
-                        standingsAdapter.differ.submitList(americanLeagueStandingResponse.records[1].teamRecords)
+                        val list = americanLeagueStandingResponse.records[1].teamRecords
+                        list.addAll(americanLeagueStandingResponse.records[0].teamRecords)
+                        americanLeagueStandingResponse.records[2].teamRecords
+                        standingsAdapter.differ.submitList(list)
                     }
                 }
                 is Resource.Error -> {

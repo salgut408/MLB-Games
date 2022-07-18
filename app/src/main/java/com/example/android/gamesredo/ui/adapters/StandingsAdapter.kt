@@ -37,7 +37,7 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
         holder.binding.apply{
             teamName.text = singleRecord.team?.name
             season.text=singleRecord.season
-            divisionRank.text=singleRecord.divisionRank
+            divisionRank.text=singleRecord.leagueRank
             wins.text=singleRecord.wins.toString()
             loses.text=singleRecord.losses.toString()
             winPercentage.text=singleRecord.winningPercentage

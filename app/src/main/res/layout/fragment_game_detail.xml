@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/awayTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/away_team"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_abstractGameState" />
+
+    <TextView
+        android:id="@+id/homeTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/home_team"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/awayTeamPoints" />
+
+    <TextView
+        android:id="@+id/gameVenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/chivo_black"
+        android:text="@string/venue"
+        android:textColor="#000000"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/officialDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameVenue" />
+
+    <TextView
+        android:id="@+id/status_abstractGameState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/abstractgamestate"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/officialDate" />
+
+    <TextView
+        android:id="@+id/awayTeamPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/awayTeamName"
+        app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
+
+    <TextView
+        android:id="@+id/homeTeamPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="@+id/homeTeamName"
+        app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
+</androidx.constraintlayout.widget.ConstraintLayout>

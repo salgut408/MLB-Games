@@ -1,8 +1,10 @@
 package com.example.android.gamesredo
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class Home (
 
   @SerializedName("leagueRecord" ) var leagueRecord : LeagueRecord? = LeagueRecord(),
@@ -11,4 +13,4 @@ data class Home (
   @SerializedName("splitSquad"   ) var splitSquad   : Boolean?      = null,
   @SerializedName("seriesNumber" ) var seriesNumber : Int?          = null
 
-)
+): Parcelable

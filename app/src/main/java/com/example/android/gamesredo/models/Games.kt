@@ -1,8 +1,12 @@
 package com.example.android.gamesredo
 
+import android.os.Parcelable
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+
+@Parcelize
 
 
 data class Games (
@@ -34,4 +38,4 @@ data class Games (
   @SerializedName("ifNecessary"            ) var ifNecessary            : String?  = null,
   @SerializedName("ifNecessaryDescription" ) var ifNecessaryDescription : String?  = null
 
-)
+): Parcelable

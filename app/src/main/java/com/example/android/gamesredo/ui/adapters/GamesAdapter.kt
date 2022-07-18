@@ -36,19 +36,14 @@ class GamesAdapter: RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
        val game = differ.currentList[position]
         holder.binding.apply {
-            if(game.status?.abstractGameCode.equals("Live")) {
-                awayTeam.setTextColor(Color.RED)
-                homeTeam.setTextColor(Color.RED)
-            } else if (game.status?.abstractGameState.equals("Preview")){
-                awayTeam.setTextColor(Color.DKGRAY)
-                homeTeam.setTextColor(Color.DKGRAY)
-            }
+//        if(game?.teams?.away?.score>game?.teams?.away?.score)
             awayTeam.text = game?.teams?.away?.team?.name
             homeTeam.text = game?.teams?.home?.team?.name
 
-//            setOnClickListener {
-//                onItemClickListener?.let { it(game.teams.) }
-//            }
+            setOnItemClickListener {
+                onItemClickListener?.let { it(game) }
+            }
+
         }
     }
 
@@ -56,9 +51,9 @@ class GamesAdapter: RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Teams)-> Unit)? = null
+    private var onItemClickListener: ((Games)-> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Teams)->Unit) {
+    fun setOnItemClickListener(listener: (Games)->Unit) {
         onItemClickListener=listener
     }
 }

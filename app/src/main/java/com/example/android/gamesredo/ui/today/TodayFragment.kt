@@ -55,7 +55,11 @@ class TodayFragment : Fragment(R.layout.fragment_today) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding?.todaysDate?.text = setDate()
+
+
         setUpRecyclerView()
+
+
         todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {

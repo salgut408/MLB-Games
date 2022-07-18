@@ -12,14 +12,24 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_dashboard_today"
         android:name="com.example.android.gamesredo.ui.today.TodayFragment"
         android:label="@string/today_s_games"
-        tools:layout="@layout/fragment_today" />
+        tools:layout="@layout/fragment_today" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_gameDetail"
+            app:destination="@id/gameDetail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.android.gamesredo.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/gameDetail"
+        android:name="com.example.android.gamesredo.ui.gamedetail.gameDetail"
+        android:label="fragment_game_detail"
+        tools:layout="@layout/fragment_game_detail" />
 </navigation>

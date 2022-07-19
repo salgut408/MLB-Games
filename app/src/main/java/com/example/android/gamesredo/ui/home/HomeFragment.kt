@@ -5,24 +5,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.gamesredo.AmericanLeagueStandingResponse
-import com.example.android.gamesredo.Resource
+import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.databinding.FragmentHomeBinding
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.StandingsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var homeViewModel: HomeViewModel
+     val homeViewModel: HomeViewModel by viewModels()
+
     lateinit var standingsAdapter: StandingsAdapter
 
     override fun onCreateView(
@@ -30,10 +32,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val gameRepository=GameRepository(VenueDatabase(context?.applicationContext!!))
-
-       val viewModelProviderFactory = HomeVMProviderFactory(gameRepository)
-        homeViewModel = ViewModelProvider(this,viewModelProviderFactory).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root

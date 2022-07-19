@@ -1,4 +1,4 @@
-package com.example.android.gamesredo
+package com.example.android.gamesredo.util
 
 sealed class Resource<T> (
     val data: T? = null,

@@ -1,17 +1,18 @@
 package com.example.android.gamesredo.repository
 
-import com.example.android.gamesredo.api.RetrofitInstance
+import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
+import javax.inject.Inject
 
-class GameRepository(
-    val db: VenueDatabase
+class GameRepository @Inject constructor (
+    val db: VenueDatabase, val api: MlbApi
 ) {
 
 suspend fun getGames(sportId: Int) =
-    RetrofitInstance.api.getGames(1)
+  api.getGames(1)
 
 
 suspend fun getRecords(leagueId: Int, leagueId2: Int) =
-    RetrofitInstance.api.getStandings(103, 104)
+    api.getStandings(103, 104)
 
 }

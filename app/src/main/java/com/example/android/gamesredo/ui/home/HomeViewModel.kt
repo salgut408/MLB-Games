@@ -4,13 +4,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.gamesredo.AmericanLeagueStandingResponse
-import com.example.android.gamesredo.MlbResponse
-import com.example.android.gamesredo.Resource
+import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.repository.GameRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+
+class HomeViewModel
+    @Inject constructor(
     val gameRepository: GameRepository
 ) : ViewModel() {
 

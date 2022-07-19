@@ -81,7 +81,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/seasonTxt"
                 app:layout_constraintStart_toEndOf="@+id/seasonTxt"
                 app:layout_constraintTop_toBottomOf="@+id/seasonTxt"
-                tools:text="divisionLeader" />
+                tools:text="3" />
 
             <TextView
                 android:id="@+id/divisionLeaderBool2"

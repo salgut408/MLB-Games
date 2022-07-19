@@ -36,13 +36,24 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
         val singleRecord = differ.currentList[position]
         holder.binding.apply{
             teamStandingsName.text = singleRecord.team?.name
-            seasonTxt.text=singleRecord.season
+            seasonTxt.text=singleRecord.team?.id.toString()
             divRank.text=singleRecord.divisionRank
             winsNumber.text=singleRecord.wins.toString()
             lossNumber.text=singleRecord.losses.toString()
             winPercentNumber.text=singleRecord.winningPercentage
             divisionLeaderBool.text=singleRecord?.sportRank.toString()
+            setOnItemClickListener {
+                onItemClickListener?.let {
+                    it(singleRecord)
+                }
+            }
+
         }
+    }
+    private var onItemClickListener: ((TeamRecords)->Unit)?=null
+
+    fun setOnItemClickListener(listener: (TeamRecords)->Unit) {
+        onItemClickListener = listener
     }
 
     override fun getItemCount(): Int {

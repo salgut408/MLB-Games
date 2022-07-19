@@ -35,13 +35,13 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
     override fun onBindViewHolder(holder: TeamRecordViewHolder, position: Int) {
         val singleRecord = differ.currentList[position]
         holder.binding.apply{
-            teamName.text = singleRecord.team?.name
-            season.text=singleRecord.season
-            divisionRank.text=singleRecord.leagueRank
-            wins.text=singleRecord.wins.toString()
-            loses.text=singleRecord.losses.toString()
-            winPercentage.text=singleRecord.winningPercentage
-            divisionLeader.text=singleRecord.divisionLeader.toString()
+            teamStandingsName.text = singleRecord.team?.name
+            seasonTxt.text=singleRecord.season
+            divRank.text=singleRecord.divisionRank
+            winsNumber.text=singleRecord.wins.toString()
+            lossNumber.text=singleRecord.losses.toString()
+            winPercentNumber.text=singleRecord.winningPercentage
+            divisionLeaderBool.text=singleRecord?.sportRank.toString()
         }
     }
 

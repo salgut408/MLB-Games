@@ -2,82 +2,160 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/teamName"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/chivo_black"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Team name" />
-
-    <TextView
-        android:id="@+id/season"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamName"
-        tools:text="season" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/divisionRank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/season"
-        app:layout_constraintTop_toBottomOf="@+id/season"
-        tools:text="division rank" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="223dp"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/leagueRecord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/divisionRank"
-        app:layout_constraintTop_toBottomOf="@+id/divisionRank"
-        tools:text="League Record" />
+            <TextView
+                android:id="@+id/teamStandingsName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/chivo_black"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/seasonTxt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Team Name" />
 
-    <TextView
-        android:id="@+id/divisionLeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/leagueRecord"
-        app:layout_constraintTop_toBottomOf="@+id/leagueRecord"
-        tools:text="division Leader" />
+            <TextView
+                android:id="@+id/seasonTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/mada"
+                android:text="TextView"
+                android:textColor="#000000"
+                app:layout_constraintBottom_toTopOf="@+id/divisionLeaderBool"
+                app:layout_constraintStart_toStartOf="@+id/teamStandingsName"
+                app:layout_constraintTop_toBottomOf="@+id/teamStandingsName"
+                tools:text="Season" />
 
-    <TextView
-        android:id="@+id/loses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/wins"
-        app:layout_constraintTop_toBottomOf="@+id/wins"
-        tools:text="9-loses" />
+            <TextView
+                android:id="@+id/divRank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mada"
+                android:text="Division Rank:"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/seasonTxt"
+                app:layout_constraintStart_toEndOf="@+id/seasonTxt"
+                app:layout_constraintTop_toBottomOf="@+id/seasonTxt"
+                tools:text="Division Rank:" />
 
-    <TextView
-        android:id="@+id/wins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/divisionLeader"
-        app:layout_constraintTop_toBottomOf="@+id/divisionLeader"
-        tools:text="12-wins" />
+            <TextView
+                android:id="@+id/divRank3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/mada"
+                android:text="Division Rank"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/divRank"
+                app:layout_constraintTop_toTopOf="@+id/divRank"
+                tools:text="Division Rank" />
 
-    <TextView
-        android:id="@+id/winPercentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/loses"
-        app:layout_constraintTop_toBottomOf="@+id/loses"
-        tools:text="20% win percent" />
+            <TextView
+                android:id="@+id/divisionLeaderBool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mada"
+                android:text="TextView"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/winsNumber"
+                app:layout_constraintEnd_toEndOf="@+id/seasonTxt"
+                app:layout_constraintStart_toEndOf="@+id/seasonTxt"
+                app:layout_constraintTop_toBottomOf="@+id/seasonTxt"
+                tools:text="divisionLeader" />
+
+            <TextView
+                android:id="@+id/divisionLeaderBool2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/mada"
+                android:text="Ranking in MLB"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/divisionLeaderBool"
+                app:layout_constraintTop_toBottomOf="@+id/divRank"
+                tools:text="Ranking in MLB" />
+
+            <TextView
+                android:id="@+id/winsNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/lossNumber"
+                app:layout_constraintStart_toStartOf="@+id/divisionLeaderBool"
+                app:layout_constraintTop_toBottomOf="@+id/divisionLeaderBool"
+                tools:text="wins" />
+
+            <TextView
+                android:id="@+id/winsNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Wins"
+                app:layout_constraintStart_toEndOf="@+id/winsNumber"
+                app:layout_constraintTop_toTopOf="@+id/winsNumber"
+                tools:text="wins" />
+
+            <TextView
+                android:id="@+id/lossNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/winPercentNumber"
+                app:layout_constraintStart_toStartOf="@+id/winsNumber"
+                app:layout_constraintTop_toBottomOf="@+id/winsNumber"
+                tools:text="Loss" />
+
+            <TextView
+                android:id="@+id/lossNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Losses"
+                app:layout_constraintStart_toEndOf="@+id/lossNumber"
+                app:layout_constraintTop_toBottomOf="@+id/winsNumber"
+                tools:text="Loss" />
+
+            <TextView
+                android:id="@+id/winPercentNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/lossNumber"
+                app:layout_constraintTop_toBottomOf="@+id/lossNumber"
+                tools:text="win %" />
+
+            <TextView
+                android:id="@+id/winPercentNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Win %"
+                app:layout_constraintStart_toEndOf="@+id/winPercentNumber"
+                app:layout_constraintTop_toBottomOf="@+id/lossNumber"
+                tools:text="win %" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

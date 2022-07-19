@@ -22,6 +22,14 @@ interface MlbApi {
     leagueId2: Int = 104
     ): Response<AmericanLeagueStandingResponse>
 
+//    @GET("v1/teams")
+//    suspend fun getTeamInfo(
+//        @Query("teamId")
+//        teamId: Int? = null
+//    ): Response<TeamInfoResponse>
+
+//    TODO add in response for team page
+
 
 
 }

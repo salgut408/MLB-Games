@@ -17,7 +17,9 @@ interface MlbApi {
     @GET("v1/standings")
     suspend fun getStandings(
         @Query("leagueId")
-        leagueId: Int = 103
+        leagueId: Int = 103,
+        @Query("leagueId")
+    leagueId2: Int = 104
     ): Response<AmericanLeagueStandingResponse>
 
 

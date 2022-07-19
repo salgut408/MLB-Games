@@ -1,6 +1,5 @@
 package com.example.android.gamesredo.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,12 +17,12 @@ class HomeViewModel(
     val allTeamsRecords: MutableLiveData<Resource<AmericanLeagueStandingResponse>> = MutableLiveData()
 
     init {
-        getRecords(103)
+        getRecords(103, 104)
     }
 
-    fun getRecords(leagueId: Int) = viewModelScope.launch {
+    fun getRecords(leagueId: Int,leagueId2: Int ) = viewModelScope.launch {
         allTeamsRecords.postValue(Resource.Loading())
-        val response = gameRepository.getRecords(103)
+        val response = gameRepository.getRecords(103, 104)
         allTeamsRecords.postValue(handleAmericanLeagueStandingResponse(response))
     }
 

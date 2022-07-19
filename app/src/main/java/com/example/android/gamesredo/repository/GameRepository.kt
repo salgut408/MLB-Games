@@ -11,7 +11,7 @@ suspend fun getGames(sportId: Int) =
     RetrofitInstance.api.getGames(1)
 
 
-suspend fun getRecords(leagueId: Int) =
-    RetrofitInstance.api.getStandings(103)
+suspend fun getRecords(leagueId: Int, leagueId2: Int) =
+    RetrofitInstance.api.getStandings(103, 104)
 
 }

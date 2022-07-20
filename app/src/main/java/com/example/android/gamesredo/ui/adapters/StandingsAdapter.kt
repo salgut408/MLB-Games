@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.gamesredo.TeamRecords
 import com.example.android.gamesredo.databinding.StandingsItemBinding
+import com.example.android.gamesredo.util.Constants.Companion.img
 
 class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHolder>() {
     inner class TeamRecordViewHolder(val binding: StandingsItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -42,6 +43,9 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
             lossNumber.text=singleRecord.losses.toString()
             winPercentNumber.text=singleRecord.winningPercentage
             divisionLeaderBool.text=singleRecord?.sportRank.toString()
+//            if (singleRecord.team?.name.equals("Chicago Cubs")){
+//                imageView.setImageResource(img)
+//            }
             linearLayout2.setOnClickListener {
                 onItemClickListener?.let {
                     it(singleRecord)

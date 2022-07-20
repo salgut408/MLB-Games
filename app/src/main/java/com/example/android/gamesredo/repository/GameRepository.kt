@@ -15,4 +15,7 @@ suspend fun getGames(sportId: Int) =
 suspend fun getRecords(leagueId: Int, leagueId2: Int) =
     api.getStandings(103, 104)
 
+suspend fun getRoster(teamId: Int)=
+    api.getTeamInfo(teamId)
+
 }

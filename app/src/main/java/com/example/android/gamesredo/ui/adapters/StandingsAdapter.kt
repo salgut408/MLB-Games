@@ -42,12 +42,11 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
             lossNumber.text=singleRecord.losses.toString()
             winPercentNumber.text=singleRecord.winningPercentage
             divisionLeaderBool.text=singleRecord?.sportRank.toString()
-            setOnItemClickListener {
+            linearLayout2.setOnClickListener {
                 onItemClickListener?.let {
                     it(singleRecord)
                 }
             }
-
         }
     }
     private var onItemClickListener: ((TeamRecords)->Unit)?=null

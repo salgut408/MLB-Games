@@ -36,6 +36,7 @@ class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
         val singlePlayerRow = differ.currentList[position]
         holder.binding.apply {
             playerName.text = singlePlayerRow.person?.fullName
+            positionText.text=singlePlayerRow?.position?.name
 
         }
     }

@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -37,6 +38,13 @@ class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
         holder.binding.apply {
             playerName.text = singlePlayerRow.person?.fullName
             positionText.text=singlePlayerRow?.position?.name
+            playerNumber.text=singlePlayerRow?.jerseyNumber.toString()
+            positionAbv.text=singlePlayerRow?.position?.abbreviation
+
+            if (singlePlayerRow?.jerseyNumber?.toInt()!! % 2 == 0){
+                card.setCardBackgroundColor(Color.GREEN)
+            }
+
 
         }
     }

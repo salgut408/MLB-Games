@@ -40,11 +40,9 @@ class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
             positionText.text=singlePlayerRow?.position?.name
             playerNumber.text=singlePlayerRow?.jerseyNumber.toString()
             positionAbv.text=singlePlayerRow?.position?.abbreviation
-//alt row color
-            if(position % 2 == 1) {
-                card.setCardBackgroundColor(Color.LTGRAY)
-            } else {
-                card.setCardBackgroundColor(Color.YELLOW)
+
+            if (singlePlayerRow?.jerseyNumber?.toInt()!! % 2 == 0){
+                card.setCardBackgroundColor(Color.GREEN)
             }
 
 

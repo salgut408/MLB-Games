@@ -43,11 +43,13 @@ class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
             positionAbv.text=singlePlayerRow?.position?.abbreviation
             playerId.text=singlePlayerRow?.person?.id?.toString()
 
-            if (position % 2 == 0){
-                card.setCardBackgroundColor(Color.GREEN)
+
+            if (position % 2 == 0 && singlePlayerRow?.parentTeamId == 147){
+                card.setCardBackgroundColor(Color.rgb(12, 35, 64))
             } else {
-                card.setCardBackgroundColor(Color.BLUE)
+                card.setCardBackgroundColor(Color.rgb(196, 206, 211))
             }
+
             playerName.setOnClickListener {
                 onItemClickListener?.let {
                     it(singlePlayerRow.person!!)

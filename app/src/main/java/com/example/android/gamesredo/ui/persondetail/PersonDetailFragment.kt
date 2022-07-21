@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.android.gamesredo.People
 import com.example.android.gamesredo.Person
 import com.example.android.gamesredo.R
 import com.example.android.gamesredo.databinding.FragmentPersonDetailBinding
@@ -20,6 +21,7 @@ class PersonDetailFragment() : Fragment() {
     lateinit var binding: FragmentPersonDetailBinding
     val personDetailViewModel: PersonDetailViewModel by viewModels()
     lateinit var person: Person
+    lateinit var newPerson: People
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +32,7 @@ class PersonDetailFragment() : Fragment() {
         binding = FragmentPersonDetailBinding.inflate(inflater)
 
          person = PersonDetailFragmentArgs.fromBundle(requireArguments()).personArg
-        binding.playerInfoName.text=person.id.toString()
+        binding.playerInfoName.text=person.fullName
         personDetailViewModel.getPersonInfo(person.id!!.toInt())
         return binding.root
     }
@@ -43,7 +45,16 @@ class PersonDetailFragment() : Fragment() {
                 is Resource.Success -> {
                     response.data?.let {
                         peopleResponse ->
-                        binding.abreviatedName.text=peopleResponse.people[0].birthDate
+                         newPerson = peopleResponse.people[0]
+                       binding.apply {
+                           birthday.text=newPerson.birthDate
+                           position.text = newPerson.primaryPosition?.name + " " + newPerson.primaryPosition?.abbreviation
+                           birthCity.text=newPerson.birthCity + newPerson.birthCountry
+                           tvBatSideDesc.text=newPerson.batSide?.description
+                           number.text = newPerson.primaryNumber
+
+
+                       }
 
                     }
                 }

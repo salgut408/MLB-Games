@@ -48,7 +48,7 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
             lossNumber.text=singleRecord.losses.toString()
             winPercentNumber.text=singleRecord.winningPercentage
             divisionLeaderBool.text=singleRecord?.sportRank.toString()
-
+            // TODO use when instead or new api thing
             if (singleRecord.team?.name.equals("Chicago Cubs")){
                 imageView.setImageResource(img)
             } else if (singleRecord.team?.name.equals("Chicago White Sox")){
@@ -77,6 +77,8 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
                 teamStandingsName.setTextColor(Color.rgb(223, 70, 1))
                 teamStandingsName.setBackgroundColor(Color.rgb(39, 37, 31))
             }
+
+
 
             linearLayout2.setOnClickListener {
                 onItemClickListener?.let {

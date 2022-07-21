@@ -53,5 +53,17 @@
         <argument
             android:name="teamRecordsArgs"
             app:argType="com.example.android.gamesredo.TeamRecords" />
+        <action
+            android:id="@+id/action_teamDetail_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personDetailFragment"
+        android:name="com.example.android.gamesredo.ui.persondetail.PersonDetailFragment"
+        android:label="fragment_person_detail"
+        tools:layout="@layout/fragment_person_detail" >
+        <argument
+            android:name="personArg"
+            app:argType="com.example.android.gamesredo.Person" />
     </fragment>
 </navigation>

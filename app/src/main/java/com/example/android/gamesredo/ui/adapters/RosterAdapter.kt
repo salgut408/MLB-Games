@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.gamesredo.Person
 import com.example.android.gamesredo.Roster
 import com.example.android.gamesredo.databinding.RosterItemBinding
 
@@ -40,11 +41,18 @@ class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
             positionText.text=singlePlayerRow?.position?.name
             playerNumber.text=singlePlayerRow?.jerseyNumber.toString()
             positionAbv.text=singlePlayerRow?.position?.abbreviation
+            playerId.text=singlePlayerRow?.person?.id?.toString()
 
-            if (singlePlayerRow?.jerseyNumber?.toInt()!! % 2 == 0){
+            if (position % 2 == 0){
                 card.setCardBackgroundColor(Color.GREEN)
+            } else {
+                card.setCardBackgroundColor(Color.BLUE)
             }
-
+            playerName.setOnClickListener {
+                onItemClickListener?.let {
+                    it(singlePlayerRow.person!!)
+                }
+            }
 
         }
     }
@@ -53,6 +61,11 @@ class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
         return differ.currentList.size
     }
 
+    private var onItemClickListener: ((Person)->Unit)?=null
+
+    fun setOnItemClickListener(listener:(Person)->Unit) {
+        onItemClickListener = listener
+    }
 
 
 }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.R
 import com.example.android.gamesredo.Team
@@ -35,6 +36,14 @@ class TeamDetailFragment() : Fragment() {
 
         teamDetailViewModel.getRoster(teamRecords?.team?.id ?: 0)
         setUpRecyclerView()
+
+//        rosterAdapter.setOnItemClickListener {
+//            this.findNavController().navigate(
+//                TeamDetailFragmentDirections.actionTeamDetailToPersonDetailFragment(it)
+//            )
+//        }
+
+
         return binding.root
     }
 
@@ -42,6 +51,12 @@ class TeamDetailFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecyclerView()
+
+        rosterAdapter.setOnItemClickListener {
+            this.findNavController().navigate(
+                TeamDetailFragmentDirections.actionTeamDetailToPersonDetailFragment(it)
+            )
+        }
 
         teamDetailViewModel.teamRoster.observe(viewLifecycleOwner, Observer { response ->
             when (response) {

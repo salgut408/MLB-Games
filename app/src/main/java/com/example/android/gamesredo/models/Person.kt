@@ -9,6 +9,8 @@ data class Person (
 
   @SerializedName("id"       ) var id       : Int?    = null,
   @SerializedName("fullName" ) var fullName : String? = null,
-  @SerializedName("link"     ) var link     : String? = null
+  @SerializedName("link"     ) var link     : String? = null,
+  @SerializedName("firstName" ) var firstName : String? = null,
+  @SerializedName("lastName"  ) var lastName  : String? = null
 
 ): Parcelable

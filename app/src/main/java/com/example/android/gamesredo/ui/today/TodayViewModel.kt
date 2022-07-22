@@ -1,11 +1,16 @@
 package com.example.android.gamesredo.ui.today
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.MlbResponse
 import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.repository.GameRepository
+import com.example.android.gamesredo.util.Constants
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -22,6 +27,13 @@ class TodayViewModel
 
     init {
         getGames(1)
+
+
+
+
+
+
+
     }
 
 

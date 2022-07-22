@@ -12,12 +12,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.R
 import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.databinding.FragmentTodayBinding
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.GamesAdapter
+import com.example.android.gamesredo.util.Constants
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -55,6 +59,16 @@ class TodayFragment : Fragment(R.layout.fragment_today) {
 
 
         setUpRecyclerView()
+
+
+        val jsonFileString = Constants.getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
+        Log.i("data", jsonFileString ?: "NOTHING")
+        val gson = Gson()
+        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
+        var colors: List<MlbColors> = gson.fromJson(jsonFileString, listMlbColorType)
+        colors.forEachIndexed { idx, mlbColors -> Log.i("data",">Item $idx: /n$mlbColors") }
+
+
 
 
         todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->

@@ -36,8 +36,8 @@ class LeadersAdapter: RecyclerView.Adapter<LeadersAdapter.LeaderViewHolder>() {
         holder.binding.apply {
             leaderName.text = leader.person?.fullName
             leaderTeam.text = leader.team?.name
-            catagoryDisplay.text=leader.league?.name
-            catagoryTxt.text=leader.rank.toString() +", " + leader.value.toString()
+            division.text="Division: " + leader.league?.name
+            catagoryTxt.text="Ranking " + leader.rank.toString() +", " + leader.value.toString()
 
         }
     }

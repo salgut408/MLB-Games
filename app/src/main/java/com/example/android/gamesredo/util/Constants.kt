@@ -1,6 +1,8 @@
 package com.example.android.gamesredo.util
 
+import android.content.Context
 import com.example.android.gamesredo.R
+import java.io.IOException
 
 class Constants {
     companion object{
@@ -13,6 +15,55 @@ class Constants {
         val img5 = R.drawable.ic_tampa_bay_rays
         val list = listOf<Int>(img,img2)
 
+//
+//        fun getJsonDataFromAsset(context: Context, fileName: String) : String? {
+//            val jsonString: String
+//            try {
+//                jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+//            } catch (ioException: IOException)
+//        }
+
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

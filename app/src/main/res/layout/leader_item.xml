@@ -41,7 +41,7 @@
                 tools:text="Team" />
 
             <TextView
-                android:id="@+id/catagoryDisplay"
+                android:id="@+id/division"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -60,8 +60,8 @@
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/catagoryDisplay"
-                app:layout_constraintTop_toTopOf="@+id/catagoryDisplay"
+                app:layout_constraintStart_toEndOf="@+id/division"
+                app:layout_constraintTop_toTopOf="@+id/division"
                 tools:text="catagory" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

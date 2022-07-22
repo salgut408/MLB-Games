@@ -1,9 +1,6 @@
 package com.example.android.gamesredo.api
 
-import com.example.android.gamesredo.AmericanLeagueStandingResponse
-import com.example.android.gamesredo.MlbResponse
-import com.example.android.gamesredo.PeopleResponse
-import com.example.android.gamesredo.TeamRosterResponse
+import com.example.android.gamesredo.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -38,5 +35,13 @@ interface MlbApi {
     ): Response<PeopleResponse>
 
 
+    @GET("v1/stats/leaders")
+    suspend fun getHomeRunLeaders(
+        @Query("season")
+        season: Int? = 2022,
+        @Query("leaderCategories")
+        leaderCategories: String? = "homeruns"
+
+    ): Response<LeagueLeadersResponse>
 
 }

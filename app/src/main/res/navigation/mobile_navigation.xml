@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_game_detail" />
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.android.gamesredo.ui.notifications.NotificationsFragment"
+        android:name="com.example.android.gamesredo.ui.leaders.LeadersFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
@@ -55,8 +55,14 @@
             app:argType="com.example.android.gamesredo.TeamRecords" />
         <action
             android:id="@+id/action_teamDetail_to_personDetailFragment"
-            app:destination="@id/personDetailFragment" />
+            app:destination="@id/personDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
+
     <fragment
         android:id="@+id/personDetailFragment"
         android:name="com.example.android.gamesredo.ui.persondetail.PersonDetailFragment"

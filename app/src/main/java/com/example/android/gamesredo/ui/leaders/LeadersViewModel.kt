@@ -1,10 +1,10 @@
-package com.example.android.gamesredo.ui.notifications
+package com.example.android.gamesredo.ui.leaders
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class LeadersViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"

@@ -26,13 +26,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 @AndroidEntryPoint
-class TodayFragment : Fragment(R.layout.fragment_today) {
+class TodayFragment : Fragment() {
 
     private var _binding: FragmentTodayBinding? = null
     private val binding get() = _binding!!
 
     val todayViewModel: TodayViewModel by viewModels()
     lateinit var gameAdapter: GamesAdapter
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,14 +62,14 @@ class TodayFragment : Fragment(R.layout.fragment_today) {
 
         setUpRecyclerView()
 
-
-        val jsonFileString = Constants.getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
-        Log.i("data", jsonFileString ?: "NOTHING")
-        val gson = Gson()
-        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
-        var colors: List<MlbColors> = gson.fromJson(jsonFileString, listMlbColorType)
-        colors.forEachIndexed { idx, mlbColors -> Log.i("data",">Item $idx: /n$mlbColors") }
-
+//TODO wbere this go
+//        val jsonFileString = Constants.getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
+//        Log.i("data", jsonFileString ?: "NOTHING")
+//        val gson = Gson()
+//        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
+//        var colors: List<MlbColors> = gson.fromJson(jsonFileString, listMlbColorType)
+//        colors.forEachIndexed { idx, mlbColors -> Log.i("data",">Item $idx: /n${mlbColors}") }
+//
 
 
 

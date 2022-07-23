@@ -33,8 +33,8 @@ object AppModule {
     ).build()
 
     @Provides
-    fun provideGameRepository(venueDb: VenueDatabase, api: MlbApi) : GameRepository
-        = GameRepository(venueDb, api)
+    fun provideGameRepository(venueDb: VenueDatabase, api: MlbApi, @ApplicationContext context: Context) : GameRepository
+        = GameRepository(venueDb, api, context)
 
 
 

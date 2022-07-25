@@ -10,8 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.gamesredo.R
-import com.example.android.gamesredo.Team
 import com.example.android.gamesredo.databinding.FragmentTeamDetailBinding
 import com.example.android.gamesredo.ui.adapters.RosterAdapter
 import com.example.android.gamesredo.util.Resource
@@ -32,9 +30,14 @@ class TeamDetailFragment() : Fragment() {
         binding=FragmentTeamDetailBinding.inflate(inflater)
         val teamRecords = TeamDetailFragmentArgs.fromBundle(requireArguments()).teamRecordsArgs
 
+
+
         binding.textView.text=teamRecords.team?.id.toString() + teamRecords.team?.name
 
+
         teamDetailViewModel.getRoster(teamRecords?.team?.id ?: 0)
+
+
         setUpRecyclerView()
 
 //        rosterAdapter.setOnItemClickListener {
@@ -51,6 +54,10 @@ class TeamDetailFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecyclerView()
+        val teamRecords = TeamDetailFragmentArgs.fromBundle(requireArguments()).teamRecordsArgs
+
+        teamDetailViewModel.setTxtAndBgrndColor(teamRecords.team?.name.toString(), binding.textView)
+
 
         rosterAdapter.setOnItemClickListener {
             this.findNavController().navigate(

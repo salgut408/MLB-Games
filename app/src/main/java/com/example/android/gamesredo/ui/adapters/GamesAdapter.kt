@@ -6,10 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.gamesredo.Games
-import com.example.android.gamesredo.MlbColors
-import com.example.android.gamesredo.Team
-import com.example.android.gamesredo.Teams
+import com.example.android.gamesredo.*
 import com.example.android.gamesredo.databinding.ItemPreviewBinding
 import com.example.android.gamesredo.ui.today.TodayViewModel
 
@@ -42,9 +39,11 @@ class GamesAdapter(): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
             awayTeam.text = game?.teams?.away?.team?.name
             homeTeam.text = game?.teams?.home?.team?.name
 
-//            for(team in todayVm.colors) {
-//                if (game?.teams?.away?.team?.name == team.name) {
-//                    awayTeam.setTextColor(Color.parseColor(team.colors?.primary))
+//            for(team in colorList) {
+//                if (game?.teams?.away?.team?.name == team.mlbColors[0].name) {
+//                    awayTeam.setTextColor(Color.parseColor(team.mlbColors[0].colors?.primary))
+//                } else if (game?.teams?.home?.team?.name == team.mlbColors[0].name) {
+//                    homeTeam.setTextColor(Color.parseColor(team.mlbColors[0].colors?.primary))
 //                }
 //            }
 

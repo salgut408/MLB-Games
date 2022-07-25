@@ -57,8 +57,8 @@ class TodayViewModel
     }
 
   fun getVmColorData() = viewModelScope.launch {
-     val colorsData = gameRepository.getColorData()
-      colors = colorsData
+      colors = gameRepository.getColorData()
+
   }
 
 }

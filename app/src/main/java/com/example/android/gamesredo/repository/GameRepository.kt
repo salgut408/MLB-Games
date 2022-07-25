@@ -2,10 +2,12 @@ package com.example.android.gamesredo.repository
 
 import android.content.Context
 import android.util.Log
+import com.example.android.gamesredo.MlbColorResponse
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.util.Constants
+import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAsset
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import javax.inject.Inject
@@ -31,12 +33,12 @@ class GameRepository @Inject constructor(
     suspend fun getHomerunLeaders(season: Int, leaderCategories: String) =
         api.getHomeRunLeaders(season, leaderCategories)
 
-    suspend fun getColorData(): List<MlbColors> {
-        val jsonFileString = Constants.getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
+     fun getColorData(): MlbColorResponse {
+        val jsonFileString = getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
         Log.i("data", jsonFileString ?: "NOTHING")
         val gson = Gson()
-        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
-        var colors: List<MlbColors> = gson.fromJson(jsonFileString, listMlbColorType)
+//        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
+        var colors: MlbColorResponse = gson.fromJson(jsonFileString, MlbColorResponse::class.java)
         return colors
     }
 

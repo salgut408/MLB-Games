@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.gamesredo.Games
+import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.Team
 import com.example.android.gamesredo.Teams
 import com.example.android.gamesredo.databinding.ItemPreviewBinding
+import com.example.android.gamesredo.ui.today.TodayViewModel
 
-class GamesAdapter: RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
+class GamesAdapter(): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
     inner class GameViewHolder(val binding: ItemPreviewBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Games>() {
@@ -39,6 +41,12 @@ class GamesAdapter: RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
 //        if(game?.teams?.away?.score>game?.teams?.away?.score)
             awayTeam.text = game?.teams?.away?.team?.name
             homeTeam.text = game?.teams?.home?.team?.name
+
+//            for(team in todayVm.colors) {
+//                if (game?.teams?.away?.team?.name == team.name) {
+//                    awayTeam.setTextColor(Color.parseColor(team.colors?.primary))
+//                }
+//            }
 
             setOnItemClickListener {
                 onItemClickListener?.let { it(game) }

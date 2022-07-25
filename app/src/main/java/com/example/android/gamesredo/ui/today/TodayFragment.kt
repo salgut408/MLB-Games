@@ -62,15 +62,6 @@ class TodayFragment : Fragment() {
 
         setUpRecyclerView()
 
-//TODO wbere this go
-//        val jsonFileString = Constants.getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
-//        Log.i("data", jsonFileString ?: "NOTHING")
-//        val gson = Gson()
-//        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
-//        var colors: List<MlbColors> = gson.fromJson(jsonFileString, listMlbColorType)
-//        colors.forEachIndexed { idx, mlbColors -> Log.i("data",">Item $idx: /n${mlbColors}") }
-//
-
 
 
         todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->

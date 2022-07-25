@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.gamesredo.MlbColorResponse
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.MlbResponse
 import com.example.android.gamesredo.util.Resource
@@ -25,10 +26,12 @@ class TodayViewModel
 
     val allGames: MutableLiveData<Resource<MlbResponse>> = MutableLiveData()
 
+    var colors: MlbColorResponse? = null
+
     init {
         getGames(1)
 
-
+        getVmColorData()
 
 
 
@@ -52,6 +55,11 @@ class TodayViewModel
         }
         return Resource.Error(response.message())
     }
+
+  fun getVmColorData() = viewModelScope.launch {
+     val colorsData = gameRepository.getColorData()
+      colors = colorsData
+  }
 
 }
 

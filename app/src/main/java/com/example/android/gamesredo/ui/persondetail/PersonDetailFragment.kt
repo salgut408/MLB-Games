@@ -1,6 +1,8 @@
 package com.example.android.gamesredo.ui.persondetail
 
+import android.app.Activity
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.android.gamesredo.People
 import com.example.android.gamesredo.Person
 import com.example.android.gamesredo.R
@@ -80,6 +83,17 @@ class PersonDetailFragment() : Fragment() {
                            personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), number)
                            personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), teamDetName)
 
+                           val logo = personDetailViewModel.getLogo(team.name.toString())
+
+
+
+//                               Glide.with(context!!.applicationContext).load(Uri.parse(logo)).into(teamLogoImg)
+
+
+//                           Glide.with(Activity()).load(logo).into(teamLogoImg)
+//                           Glide.with(view.context).load(logo).into(teamLogoImg)
+//                           Glide.with(this@PersonDetailFragment).load(logo).into(teamLogoImg)
+
 
                        }
 
@@ -95,6 +109,10 @@ class PersonDetailFragment() : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
 }

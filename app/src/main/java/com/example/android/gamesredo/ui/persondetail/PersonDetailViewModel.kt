@@ -69,6 +69,16 @@ class PersonDetailViewModel @Inject constructor(
         return "Null"
     }
 
+
+    fun getLogo(team: String): String {
+        for (i in colors!!) {
+            if ( i.name.equals(team)) {
+                return i.logo.toString()
+            }
+        }
+        return "Null"
+    }
+
     fun getSecondaryColor(team: String): String {
         for (i in colors!!) {
             if ( i.name.equals(team)) {

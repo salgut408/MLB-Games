@@ -43,10 +43,6 @@ class TodayFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val gameRepository = GameRepository(VenueDatabase(context?.applicationContext!!))
-//        val viewModelProviderFactory = TodayVMProviderFactory(gameRepository)
-//        todayViewModel = ViewModelProvider(this, viewModelProviderFactory).get(TodayViewModel::class.java)
-
 
         _binding = FragmentTodayBinding.inflate(inflater, container, false)
         val root: View = binding.root

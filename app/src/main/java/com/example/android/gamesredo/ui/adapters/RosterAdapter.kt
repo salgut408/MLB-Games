@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.gamesredo.Person
 import com.example.android.gamesredo.Roster
 import com.example.android.gamesredo.databinding.RosterItemBinding
+import com.example.android.gamesredo.ui.teamdetail.TeamDetailViewModel
 
-class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
+class RosterAdapter(val colorPrimary: String, val colorSecondary: String): RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
     inner class RosterRowViewHolder(val binding: RosterItemBinding): RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Roster>() {
@@ -44,10 +45,11 @@ class RosterAdapter: RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
             playerId.text=singlePlayerRow?.person?.id?.toString()
 
 
-            if (position % 2 == 0 && singlePlayerRow?.parentTeamId == 147){
-                card.setCardBackgroundColor(Color.rgb(12, 35, 64))
+
+            if (position % 2 == 0){
+                card.setCardBackgroundColor(Color.parseColor(colorPrimary))
             } else {
-                card.setCardBackgroundColor(Color.rgb(196, 206, 211))
+                card.setCardBackgroundColor(Color.parseColor(colorSecondary))
             }
 
             playerName.setOnClickListener {

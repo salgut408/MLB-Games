@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.teamdetail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,6 +21,9 @@ class TeamDetailFragment() : Fragment() {
     lateinit var binding: FragmentTeamDetailBinding
     val teamDetailViewModel: TeamDetailViewModel by viewModels()
      lateinit var rosterAdapter: RosterAdapter
+    lateinit var primaryColor: String
+    lateinit var secondaryColor: String
+
 
 
     override fun onCreateView(
@@ -32,13 +36,15 @@ class TeamDetailFragment() : Fragment() {
 
 
 
-        binding.textView.text=teamRecords.team?.id.toString() + teamRecords.team?.name
+        binding.textView.text= teamRecords.team?.name
 
 
         teamDetailViewModel.getRoster(teamRecords?.team?.id ?: 0)
 
+        primaryColor = teamDetailViewModel.getPrimaryColor(teamRecords.team?.name.toString())
+        secondaryColor = teamDetailViewModel.getSecondaryColor(teamRecords.team?.name.toString())
 
-        setUpRecyclerView()
+        setUpRecyclerView(primaryColor, secondaryColor)
 
 //        rosterAdapter.setOnItemClickListener {
 //            this.findNavController().navigate(
@@ -53,10 +59,14 @@ class TeamDetailFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpRecyclerView()
+        setUpRecyclerView(primaryColor, secondaryColor)
         val teamRecords = TeamDetailFragmentArgs.fromBundle(requireArguments()).teamRecordsArgs
 
         teamDetailViewModel.setTxtAndBgrndColor(teamRecords.team?.name.toString(), binding.textView)
+        //SETS COLOR BEHIND REC. VIEW
+//        view.setBackgroundColor(Color.parseColor(teamDetailViewModel.getPrimaryColor(teamRecords.team?.name.toString())))
+
+
 
 
         rosterAdapter.setOnItemClickListener {
@@ -88,11 +98,12 @@ class TeamDetailFragment() : Fragment() {
     }
 
 
-    private fun setUpRecyclerView() {
-        rosterAdapter = RosterAdapter()
+    private fun setUpRecyclerView(color1: String, color2: String) {
+        rosterAdapter = RosterAdapter(color1, color2)
         binding.rvRoster.apply {
             adapter = rosterAdapter
             layoutManager=LinearLayoutManager(this.context)
+
         }
     }
 

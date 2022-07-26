@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.gamesredo.Colors
 import com.example.android.gamesredo.MlbColorResponse
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.TeamRosterResponse
@@ -57,5 +58,27 @@ class TeamDetailViewModel
             }
         }
     }
+
+
+
+    fun getPrimaryColor(team: String): String {
+        for (i in colors!!) {
+            if ( i.name.equals(team)) {
+                return i.colors?.primary.toString()
+            }
+        }
+        return "Null"
+    }
+
+    fun getSecondaryColor(team: String): String {
+        for (i in colors!!) {
+            if ( i.name.equals(team)) {
+                return i.colors?.secondary.toString()
+            }
+        }
+        return "Null"
+    }
+
+
 
 }

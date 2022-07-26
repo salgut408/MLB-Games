@@ -32,7 +32,9 @@ class PersonDetailFragment() : Fragment() {
         binding = FragmentPersonDetailBinding.inflate(inflater)
 
          person = PersonDetailFragmentArgs.fromBundle(requireArguments()).personArg
-        binding.playerInfoName.text=person.fullName
+
+
+
         personDetailViewModel.getPersonInfo(person.id!!.toInt())
         return binding.root
     }
@@ -49,9 +51,16 @@ class PersonDetailFragment() : Fragment() {
                        binding.apply {
                            birthday.text=newPerson.birthDate
                            position.text = newPerson.primaryPosition?.name + " " + newPerson.primaryPosition?.abbreviation
-                           birthCity.text=newPerson.birthCity + newPerson.birthCountry
+                           birthCity.text=newPerson.birthCity + ", " + newPerson.birthCountry
                            tvBatSideDesc.text=newPerson.batSide?.description
                            number.text = newPerson.primaryNumber
+                           currentAge.text=newPerson.currentAge.toString()
+                           heightTxt.text=newPerson.height
+                           weightTxt.text=newPerson.weight.toString()
+                           mlbTxt.text=newPerson.mlbDebutDate
+
+                           playerInfoName.text=newPerson.firstName
+                         playerInfoLastName.text=newPerson.lastName
 
 
                        }

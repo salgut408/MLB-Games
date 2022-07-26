@@ -71,7 +71,7 @@ class TeamDetailFragment() : Fragment() {
 
         rosterAdapter.setOnItemClickListener {
             this.findNavController().navigate(
-                TeamDetailFragmentDirections.actionTeamDetailToPersonDetailFragment(it)
+                TeamDetailFragmentDirections.actionTeamDetailToPersonDetailFragment(it,teamRecords.team)
             )
         }
 

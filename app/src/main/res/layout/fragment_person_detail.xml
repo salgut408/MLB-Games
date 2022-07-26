@@ -9,20 +9,20 @@
 
     <TextView
         android:id="@+id/playerInfoName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/chivo_black"
         android:text="TextView"
         android:textColor="#000000"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/playerInfoLastName"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
         tools:text="Name" />
 
     <TextView
         android:id="@+id/playerInfoLastName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/chivo_black"
         android:text="TextView"
@@ -251,4 +251,20 @@
         android:text="MLB Debut:"
         app:layout_constraintStart_toEndOf="@+id/mlbDebutDisplay"
         app:layout_constraintTop_toTopOf="@+id/mlbDebutDisplay" />
+
+    <TextView
+        android:id="@+id/teamDetName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="148dp"
+        android:fontFamily="@font/chivo_black"
+        android:padding="6dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toBottomOf="@+id/mlbDebutDisplay"
+        tools:text="Team Name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

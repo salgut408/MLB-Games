@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.persondetail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.example.android.gamesredo.People
 import com.example.android.gamesredo.Person
 import com.example.android.gamesredo.R
+import com.example.android.gamesredo.Team
 import com.example.android.gamesredo.databinding.FragmentPersonDetailBinding
 import com.example.android.gamesredo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +24,8 @@ class PersonDetailFragment() : Fragment() {
     val personDetailViewModel: PersonDetailViewModel by viewModels()
     lateinit var person: Person
     lateinit var newPerson: People
+    lateinit var team: Team
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +37,7 @@ class PersonDetailFragment() : Fragment() {
 
          person = PersonDetailFragmentArgs.fromBundle(requireArguments()).personArg
 
+         team = PersonDetailFragmentArgs.fromBundle(requireArguments()).teamArgs!!
 
 
         personDetailViewModel.getPersonInfo(person.id!!.toInt())
@@ -42,6 +47,7 @@ class PersonDetailFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         personDetailViewModel.playerInfo.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
@@ -49,6 +55,8 @@ class PersonDetailFragment() : Fragment() {
                         peopleResponse ->
                          newPerson = peopleResponse.people[0]
                        binding.apply {
+                           val second = personDetailViewModel.getPrimaryColor(team.name.toString())
+                           val prim = personDetailViewModel.getSecondaryColor(team.name.toString())
                            birthday.text=newPerson.birthDate
                            position.text = newPerson.primaryPosition?.name + " " + newPerson.primaryPosition?.abbreviation
                            birthCity.text=newPerson.birthCity + ", " + newPerson.birthCountry
@@ -58,9 +66,19 @@ class PersonDetailFragment() : Fragment() {
                            heightTxt.text=newPerson.height
                            weightTxt.text=newPerson.weight.toString()
                            mlbTxt.text=newPerson.mlbDebutDate
+                           teamDetName.text=team.name
 
                            playerInfoName.text=newPerson.firstName
+                           playerInfoName.setTextColor(Color.parseColor(prim))
+
                          playerInfoLastName.text=newPerson.lastName
+                           playerInfoLastName.setTextColor(Color.parseColor(prim))
+
+                           playerInfoLastName.setBackgroundColor(Color.parseColor(second))
+                           playerInfoName.setBackgroundColor(Color.parseColor(second))
+
+                           personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), number)
+                           personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), teamDetName)
 
 
                        }

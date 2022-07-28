@@ -25,7 +25,7 @@ class TeamRecordsStandingsDtoMapper: DomainMapper<TeamRecords, StandingsModel> {
     }
 
 
-    fun toDomainList(initial: List<TeamRecords>): List<StandingsModel>{
+     fun toDomainList(initial: List<TeamRecords>): List<StandingsModel>{
         return initial.map { mapToDomainModel(it) }
     }
 

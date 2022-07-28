@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.databinding.FragmentTeamDetailBinding
+import com.example.android.gamesredo.domain.RosterModel
 import com.example.android.gamesredo.ui.adapters.RosterAdapter
 import com.example.android.gamesredo.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,25 +76,29 @@ class TeamDetailFragment() : Fragment() {
             )
         }
 
-        teamDetailViewModel.teamRoster.observe(viewLifecycleOwner, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    response.data?.let {
-                        teamRosterResponse ->
-                        val roster = teamRosterResponse.roster
-                        rosterAdapter.differ.submitList(roster)
-                    }
-                }
-                is Resource.Error -> {
-                    response.message?.let{
-                        Log.e("tag", "resp not successfull")
-                    }
-                }
-                is Resource.Loading -> {
-                    Log.e("tag", "resp to loading")
-                }
-            }
+        teamDetailViewModel.teamRoster.observe(viewLifecycleOwner,
+        Observer<List<RosterModel>> { roster ->
+            roster.apply {rosterAdapter.differ.submitList(roster)}
         })
+//        teamDetailViewModel.teamRoster.observe(viewLifecycleOwner, Observer { response ->
+//            when (response) {
+//                is Resource.Success -> {
+//                    response.data?.let {
+//                        teamRosterResponse ->
+//                        val roster = teamRosterResponse.roster
+//                        rosterAdapter.differ.submitList(roster)
+//                    }
+//                }
+//                is Resource.Error -> {
+//                    response.message?.let{
+//                        Log.e("tag", "resp not successfull")
+//                    }
+//                }
+//                is Resource.Loading -> {
+//                    Log.e("tag", "resp to loading")
+//                }
+//            }
+//        })
 
     }
 

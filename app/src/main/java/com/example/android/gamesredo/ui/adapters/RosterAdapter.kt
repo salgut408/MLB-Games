@@ -9,18 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.gamesredo.Person
 import com.example.android.gamesredo.Roster
 import com.example.android.gamesredo.databinding.RosterItemBinding
+import com.example.android.gamesredo.domain.RosterModel
 import com.example.android.gamesredo.ui.teamdetail.TeamDetailViewModel
 
 class RosterAdapter(val colorPrimary: String, val colorSecondary: String): RecyclerView.Adapter<RosterAdapter.RosterRowViewHolder>() {
     inner class RosterRowViewHolder(val binding: RosterItemBinding): RecyclerView.ViewHolder(binding.root)
 
-    private val differCallback = object : DiffUtil.ItemCallback<Roster>() {
+    private val differCallback = object : DiffUtil.ItemCallback<RosterModel>() {
 
-        override fun areItemsTheSame(oldItem: Roster, newItem: Roster): Boolean {
+        override fun areItemsTheSame(oldItem: RosterModel, newItem: RosterModel): Boolean {
             return oldItem.person?.id == newItem.person?.id
         }
 
-        override fun areContentsTheSame(oldItem: Roster, newItem: Roster): Boolean {
+        override fun areContentsTheSame(oldItem: RosterModel, newItem: RosterModel): Boolean {
             return oldItem == newItem
         }
     }

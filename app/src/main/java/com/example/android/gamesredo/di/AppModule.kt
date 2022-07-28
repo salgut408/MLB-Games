@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDao
 import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.models.RosterDtoMapper
 import com.example.android.gamesredo.models.TeamRecordsStandingsDtoMapper
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Constants.Companion.BASE_URL
@@ -26,21 +27,27 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideVenueDatabase(@ApplicationContext context: Context): VenueDatabase
-        = Room.databaseBuilder(
-        context,
-        VenueDatabase::class.java,
-        "database"
-    ).build()
+    fun provideVenueDatabase(@ApplicationContext context: Context): VenueDatabase =
+        Room.databaseBuilder(
+            context,
+            VenueDatabase::class.java,
+            "database"
+        ).build()
 
     @Provides
-    fun provideGameRepository(venueDb: VenueDatabase, api: MlbApi, @ApplicationContext context: Context, mapper: TeamRecordsStandingsDtoMapper) : GameRepository
-        = GameRepository(venueDb, api, context, mapper)
+    fun provideGameRepository(
+        venueDb: VenueDatabase,
+        api: MlbApi,
+        @ApplicationContext context: Context,
+        teamRecordMapper: TeamRecordsStandingsDtoMapper,
+        rosterDtoMapper: RosterDtoMapper
+    ): GameRepository = GameRepository(venueDb, api, context, teamRecordMapper, rosterDtoMapper)
 
     @Provides
-    fun provideSportDtoMapper(): TeamRecordsStandingsDtoMapper
-    =TeamRecordsStandingsDtoMapper()
+    fun provideSportDtoMapper(): TeamRecordsStandingsDtoMapper = TeamRecordsStandingsDtoMapper()
 
+    @Provides
+    fun provideTeamRosterDtoMapper(): RosterDtoMapper = RosterDtoMapper()
 
     @Singleton
     @Provides

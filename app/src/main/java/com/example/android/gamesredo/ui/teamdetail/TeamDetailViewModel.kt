@@ -2,6 +2,7 @@ package com.example.android.gamesredo.ui.teamdetail
 
 import android.graphics.Color
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,6 +10,7 @@ import com.example.android.gamesredo.Colors
 import com.example.android.gamesredo.MlbColorResponse
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.TeamRosterResponse
+import com.example.android.gamesredo.domain.RosterModel
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +24,8 @@ class TeamDetailViewModel
     val gameRepository: GameRepository
         ): ViewModel() {
 
-    val teamRoster: MutableLiveData<Resource<TeamRosterResponse>> = MutableLiveData()
-
+    private val _teamRoster: MutableLiveData<List<RosterModel>> = MutableLiveData()
+    val teamRoster: LiveData<List<RosterModel>> get() = _teamRoster
 
     var colors: List<MlbColors>?=null
 
@@ -31,10 +33,14 @@ class TeamDetailViewModel
     getColors()
     }
     fun getRoster(teamId: Int) = viewModelScope.launch {
+        val result = gameRepository.getRoster(teamId)
+        _teamRoster.postValue(result)
 
-        teamRoster.postValue(Resource.Loading())
-    val response = gameRepository.getRoster(teamId)
-    teamRoster.postValue(handleTeamRosterResponse(response))
+
+
+//        teamRoster.postValue(Resource.Loading())
+//    val response = gameRepository.getRoster(teamId)
+//    teamRoster.postValue(handleTeamRosterResponse(response))
 
 }
     private fun handleTeamRosterResponse(response: Response<TeamRosterResponse>) : Resource<TeamRosterResponse> {

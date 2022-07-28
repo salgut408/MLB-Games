@@ -30,6 +30,9 @@ class HomeViewModel
     fun getRecords(leagueId: Int,leagueId2: Int ) = viewModelScope.launch {
         val result = gameRepository.getRecords(103,102)
         _allTeamsRecords.postValue(result)
+
+
+
 //        allTeamsRecords.postValue(Resource.Loading())
 //
 //        // Don't return Response object from repository

@@ -2,12 +2,14 @@ package com.example.android.gamesredo.ui.persondetail
 
 import android.graphics.Color
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.People
 import com.example.android.gamesredo.PeopleResponse
+import com.example.android.gamesredo.domain.PeopleModel
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +21,8 @@ import javax.inject.Inject
 class PersonDetailViewModel @Inject constructor(
     val gameRepository: GameRepository
 ): ViewModel() {
-    val playerInfo: MutableLiveData<Resource<PeopleResponse>> = MutableLiveData()
+    private val _playerInfo: MutableLiveData<PeopleModel> = MutableLiveData()
+    val playerInfo: LiveData<PeopleModel> get() = _playerInfo
 
     var colors: List<MlbColors>?=null
 
@@ -27,10 +30,12 @@ class PersonDetailViewModel @Inject constructor(
         getColors()
     }
     fun getPersonInfo(personId: Int) = viewModelScope.launch {
-        playerInfo.postValue(Resource.Loading())
+        val result = gameRepository.getPersonInfo(personId)
+        _playerInfo.postValue(result)
 
-         val response = gameRepository.getPersonInfo(personId)
-        playerInfo.postValue(handlePersonResponse(response))
+//        playerInfo.postValue(Resource.Loading())
+//         val response = gameRepository.getPersonInfo(personId)
+//        playerInfo.postValue(handlePersonResponse(response))
 
 }
     private fun handlePersonResponse(response: Response<PeopleResponse>): Resource<PeopleResponse> {

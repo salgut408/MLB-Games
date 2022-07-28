@@ -5,8 +5,10 @@ import android.util.Log
 import com.example.android.gamesredo.MlbColorResponse
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.domain.PeopleModel
 import com.example.android.gamesredo.domain.RosterModel
 import com.example.android.gamesredo.domain.StandingsModel
+import com.example.android.gamesredo.models.PeopleDtoMapper
 import com.example.android.gamesredo.models.RosterDtoMapper
 import com.example.android.gamesredo.models.TeamRecordsStandingsDtoMapper
 import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAsset
@@ -18,7 +20,8 @@ class GameRepository @Inject constructor(
     val api: MlbApi,
     val context: Context,
     val mapper: TeamRecordsStandingsDtoMapper,
-    val rosterMapr: RosterDtoMapper
+    val rosterMapr: RosterDtoMapper,
+    val pplMappr: PeopleDtoMapper
 ) {
 
 //    suspend fun getSport(): List<SportModel> {
@@ -49,9 +52,13 @@ class GameRepository @Inject constructor(
     return rosterMapr.toDomainList(result)
     }
 
-    suspend fun getPersonInfo(personId: Int) =
-        api.getPersonInfo(personId)
+//    suspend fun getPersonInfo(personId: Int) =
+//        api.getPersonInfo(personId)
 
+    suspend fun getPersonInfo(personId: Int): PeopleModel {
+        val result = api.getPersonInfo(personId).body()!!.people[0]
+        return pplMappr.mapToDomainModel(result)
+    }
 
     suspend fun getHomerunLeaders(season: Int, leaderCategories: String) =
         api.getHomeRunLeaders(season, leaderCategories)

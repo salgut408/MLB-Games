@@ -11,10 +11,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class RosterModel (
 
-    @SerializedName("person"       ) var person       : Person?   = Person(),
-    @SerializedName("jerseyNumber" ) var jerseyNumber : String?   = null,
-    @SerializedName("position"     ) var position     : Position? = Position(),
-    @SerializedName("status"       ) var playerStatus       : PlayerStatus?   = PlayerStatus(),
-    @SerializedName("parentTeamId" ) var parentTeamId : Int?      = null
+    val person       : Person?   = Person(),
+    val jerseyNumber : String?   = null,
+    val position     : Position? = Position(),
+    val playerStatus       : PlayerStatus?   = PlayerStatus(),
+    val parentTeamId : Int?      = null
 
 ): Parcelable

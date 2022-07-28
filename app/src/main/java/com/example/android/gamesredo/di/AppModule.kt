@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDao
 import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.models.PeopleDtoMapper
 import com.example.android.gamesredo.models.RosterDtoMapper
 import com.example.android.gamesredo.models.TeamRecordsStandingsDtoMapper
 import com.example.android.gamesredo.repository.GameRepository
@@ -40,14 +41,18 @@ object AppModule {
         api: MlbApi,
         @ApplicationContext context: Context,
         teamRecordMapper: TeamRecordsStandingsDtoMapper,
-        rosterDtoMapper: RosterDtoMapper
-    ): GameRepository = GameRepository(venueDb, api, context, teamRecordMapper, rosterDtoMapper)
+        rosterDtoMapper: RosterDtoMapper,
+        peopleDtoMapper: PeopleDtoMapper
+    ): GameRepository = GameRepository(venueDb, api, context, teamRecordMapper, rosterDtoMapper, peopleDtoMapper)
 
     @Provides
     fun provideSportDtoMapper(): TeamRecordsStandingsDtoMapper = TeamRecordsStandingsDtoMapper()
 
     @Provides
     fun provideTeamRosterDtoMapper(): RosterDtoMapper = RosterDtoMapper()
+
+    @Provides
+    fun providePeopleDtoMapper(): PeopleDtoMapper = PeopleDtoMapper()
 
     @Singleton
     @Provides

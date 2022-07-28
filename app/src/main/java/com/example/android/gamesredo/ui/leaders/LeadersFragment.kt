@@ -48,6 +48,8 @@ class LeadersFragment : Fragment() {
                 is Resource.Success -> {
                     response.data?.let { leagueLeaderResponse ->
                         val list = leagueLeaderResponse.leagueLeaders[0].leaders
+                        list.addAll(leagueLeaderResponse.leagueLeaders[1].leaders)
+                        list.addAll(leagueLeaderResponse.leagueLeaders[2].leaders)
                         leadersAdapter.differ.submitList(list)
                     }
                 }

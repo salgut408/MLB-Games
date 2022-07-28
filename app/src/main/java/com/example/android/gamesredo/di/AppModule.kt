@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDao
 import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.models.TeamRecordsStandingsDtoMapper
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Constants.Companion.BASE_URL
 import dagger.Module
@@ -33,9 +34,12 @@ object AppModule {
     ).build()
 
     @Provides
-    fun provideGameRepository(venueDb: VenueDatabase, api: MlbApi, @ApplicationContext context: Context) : GameRepository
-        = GameRepository(venueDb, api, context)
+    fun provideGameRepository(venueDb: VenueDatabase, api: MlbApi, @ApplicationContext context: Context, mapper: TeamRecordsStandingsDtoMapper) : GameRepository
+        = GameRepository(venueDb, api, context, mapper)
 
+    @Provides
+    fun provideSportDtoMapper(): TeamRecordsStandingsDtoMapper
+    =TeamRecordsStandingsDtoMapper()
 
 
     @Singleton

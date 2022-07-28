@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Sport (
+data class SportDto (
 
   @SerializedName("id"   ) var id   : Int?    = null,
   @SerializedName("link" ) var link : String? = null

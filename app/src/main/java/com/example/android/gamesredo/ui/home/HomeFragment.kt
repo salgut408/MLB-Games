@@ -11,9 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.gamesredo.Team
+import com.example.android.gamesredo.TeamRecords
 import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.databinding.FragmentHomeBinding
 import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.domain.StandingsModel
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.StandingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,14 +27,14 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-     val homeViewModel: HomeViewModel by viewModels()
+    val homeViewModel: HomeViewModel by viewModels()
 
     lateinit var standingsAdapter: StandingsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -51,32 +54,40 @@ class HomeFragment : Fragment() {
                 HomeFragmentDirections.actionNavigationHomeToTeamDetail(it)
             )
         }
-
-        homeViewModel.allTeamsRecords.observe(viewLifecycleOwner, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    response.data?.let { americanLeagueStandingResponse ->
-                        val list = americanLeagueStandingResponse.records[0].teamRecords
-                        list.addAll(americanLeagueStandingResponse.records[1].teamRecords)
-                        list.addAll( americanLeagueStandingResponse.records[2].teamRecords)
-                        list.addAll( americanLeagueStandingResponse.records[3].teamRecords)
-                        list.addAll( americanLeagueStandingResponse.records[4].teamRecords)
-                        list.addAll( americanLeagueStandingResponse.records[5].teamRecords)
-
-                        standingsAdapter.differ.submitList(list)
-                    }
-                }
-                is Resource.Error -> {
-                    response.message?.let { message ->
-                        Log.e("tag", "response not successful")
-                    }
-                }
-                is Resource.Loading -> {
-                    Log.e("tag", "response loading")
-
-                }
-            }
-        })
+        homeViewModel.allTeamsRecords.observe(viewLifecycleOwner,
+            Observer<List<StandingsModel>> { standing ->
+                standing.apply { standingsAdapter.differ.submitList(standing) }
+            })
+//        homeViewModel.allTeamsRecords.observe(viewLifecycleOwner, Observer { response ->
+//            when (response) {
+//                is Resource.Success -> {
+//                    response.data?.let { americanLeagueStandingResponse ->
+//                        val list = mutableListOf<TeamRecords>()
+//
+//                        for(record in americanLeagueStandingResponse.records) {
+//                            list.addAll(record.teamRecords)
+//                        }
+////                            americanLeagueStandingResponse.records[0].teamRecords
+////                        list.addAll(americanLeagueStandingResponse.records[1].teamRecords)
+////                        list.addAll( americanLeagueStandingResponse.records[2].teamRecords)
+////                        list.addAll( americanLeagueStandingResponse.records[3].teamRecords)
+////                        list.addAll( americanLeagueStandingResponse.records[4].teamRecords)
+////                        list.addAll( americanLeagueStandingResponse.records[5].teamRecords)
+//
+//                        standingsAdapter.differ.submitList(list)
+//                    }
+//                }
+//                is Resource.Error -> {
+//                    response.message?.let { message ->
+//                        Log.e("tag", "response not successful")
+//                    }
+//                }
+//                is Resource.Loading -> {
+//                    Log.e("tag", "response loading")
+//
+//                }
+//            }
+//        })
 
 
     }
@@ -84,8 +95,8 @@ class HomeFragment : Fragment() {
     private fun setUpRecyclerView() {
         standingsAdapter = StandingsAdapter()
         binding.rvStandings.apply {
-            adapter=standingsAdapter
-            layoutManager=LinearLayoutManager(this.context)
+            adapter = standingsAdapter
+            layoutManager = LinearLayoutManager(this.context)
         }
     }
 

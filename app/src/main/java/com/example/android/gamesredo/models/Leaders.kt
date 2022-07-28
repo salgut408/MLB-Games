@@ -10,7 +10,7 @@ data class Leaders (
     @SerializedName("team"     ) var team     : Team?   = Team(),
     @SerializedName("league"   ) var league   : League? = League(),
     @SerializedName("person"   ) var person   : Person? = Person(),
-    @SerializedName("sport"    ) var sport    : Sport?  = Sport(),
+    @SerializedName("sport"    ) var sport    : SportDto?  = SportDto(),
     @SerializedName("season"   ) var season   : String? = null,
     @SerializedName("numTeams" ) var numTeams : Int?    = null
 

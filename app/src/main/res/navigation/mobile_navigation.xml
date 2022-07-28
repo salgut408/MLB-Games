@@ -52,7 +52,7 @@
         tools:layout="@layout/fragment_team_detail" >
         <argument
             android:name="teamRecordsArgs"
-            app:argType="com.example.android.gamesredo.TeamRecords" />
+            app:argType="com.example.android.gamesredo.domain.StandingsModel" />
         <action
             android:id="@+id/action_teamDetail_to_personDetailFragment"
             app:destination="@id/personDetailFragment"

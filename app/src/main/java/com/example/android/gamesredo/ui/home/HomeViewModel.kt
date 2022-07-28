@@ -29,7 +29,11 @@ class HomeViewModel
 
     fun getRecords(leagueId: Int,leagueId2: Int ) = viewModelScope.launch {
         val result = gameRepository.getRecords(103,102)
+      
+
         _allTeamsRecords.postValue(result)
+
+
 
 
 

@@ -33,7 +33,10 @@ class GameRepository @Inject constructor(
 //    }
 
     suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
-        val result = api.getStandings(103, 104).body()!!.records[0].teamRecords
+        val result = api.getStandings(103, 104).body()!!.records[0].teamRecords +
+                    api.getStandings(103, 104).body()!!.records[1].teamRecords +
+                api.getStandings(103, 104).body()!!.records[2].teamRecords +
+                api.getStandings(103, 104).body()!!.records[3].teamRecords
         return mapper.toDomainList(result)
     }
 

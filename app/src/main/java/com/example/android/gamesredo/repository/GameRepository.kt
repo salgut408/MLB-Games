@@ -7,14 +7,8 @@ import com.example.android.gamesredo.Records
 import com.example.android.gamesredo.TeamRecords
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
-import com.example.android.gamesredo.domain.GamesModel
-import com.example.android.gamesredo.domain.PeopleModel
-import com.example.android.gamesredo.domain.RosterModel
-import com.example.android.gamesredo.domain.StandingsModel
-import com.example.android.gamesredo.models.GamesDtoMapper
-import com.example.android.gamesredo.models.PeopleDtoMapper
-import com.example.android.gamesredo.models.RosterDtoMapper
-import com.example.android.gamesredo.models.TeamRecordsStandingsDtoMapper
+import com.example.android.gamesredo.domain.*
+import com.example.android.gamesredo.models.*
 import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAsset
 import com.google.gson.Gson
 import javax.inject.Inject
@@ -26,7 +20,8 @@ class GameRepository @Inject constructor(
     val mapper: TeamRecordsStandingsDtoMapper,
     val rosterMapr: RosterDtoMapper,
     val pplMappr: PeopleDtoMapper,
-    val gameMappr: GamesDtoMapper
+    val gameMappr: GamesDtoMapper,
+    val leaderMapper: LeadersDtoMapper
 ) {
 
 //    suspend fun getSport(): List<SportModel> {
@@ -78,8 +73,12 @@ suspend fun getGames(sportId: Int): List<GamesModel>{
         return pplMappr.mapToDomainModel(result)
     }
 
-    suspend fun getHomerunLeaders(season: Int, leaderCategories: String) =
-        api.getHomeRunLeaders(season, leaderCategories)
+//    suspend fun getHomerunLeaders(season: Int, leaderCategories: String) =
+//        api.getHomeRunLeaders(season, leaderCategories)
+    suspend fun getHomeRunLeaders(season: Int, leadersCatagories: String): List<LeadersModel>{
+        val result = api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
+    return leaderMapper.toDomainList(result)
+    }
 
      fun getColorData(): MlbColorResponse {
         val jsonFileString = getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")

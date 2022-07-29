@@ -5,10 +5,8 @@ import androidx.room.Room
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDao
 import com.example.android.gamesredo.db.VenueDatabase
-import com.example.android.gamesredo.models.GamesDtoMapper
-import com.example.android.gamesredo.models.PeopleDtoMapper
-import com.example.android.gamesredo.models.RosterDtoMapper
-import com.example.android.gamesredo.models.TeamRecordsStandingsDtoMapper
+import com.example.android.gamesredo.domain.LeadersModel
+import com.example.android.gamesredo.models.*
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Constants.Companion.BASE_URL
 import dagger.Module
@@ -44,8 +42,12 @@ object AppModule {
         teamRecordMapper: TeamRecordsStandingsDtoMapper,
         rosterDtoMapper: RosterDtoMapper,
         peopleDtoMapper: PeopleDtoMapper,
-    gamesDtoMapper: GamesDtoMapper
-    ): GameRepository = GameRepository(venueDb, api, context, teamRecordMapper, rosterDtoMapper, peopleDtoMapper, gamesDtoMapper)
+    gamesDtoMapper: GamesDtoMapper,
+        leaderDtoMapper: LeadersDtoMapper
+    ): GameRepository = GameRepository(venueDb, api, context, teamRecordMapper, rosterDtoMapper, peopleDtoMapper, gamesDtoMapper, leaderDtoMapper)
+
+    @Provides
+    fun provideLeaderDtoMapper(): LeadersDtoMapper = LeadersDtoMapper()
 
     @Provides
     fun provideGamesDtoMapper(): GamesDtoMapper = GamesDtoMapper()

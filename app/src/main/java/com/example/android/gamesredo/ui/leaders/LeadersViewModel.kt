@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.gamesredo.LeagueLeadersResponse
+import com.example.android.gamesredo.domain.LeadersModel
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,17 +19,19 @@ class LeadersViewModel
     val gameRepository: GameRepository
 ) : ViewModel() {
 
-    val allLeaders: MutableLiveData<Resource<LeagueLeadersResponse>> = MutableLiveData()
-
+   private val _allLeaders: MutableLiveData<List<LeadersModel>> = MutableLiveData()
+    val allLeaders: LiveData<List<LeadersModel>> get() = _allLeaders
     init {
         getLeaders(2022, "homeruns")
     }
 
 
     fun getLeaders(season: Int, leaderCatagories: String) = viewModelScope.launch {
-        allLeaders.postValue(Resource.Loading())
-        val response = gameRepository.getHomerunLeaders(2022, "homeruns")
-        allLeaders.postValue(handleHRLeadersResponse(response))
+        val result = gameRepository.getHomeRunLeaders(2022, "homeruns")
+        _allLeaders.postValue(result)
+//        allLeaders.postValue(Resource.Loading())
+//        val response = gameRepository.getHomerunLeaders(2022, "homeruns")
+//        allLeaders.postValue(handleHRLeadersResponse(response))
     }
 
     private fun handleHRLeadersResponse(response: Response<LeagueLeadersResponse>) : Resource<LeagueLeadersResponse> {

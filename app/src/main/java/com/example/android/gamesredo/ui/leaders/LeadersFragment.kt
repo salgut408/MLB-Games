@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.databinding.FragmentNotificationsBinding
+import com.example.android.gamesredo.domain.LeadersModel
 import com.example.android.gamesredo.ui.adapters.LeadersAdapter
 import com.example.android.gamesredo.ui.adapters.StandingsAdapter
 import com.example.android.gamesredo.util.Resource
@@ -42,27 +43,30 @@ class LeadersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpRecyclerView()
-
-        leadersViewModel.allLeaders.observe(viewLifecycleOwner, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    response.data?.let { leagueLeaderResponse ->
-                        val list = leagueLeaderResponse.leagueLeaders[0].leaders
-                        list.addAll(leagueLeaderResponse.leagueLeaders[1].leaders)
-                        list.addAll(leagueLeaderResponse.leagueLeaders[2].leaders)
-                        leadersAdapter.differ.submitList(list)
-                    }
-                }
-                is Resource.Error -> {
-                    response.message?.let { message ->
-                        Log.e("tag", "resp not successful")
-                    }
-                }
-                is Resource.Loading -> {
-                    Log.e("tag", "Resp loading")
-                }
-            }
+        leadersViewModel.allLeaders.observe(viewLifecycleOwner, Observer<List<LeadersModel>> { leader ->
+            leader.apply{leadersAdapter.differ.submitList(leader)}
         })
+
+//        leadersViewModel.allLeaders.observe(viewLifecycleOwner, Observer { response ->
+//            when (response) {
+//                is Resource.Success -> {
+//                    response.data?.let { leagueLeaderResponse ->
+//                        val list = leagueLeaderResponse.leagueLeaders[0].leaders
+//                        list.addAll(leagueLeaderResponse.leagueLeaders[1].leaders)
+//                        list.addAll(leagueLeaderResponse.leagueLeaders[2].leaders)
+//                        leadersAdapter.differ.submitList(list)
+//                    }
+//                }
+//                is Resource.Error -> {
+//                    response.message?.let { message ->
+//                        Log.e("tag", "resp not successful")
+//                    }
+//                }
+//                is Resource.Loading -> {
+//                    Log.e("tag", "Resp loading")
+//                }
+//            }
+//        })
 
     }
 

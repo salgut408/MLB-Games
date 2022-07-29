@@ -40,11 +40,19 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
             awayTeam.text = game?.teams?.away?.team?.name
             homeTeam.text = game?.teams?.home?.team?.name
 
+
+
             for (i in colors) {
                 if(i.name!!.equals(game.teams?.away?.team?.name )) {
                     awayTeam.setTextColor(Color.parseColor(i.colors?.primary))
                     awayTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
+
+
+                }
+                if(i.name!!.equals(game.teams?.home?.team?.name )) {
+
                     homeTeam.setTextColor(Color.parseColor(i.colors?.primary))
+                    homeTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
                 }
             }

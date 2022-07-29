@@ -57,6 +57,7 @@ class TodayFragment : Fragment() {
         _binding?.todaysDate?.text = setDate()
 
 
+
         setUpRecyclerView()
 
         todayViewModel.allGames.observe(viewLifecycleOwner, Observer<List<GamesModel>> { game ->
@@ -89,7 +90,8 @@ class TodayFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        gameAdapter = GamesAdapter()
+        val colors  = todayViewModel.colors
+        gameAdapter = GamesAdapter(colors!!)
         binding.rvGames.apply {
             adapter = gameAdapter
             layoutManager = GridLayoutManager(this.context, 2)

@@ -69,7 +69,8 @@ class PersonDetailViewModel @Inject constructor(
     fun getPrimaryColor(team: String): String {
         for (i in colors!!) {
             if (i.name.equals(team)) {
-                return i.colors?.primary.toString()
+              val  color = i.colors?.primary.toString()
+                return color
             }
         }
         return "Null"

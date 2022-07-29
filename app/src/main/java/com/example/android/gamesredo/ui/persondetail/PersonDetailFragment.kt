@@ -44,6 +44,7 @@ class PersonDetailFragment() : Fragment() {
 
 
         personDetailViewModel.getPersonInfo(person.id!!.toInt())
+
         return binding.root
     }
 

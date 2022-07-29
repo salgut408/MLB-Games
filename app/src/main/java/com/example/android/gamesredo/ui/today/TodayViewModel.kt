@@ -1,6 +1,8 @@
 package com.example.android.gamesredo.ui.today
 
+import android.graphics.Color
 import android.util.Log
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,12 +31,14 @@ class TodayViewModel
     private val _allGames: MutableLiveData<List<GamesModel>> = MutableLiveData()
     val allGames: LiveData<List<GamesModel>> get() = _allGames
 
-    var colors: MlbColorResponse? = null
+
+
+    var colors: List<MlbColors>? = null
 
     init {
         getGames(1)
 
-        getVmColorData()
+        getColors()
 
 
     }
@@ -57,9 +61,36 @@ class TodayViewModel
         return Resource.Error(response.message())
     }
 
-    fun getVmColorData() = viewModelScope.launch {
-        colors = gameRepository.getColorData()
+    fun getColors() = viewModelScope.launch {
+        colors = gameRepository.getColorData().mlbColors
+    }
 
+    fun setTxtAndBgrndColor(team: String, txtView: TextView) {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                txtView.setTextColor(Color.parseColor(i.colors?.primary))
+                txtView.setBackgroundColor(Color.parseColor(i.colors?.secondary))
+            }
+        }
+    }
+
+
+    fun getPrimaryColor(team: String): String {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                return i.colors?.primary.toString()
+            }
+        }
+        return "Null"
+    }
+
+    fun getSecondaryColor(team: String): String {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                return i.colors?.secondary.toString()
+            }
+        }
+        return "Null"
     }
 
 }

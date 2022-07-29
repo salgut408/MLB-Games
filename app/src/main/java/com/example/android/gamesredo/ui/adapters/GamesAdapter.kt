@@ -11,7 +11,7 @@ import com.example.android.gamesredo.databinding.ItemPreviewBinding
 import com.example.android.gamesredo.domain.GamesModel
 import com.example.android.gamesredo.ui.today.TodayViewModel
 
-class GamesAdapter() : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
+class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
     inner class GameViewHolder(val binding: ItemPreviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -39,6 +39,16 @@ class GamesAdapter() : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
         holder.binding.apply {
             awayTeam.text = game?.teams?.away?.team?.name
             homeTeam.text = game?.teams?.home?.team?.name
+
+            for (i in colors) {
+                if(i.name!!.equals(game.teams?.away?.team?.name )) {
+                    awayTeam.setTextColor(Color.parseColor(i.colors?.primary))
+                    awayTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
+                    homeTeam.setTextColor(Color.parseColor(i.colors?.primary))
+
+                }
+            }
+
 
 //            for(team in colorList) {
 //                if (game?.teams?.away?.team?.name == team.mlbColors[0].name) {

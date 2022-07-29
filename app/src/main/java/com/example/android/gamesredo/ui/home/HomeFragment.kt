@@ -58,36 +58,7 @@ class HomeFragment : Fragment() {
             Observer<List<StandingsModel>> { standing ->
                 standing.apply { standingsAdapter.differ.submitList(standing) }
             })
-//        homeViewModel.allTeamsRecords.observe(viewLifecycleOwner, Observer { response ->
-//            when (response) {
-//                is Resource.Success -> {
-//                    response.data?.let { americanLeagueStandingResponse ->
-//                        val list = mutableListOf<TeamRecords>()
-//
-//                        for(record in americanLeagueStandingResponse.records) {
-//                            list.addAll(record.teamRecords)
-//                        }
-////                            americanLeagueStandingResponse.records[0].teamRecords
-////                        list.addAll(americanLeagueStandingResponse.records[1].teamRecords)
-////                        list.addAll( americanLeagueStandingResponse.records[2].teamRecords)
-////                        list.addAll( americanLeagueStandingResponse.records[3].teamRecords)
-////                        list.addAll( americanLeagueStandingResponse.records[4].teamRecords)
-////                        list.addAll( americanLeagueStandingResponse.records[5].teamRecords)
-//
-//                        standingsAdapter.differ.submitList(list)
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    response.message?.let { message ->
-//                        Log.e("tag", "response not successful")
-//                    }
-//                }
-//                is Resource.Loading -> {
-//                    Log.e("tag", "response loading")
-//
-//                }
-//            }
-//        })
+
 
 
     }

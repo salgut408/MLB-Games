@@ -44,14 +44,7 @@ class TeamDetailViewModel
 
     }
 
-    private fun handleTeamRosterResponse(response: Response<TeamRosterResponse>): Resource<TeamRosterResponse> {
-        if (response.isSuccessful) {
-            response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
-            }
-        }
-        return Resource.Error(response.message())
-    }
+
 
     fun getColors() = viewModelScope.launch {
         colors = gameRepository.getColorData().mlbColors

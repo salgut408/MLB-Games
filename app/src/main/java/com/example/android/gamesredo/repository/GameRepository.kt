@@ -22,6 +22,7 @@ class GameRepository @Inject constructor(
     val pplMappr: PeopleDtoMapper,
     val gameMappr: GamesDtoMapper,
     val leaderMapper: LeadersDtoMapper,
+//    val colorsDtoMapper: MlbColorsDtoMapper
 ) {
 
 //    suspend fun getSport(): List<SportModel> {
@@ -70,6 +71,16 @@ class GameRepository @Inject constructor(
             api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
         return leaderMapper.toDomainList(result)
     }
+    //TODO maybe make colors DTO also ?
+//    suspend fun getColorDataM(): List<MlbColorsModel>{
+//        val jsonFileString =
+//            getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
+//        Log.i("data", jsonFileString ?: "NOTHING")
+//        val gson = Gson()
+////        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
+//        var result: MlbColorResponse = gson.fromJson(jsonFileString, MlbColorResponse::class.java)
+//        return colorsDtoMapper.toDomainList(result.mlbColors)
+//    }
 
     fun getColorData(): MlbColorResponse {
         val jsonFileString =

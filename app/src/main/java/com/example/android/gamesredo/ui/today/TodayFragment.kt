@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+
 @AndroidEntryPoint
 class TodayFragment : Fragment() {
 
@@ -36,13 +37,10 @@ class TodayFragment : Fragment() {
     lateinit var gameAdapter: GamesAdapter
 
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         _binding = FragmentTodayBinding.inflate(inflater, container, false)
@@ -61,8 +59,8 @@ class TodayFragment : Fragment() {
 
         setUpRecyclerView()
 
-        todayViewModel.allGames.observe(viewLifecycleOwner, Observer<List<GamesModel>>{ game ->
-            game.apply{gameAdapter.differ.submitList(game)}
+        todayViewModel.allGames.observe(viewLifecycleOwner, Observer<List<GamesModel>> { game ->
+            game.apply { gameAdapter.differ.submitList(game) }
         })
 
 //        todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->
@@ -90,7 +88,7 @@ class TodayFragment : Fragment() {
         binding.progressBar.visibility = View.INVISIBLE
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         gameAdapter = GamesAdapter()
         binding.rvGames.apply {
             adapter = gameAdapter
@@ -98,13 +96,13 @@ class TodayFragment : Fragment() {
         }
     }
 
-   @RequiresApi(Build.VERSION_CODES.O)
-   private fun setDate(): String {
-       val current = LocalDateTime.now()
-       val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
-       val formatted = current.format(formatter)
-       return formatted
-   }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setDate(): String {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        val formatted = current.format(formatter)
+        return formatted
+    }
 
 }
 

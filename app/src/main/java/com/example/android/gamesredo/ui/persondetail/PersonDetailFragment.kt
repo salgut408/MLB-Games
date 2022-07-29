@@ -38,9 +38,9 @@ class PersonDetailFragment() : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentPersonDetailBinding.inflate(inflater)
 
-         person = PersonDetailFragmentArgs.fromBundle(requireArguments()).personArg
+        person = PersonDetailFragmentArgs.fromBundle(requireArguments()).personArg
 
-         team = PersonDetailFragmentArgs.fromBundle(requireArguments()).teamArgs!!
+        team = PersonDetailFragmentArgs.fromBundle(requireArguments()).teamArgs!!
 
 
         personDetailViewModel.getPersonInfo(person.id!!.toInt())
@@ -51,38 +51,39 @@ class PersonDetailFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         personDetailViewModel.playerInfo.observe(viewLifecycleOwner,
-        Observer<PeopleModel> { people ->
-            people.apply {
-                val second = personDetailViewModel.getPrimaryColor(team.name.toString())
-               val prim = personDetailViewModel.getSecondaryColor(team.name.toString())
-                binding.birthday.text=people.birthDate
-                binding.position.text = people.primaryPosition?.name + " " + people.primaryPosition?.abbreviation
+            Observer<PeopleModel> { people ->
+                people.apply {
+                    val second = personDetailViewModel.getPrimaryColor(team.name.toString())
+                    val prim = personDetailViewModel.getSecondaryColor(team.name.toString())
+                    binding.birthday.text = people.birthDate
+                    binding.position.text =
+                        people.primaryPosition?.name + " " + people.primaryPosition?.abbreviation
 
-                binding.birthCity.text = people.birthCity + ", " + people.birthCountry
-                binding.tvBatSideDesc.text = people.batSide?.description
-                binding.number.text = people.primaryNumber
-                binding.currentAge.text = people.currentAge.toString()
-                binding.heightTxt.text = people.height
-                binding.weightTxt.text = people.weight.toString()
-                binding.mlbTxt.text = people.mlbDebutDate
-                binding.teamDetName.text = team.name
+                    binding.birthCity.text = people.birthCity + ", " + people.birthCountry
+                    binding.tvBatSideDesc.text = people.batSide?.description
+                    binding.number.text = people.primaryNumber
+                    binding.currentAge.text = people.currentAge.toString()
+                    binding.heightTxt.text = people.height
+                    binding.weightTxt.text = people.weight.toString()
+                    binding.mlbTxt.text = people.mlbDebutDate
+                    binding.teamDetName.text = team.name
 
-                binding.playerInfoName.text = people.firstName
-                binding.playerInfoName.setTextColor(Color.parseColor(prim))
+                    binding.playerInfoName.text = people.firstName
+                    binding.playerInfoName.setTextColor(Color.parseColor(prim))
 
-                binding.playerInfoLastName.text = people.lastName
-                binding.playerInfoLastName.setTextColor(Color.parseColor(prim))
+                    binding.playerInfoLastName.text = people.lastName
+                    binding.playerInfoLastName.setTextColor(Color.parseColor(prim))
 
-                binding.playerInfoLastName.setBackgroundColor(Color.parseColor(second))
-                binding.playerInfoName.setBackgroundColor(Color.parseColor(second))
+                    binding.playerInfoLastName.setBackgroundColor(Color.parseColor(second))
+                    binding.playerInfoName.setBackgroundColor(Color.parseColor(second))
 
-                personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), binding.number)
-                personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), binding.teamDetName)
+                    personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), binding.number)
+                    personDetailViewModel.setTxtAndBgrndColor(team.name.toString(),
+                        binding.teamDetName)
 
 
-
-            }
-        })
+                }
+            })
 
 //        personDetailViewModel.playerInfo.observe(viewLifecycleOwner, Observer { response ->
 //            when (response) {

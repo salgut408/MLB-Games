@@ -11,8 +11,9 @@ import com.example.android.gamesredo.databinding.StandingsItemBinding
 import com.example.android.gamesredo.domain.StandingsModel
 
 
-class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHolder>() {
-    inner class TeamRecordViewHolder(val binding: StandingsItemBinding) : RecyclerView.ViewHolder(binding.root)
+class StandingsAdapter : RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHolder>() {
+    inner class TeamRecordViewHolder(val binding: StandingsItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<StandingsModel>() {
 
@@ -37,14 +38,14 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
 
     override fun onBindViewHolder(holder: TeamRecordViewHolder, position: Int) {
         val singleRecord = differ.currentList[position]
-        holder.binding.apply{
+        holder.binding.apply {
             teamStandingsName.text = singleRecord.team?.name
-            seasonTxt.text=singleRecord.team?.id.toString()
-            divRank.text=singleRecord.divisionRank
-            winsNumber.text=singleRecord.wins.toString()
-            lossNumber.text=singleRecord.losses.toString()
-            winPercentNumber.text=singleRecord.winningPercentage
-            divisionLeaderBool.text=singleRecord?.sportRank.toString()
+            seasonTxt.text = singleRecord.team?.id.toString()
+            divRank.text = singleRecord.divisionRank
+            winsNumber.text = singleRecord.wins.toString()
+            lossNumber.text = singleRecord.losses.toString()
+            winPercentNumber.text = singleRecord.winningPercentage
+            divisionLeaderBool.text = singleRecord?.sportRank.toString()
 
 
 
@@ -56,9 +57,10 @@ class StandingsAdapter: RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHold
             }
         }
     }
-    private var onItemClickListener: ((StandingsModel)->Unit)?=null
 
-    fun setOnItemClickListener(listener: (StandingsModel)->Unit) {
+    private var onItemClickListener: ((StandingsModel) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (StandingsModel) -> Unit) {
         onItemClickListener = listener
     }
 

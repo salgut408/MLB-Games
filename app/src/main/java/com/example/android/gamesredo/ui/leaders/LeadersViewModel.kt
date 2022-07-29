@@ -16,11 +16,12 @@ import javax.inject.Inject
 @HiltViewModel
 class LeadersViewModel
 @Inject constructor(
-    val gameRepository: GameRepository
+    val gameRepository: GameRepository,
 ) : ViewModel() {
 
-   private val _allLeaders: MutableLiveData<List<LeadersModel>> = MutableLiveData()
+    private val _allLeaders: MutableLiveData<List<LeadersModel>> = MutableLiveData()
     val allLeaders: LiveData<List<LeadersModel>> get() = _allLeaders
+
     init {
         getLeaders(2022, "homeruns")
     }
@@ -34,15 +35,14 @@ class LeadersViewModel
 //        allLeaders.postValue(handleHRLeadersResponse(response))
     }
 
-    private fun handleHRLeadersResponse(response: Response<LeagueLeadersResponse>) : Resource<LeagueLeadersResponse> {
+    private fun handleHRLeadersResponse(response: Response<LeagueLeadersResponse>): Resource<LeagueLeadersResponse> {
         if (response.isSuccessful) {
-            response.body()?.let {  resultResponse ->
+            response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
             }
         }
         return Resource.Error(response.message())
     }
-
 
 
 }

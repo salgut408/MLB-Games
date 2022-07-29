@@ -10,7 +10,7 @@ interface MlbApi {
     @GET("v1/schedule")
     suspend fun getGames(
         @Query("sportId")
-        sportId: Int = 1
+        sportId: Int = 1,
     ): Response<MlbResponse>
 
 
@@ -19,19 +19,19 @@ interface MlbApi {
         @Query("leagueId")
         leagueId: Int = 103,
         @Query("leagueId")
-    leagueId2: Int = 104
+        leagueId2: Int = 104,
     ): Response<AmericanLeagueStandingResponse>
 
     @GET("v1/teams/{teamId}/roster")
     suspend fun getTeamInfo(
         @Path("teamId")
-        teamId: Int? = null
+        teamId: Int? = null,
     ): Response<TeamRosterResponse>
 
     @GET("v1/people/{personId}")
     suspend fun getPersonInfo(
         @Path("personId")
-        teamId: Int? = null
+        teamId: Int? = null,
     ): Response<PeopleResponse>
 
 
@@ -40,8 +40,8 @@ interface MlbApi {
         @Query("season")
         season: Int? = 2022,
         @Query("leaderCategories")
-        leaderCategories: String? = "homeruns"
+        leaderCategories: String? = "homeruns",
 
-    ): Response<LeagueLeadersResponse>
+        ): Response<LeagueLeadersResponse>
 
 }

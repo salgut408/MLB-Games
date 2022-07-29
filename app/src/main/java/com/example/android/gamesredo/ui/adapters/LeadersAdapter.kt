@@ -10,8 +10,9 @@ import com.example.android.gamesredo.LeagueLeaders
 import com.example.android.gamesredo.databinding.LeaderItemBinding
 import com.example.android.gamesredo.domain.LeadersModel
 
-class LeadersAdapter: RecyclerView.Adapter<LeadersAdapter.LeaderViewHolder>() {
-    inner class LeaderViewHolder(val binding: LeaderItemBinding) : RecyclerView.ViewHolder(binding.root)
+class LeadersAdapter : RecyclerView.Adapter<LeadersAdapter.LeaderViewHolder>() {
+    inner class LeaderViewHolder(val binding: LeaderItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<LeadersModel>() {
         override fun areItemsTheSame(oldItem: LeadersModel, newItem: LeadersModel): Boolean {
@@ -37,8 +38,8 @@ class LeadersAdapter: RecyclerView.Adapter<LeadersAdapter.LeaderViewHolder>() {
         holder.binding.apply {
             leaderName.text = leader.person?.fullName
             leaderTeam.text = leader.team?.name
-            division.text="Division: " + leader.league?.name
-            catagoryTxt.text="Ranking " + leader.rank.toString() +", " + leader.value.toString()
+            division.text = "Division: " + leader.league?.name
+            catagoryTxt.text = "Ranking " + leader.rank.toString() + ", " + leader.value.toString()
 
         }
     }

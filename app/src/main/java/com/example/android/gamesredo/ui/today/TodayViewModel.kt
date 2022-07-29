@@ -22,11 +22,11 @@ import javax.inject.Inject
 @HiltViewModel
 
 class TodayViewModel
-    @Inject constructor(
-    val gameRepository: GameRepository
+@Inject constructor(
+    val gameRepository: GameRepository,
 ) : ViewModel() {
 
-   private val _allGames: MutableLiveData<List<GamesModel>> = MutableLiveData()
+    private val _allGames: MutableLiveData<List<GamesModel>> = MutableLiveData()
     val allGames: LiveData<List<GamesModel>> get() = _allGames
 
     var colors: MlbColorResponse? = null
@@ -37,11 +37,7 @@ class TodayViewModel
         getVmColorData()
 
 
-
-
-
     }
-
 
 
     fun getGames(sportId: Int) = viewModelScope.launch {
@@ -52,19 +48,19 @@ class TodayViewModel
 //        allGames.postValue(handleMLBResponse(response))
     }
 
-    private fun handleMLBResponse(response: Response<MlbResponse>) : Resource<MlbResponse> {
-        if(response.isSuccessful) {
-            response.body()?.let{ resultResponse ->
+    private fun handleMLBResponse(response: Response<MlbResponse>): Resource<MlbResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
             }
         }
         return Resource.Error(response.message())
     }
 
-  fun getVmColorData() = viewModelScope.launch {
-      colors = gameRepository.getColorData()
+    fun getVmColorData() = viewModelScope.launch {
+        colors = gameRepository.getColorData()
 
-  }
+    }
 
 }
 

@@ -31,7 +31,7 @@ class LeadersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
@@ -43,9 +43,10 @@ class LeadersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpRecyclerView()
-        leadersViewModel.allLeaders.observe(viewLifecycleOwner, Observer<List<LeadersModel>> { leader ->
-            leader.apply{leadersAdapter.differ.submitList(leader)}
-        })
+        leadersViewModel.allLeaders.observe(viewLifecycleOwner,
+            Observer<List<LeadersModel>> { leader ->
+                leader.apply { leadersAdapter.differ.submitList(leader) }
+            })
 
 //        leadersViewModel.allLeaders.observe(viewLifecycleOwner, Observer { response ->
 //            when (response) {
@@ -72,10 +73,10 @@ class LeadersFragment : Fragment() {
 
     private fun setUpRecyclerView() {
         leadersAdapter = LeadersAdapter()
-      binding.rvLeaders.apply {
-           adapter = leadersAdapter
-           layoutManager = LinearLayoutManager(this.context)
-       }
+        binding.rvLeaders.apply {
+            adapter = leadersAdapter
+            layoutManager = LinearLayoutManager(this.context)
+        }
     }
 
     override fun onDestroyView() {

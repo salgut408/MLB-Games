@@ -20,30 +20,31 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TeamDetailViewModel
-    @Inject constructor (
-    val gameRepository: GameRepository
-        ): ViewModel() {
+@Inject constructor(
+    val gameRepository: GameRepository,
+) : ViewModel() {
 
     private val _teamRoster: MutableLiveData<List<RosterModel>> = MutableLiveData()
     val teamRoster: LiveData<List<RosterModel>> get() = _teamRoster
 
-    var colors: List<MlbColors>?=null
+    var colors: List<MlbColors>? = null
 
     init {
-    getColors()
+        getColors()
     }
+
     fun getRoster(teamId: Int) = viewModelScope.launch {
         val result = gameRepository.getRoster(teamId)
         _teamRoster.postValue(result)
-
 
 
 //        teamRoster.postValue(Resource.Loading())
 //    val response = gameRepository.getRoster(teamId)
 //    teamRoster.postValue(handleTeamRosterResponse(response))
 
-}
-    private fun handleTeamRosterResponse(response: Response<TeamRosterResponse>) : Resource<TeamRosterResponse> {
+    }
+
+    private fun handleTeamRosterResponse(response: Response<TeamRosterResponse>): Resource<TeamRosterResponse> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
@@ -56,8 +57,8 @@ class TeamDetailViewModel
         colors = gameRepository.getColorData().mlbColors
     }
 
-    fun setTxtAndBgrndColor(team: String, txtView: TextView){
-        for (i in colors!!){
+    fun setTxtAndBgrndColor(team: String, txtView: TextView) {
+        for (i in colors!!) {
             if (i.name.equals(team)) {
                 txtView.setTextColor(Color.parseColor(i.colors?.primary))
                 txtView.setBackgroundColor(Color.parseColor(i.colors?.secondary))
@@ -66,10 +67,9 @@ class TeamDetailViewModel
     }
 
 
-
     fun getPrimaryColor(team: String): String {
         for (i in colors!!) {
-            if ( i.name.equals(team)) {
+            if (i.name.equals(team)) {
                 return i.colors?.primary.toString()
             }
         }
@@ -78,13 +78,12 @@ class TeamDetailViewModel
 
     fun getSecondaryColor(team: String): String {
         for (i in colors!!) {
-            if ( i.name.equals(team)) {
+            if (i.name.equals(team)) {
                 return i.colors?.secondary.toString()
             }
         }
         return "Null"
     }
-
 
 
 }

@@ -21,7 +21,7 @@ class GameRepository @Inject constructor(
     val rosterMapr: RosterDtoMapper,
     val pplMappr: PeopleDtoMapper,
     val gameMappr: GamesDtoMapper,
-    val leaderMapper: LeadersDtoMapper
+    val leaderMapper: LeadersDtoMapper,
 ) {
 
 //    suspend fun getSport(): List<SportModel> {
@@ -33,55 +33,47 @@ class GameRepository @Inject constructor(
 //    }
 
     suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
-      val list: List<StandingsModel>
+        val list: List<StandingsModel>
         val result = api.getStandings(103, 104).body()!!.records[0].teamRecords +
-                    api.getStandings(103, 104).body()!!.records[1].teamRecords +
+                api.getStandings(103, 104).body()!!.records[1].teamRecords +
                 api.getStandings(103, 104).body()!!.records[2].teamRecords +
                 api.getStandings(103, 104).body()!!.records[3].teamRecords
 
-
+//  TODO make this better
 //        api.getStandings(103, 104).body()!!.records.size
-
 //        while (i =0;i<api.getStandings(103, 104).body()!!.records.size; i++ ){
 
         return mapper.toDomainList(result)
     }
 
-//    suspend fun getGames(sportId: Int) =
-//        api.getGames(1)
-suspend fun getGames(sportId: Int): List<GamesModel>{
-    val result = api.getGames(1).body()!!.dates[0].games
-    return gameMappr.toDomainList(result)
-}
 
-//    suspend fun getRecords(leagueId: Int, leagueId2: Int) =
-//        api.getStandings(103, 104)
-
-//    suspend fun getRoster(teamId: Int) =
-//        api.getTeamInfo(teamId)
-
-    suspend fun getRoster(teamId: Int): List<RosterModel>{
-        val result = api.getTeamInfo(teamId).body()!!.roster
-    return rosterMapr.toDomainList(result)
+    suspend fun getGames(sportId: Int): List<GamesModel> {
+        val result = api.getGames(1).body()!!.dates[0].games
+        return gameMappr.toDomainList(result)
     }
 
-//    suspend fun getPersonInfo(personId: Int) =
-//        api.getPersonInfo(personId)
+
+    suspend fun getRoster(teamId: Int): List<RosterModel> {
+        val result = api.getTeamInfo(teamId).body()!!.roster
+        return rosterMapr.toDomainList(result)
+    }
+
 
     suspend fun getPersonInfo(personId: Int): PeopleModel {
         val result = api.getPersonInfo(personId).body()!!.people[0]
         return pplMappr.mapToDomainModel(result)
     }
 
-//    suspend fun getHomerunLeaders(season: Int, leaderCategories: String) =
-//        api.getHomeRunLeaders(season, leaderCategories)
-    suspend fun getHomeRunLeaders(season: Int, leadersCatagories: String): List<LeadersModel>{
-        val result = api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
-    return leaderMapper.toDomainList(result)
+
+    suspend fun getHomeRunLeaders(season: Int, leadersCatagories: String): List<LeadersModel> {
+        val result =
+            api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
+        return leaderMapper.toDomainList(result)
     }
 
-     fun getColorData(): MlbColorResponse {
-        val jsonFileString = getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
+    fun getColorData(): MlbColorResponse {
+        val jsonFileString =
+            getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
         Log.i("data", jsonFileString ?: "NOTHING")
         val gson = Gson()
 //        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type
@@ -98,8 +90,6 @@ suspend fun getGames(sportId: Int): List<GamesModel>{
 //        var colors: List<MlbColors> = gson.fromJson(jsonFileString, listMlbColorType)
 //        colors.forEachIndexed { idx, mlbColors -> Log.i("data",">Item $idx: /n${mlbColors}") }
 //
-
-
 
 
 }

@@ -19,16 +19,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PersonDetailViewModel @Inject constructor(
-    val gameRepository: GameRepository
-): ViewModel() {
+    val gameRepository: GameRepository,
+) : ViewModel() {
     private val _playerInfo: MutableLiveData<PeopleModel> = MutableLiveData()
     val playerInfo: LiveData<PeopleModel> get() = _playerInfo
 
-    var colors: List<MlbColors>?=null
+    var colors: List<MlbColors>? = null
 
     init {
         getColors()
     }
+
     fun getPersonInfo(personId: Int) = viewModelScope.launch {
         val result = gameRepository.getPersonInfo(personId)
         _playerInfo.postValue(result)
@@ -37,9 +38,10 @@ class PersonDetailViewModel @Inject constructor(
 //         val response = gameRepository.getPersonInfo(personId)
 //        playerInfo.postValue(handlePersonResponse(response))
 
-}
+    }
+
     private fun handlePersonResponse(response: Response<PeopleResponse>): Resource<PeopleResponse> {
-        if ( response.isSuccessful) {
+        if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
             }
@@ -54,8 +56,8 @@ class PersonDetailViewModel @Inject constructor(
         colors = gameRepository.getColorData().mlbColors
     }
 
-    fun setTxtAndBgrndColor(team: String, txtView: TextView){
-        for (i in colors!!){
+    fun setTxtAndBgrndColor(team: String, txtView: TextView) {
+        for (i in colors!!) {
             if (i.name.equals(team)) {
                 txtView.setTextColor(Color.parseColor(i.colors?.primary))
                 txtView.setBackgroundColor(Color.parseColor(i.colors?.secondary))
@@ -64,10 +66,9 @@ class PersonDetailViewModel @Inject constructor(
     }
 
 
-
     fun getPrimaryColor(team: String): String {
         for (i in colors!!) {
-            if ( i.name.equals(team)) {
+            if (i.name.equals(team)) {
                 return i.colors?.primary.toString()
             }
         }
@@ -77,7 +78,7 @@ class PersonDetailViewModel @Inject constructor(
 
     fun getLogo(team: String): String {
         for (i in colors!!) {
-            if ( i.name.equals(team)) {
+            if (i.name.equals(team)) {
                 return i.logo.toString()
             }
         }
@@ -86,15 +87,12 @@ class PersonDetailViewModel @Inject constructor(
 
     fun getSecondaryColor(team: String): String {
         for (i in colors!!) {
-            if ( i.name.equals(team)) {
+            if (i.name.equals(team)) {
                 return i.colors?.secondary.toString()
             }
         }
         return "Null"
     }
-
-
-
 
 
 }

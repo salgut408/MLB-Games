@@ -36,15 +36,22 @@ object AppModule {
 
     @Provides
     fun provideGameRepository(
-        venueDb: VenueDatabase,
-        api: MlbApi,
-        @ApplicationContext context: Context,
-        teamRecordMapper: TeamRecordsStandingsDtoMapper,
-        rosterDtoMapper: RosterDtoMapper,
-        peopleDtoMapper: PeopleDtoMapper,
-    gamesDtoMapper: GamesDtoMapper,
-        leaderDtoMapper: LeadersDtoMapper
-    ): GameRepository = GameRepository(venueDb, api, context, teamRecordMapper, rosterDtoMapper, peopleDtoMapper, gamesDtoMapper, leaderDtoMapper)
+            venueDb: VenueDatabase,
+            api: MlbApi,
+            @ApplicationContext context: Context,
+            teamRecordMapper: TeamRecordsStandingsDtoMapper,
+            rosterDtoMapper: RosterDtoMapper,
+            peopleDtoMapper: PeopleDtoMapper,
+            gamesDtoMapper: GamesDtoMapper,
+            leaderDtoMapper: LeadersDtoMapper,
+    ): GameRepository = GameRepository(venueDb,
+            api,
+            context,
+            teamRecordMapper,
+            rosterDtoMapper,
+            peopleDtoMapper,
+            gamesDtoMapper,
+            leaderDtoMapper)
 
     @Provides
     fun provideLeaderDtoMapper(): LeadersDtoMapper = LeadersDtoMapper()

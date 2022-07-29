@@ -21,10 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class TeamDetailFragment() : Fragment() {
     lateinit var binding: FragmentTeamDetailBinding
     val teamDetailViewModel: TeamDetailViewModel by viewModels()
-     lateinit var rosterAdapter: RosterAdapter
+    lateinit var rosterAdapter: RosterAdapter
     lateinit var primaryColor: String
     lateinit var secondaryColor: String
-
 
 
     override fun onCreateView(
@@ -32,12 +31,12 @@ class TeamDetailFragment() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding=FragmentTeamDetailBinding.inflate(inflater)
+        binding = FragmentTeamDetailBinding.inflate(inflater)
         val teamRecords = TeamDetailFragmentArgs.fromBundle(requireArguments()).teamRecordsArgs
 
 
 
-        binding.textView.text= teamRecords.team?.name
+        binding.textView.text = teamRecords.team?.name
 
 
         teamDetailViewModel.getRoster(teamRecords?.team?.id ?: 0)
@@ -68,18 +67,17 @@ class TeamDetailFragment() : Fragment() {
 //        view.setBackgroundColor(Color.parseColor(teamDetailViewModel.getPrimaryColor(teamRecords.team?.name.toString())))
 
 
-
-
         rosterAdapter.setOnItemClickListener {
             this.findNavController().navigate(
-                TeamDetailFragmentDirections.actionTeamDetailToPersonDetailFragment(it,teamRecords.team)
+                TeamDetailFragmentDirections.actionTeamDetailToPersonDetailFragment(it,
+                    teamRecords.team)
             )
         }
 
         teamDetailViewModel.teamRoster.observe(viewLifecycleOwner,
-        Observer<List<RosterModel>> { roster ->
-            roster.apply {rosterAdapter.differ.submitList(roster)}
-        })
+            Observer<List<RosterModel>> { roster ->
+                roster.apply { rosterAdapter.differ.submitList(roster) }
+            })
 //        teamDetailViewModel.teamRoster.observe(viewLifecycleOwner, Observer { response ->
 //            when (response) {
 //                is Resource.Success -> {
@@ -107,7 +105,7 @@ class TeamDetailFragment() : Fragment() {
         rosterAdapter = RosterAdapter(color1, color2)
         binding.rvRoster.apply {
             adapter = rosterAdapter
-            layoutManager=LinearLayoutManager(this.context)
+            layoutManager = LinearLayoutManager(this.context)
 
         }
     }

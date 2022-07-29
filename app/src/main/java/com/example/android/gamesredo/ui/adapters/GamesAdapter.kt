@@ -11,8 +11,9 @@ import com.example.android.gamesredo.databinding.ItemPreviewBinding
 import com.example.android.gamesredo.domain.GamesModel
 import com.example.android.gamesredo.ui.today.TodayViewModel
 
-class GamesAdapter(): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
-    inner class GameViewHolder(val binding: ItemPreviewBinding) : RecyclerView.ViewHolder(binding.root)
+class GamesAdapter() : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
+    inner class GameViewHolder(val binding: ItemPreviewBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<GamesModel>() {
         override fun areItemsTheSame(oldItem: GamesModel, newItem: GamesModel): Boolean {
@@ -26,17 +27,16 @@ class GamesAdapter(): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-      return GameViewHolder(ItemPreviewBinding.inflate(
-          LayoutInflater.from(parent.context),
-          parent,
-          false
-      ))
+        return GameViewHolder(ItemPreviewBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-       val game = differ.currentList[position]
+        val game = differ.currentList[position]
         holder.binding.apply {
-//        if(game?.teams?.away?.score>game?.teams?.away?.score)
             awayTeam.text = game?.teams?.away?.team?.name
             homeTeam.text = game?.teams?.home?.team?.name
 
@@ -59,10 +59,10 @@ class GamesAdapter(): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((GamesModel)-> Unit)? = null
+    private var onItemClickListener: ((GamesModel) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (GamesModel)->Unit) {
-        onItemClickListener=listener
+    fun setOnItemClickListener(listener: (GamesModel) -> Unit) {
+        onItemClickListener = listener
     }
 }
 

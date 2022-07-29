@@ -1,12 +1,14 @@
 package com.example.android.gamesredo.ui.today
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.gamesredo.MlbColorResponse
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.MlbResponse
+import com.example.android.gamesredo.domain.GamesModel
 import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Constants
@@ -24,7 +26,8 @@ class TodayViewModel
     val gameRepository: GameRepository
 ) : ViewModel() {
 
-    val allGames: MutableLiveData<Resource<MlbResponse>> = MutableLiveData()
+   private val _allGames: MutableLiveData<List<GamesModel>> = MutableLiveData()
+    val allGames: LiveData<List<GamesModel>> get() = _allGames
 
     var colors: MlbColorResponse? = null
 
@@ -42,9 +45,11 @@ class TodayViewModel
 
 
     fun getGames(sportId: Int) = viewModelScope.launch {
-        allGames.postValue(Resource.Loading())
-        val response = gameRepository.getGames(1)
-        allGames.postValue(handleMLBResponse(response))
+        val result = gameRepository.getGames(1)
+        _allGames.postValue(result)
+//        allGames.postValue(Resource.Loading())
+//        val response = gameRepository.getGames(1)
+//        allGames.postValue(handleMLBResponse(response))
     }
 
     private fun handleMLBResponse(response: Response<MlbResponse>) : Resource<MlbResponse> {

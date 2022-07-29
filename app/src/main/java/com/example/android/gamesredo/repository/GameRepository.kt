@@ -3,11 +3,15 @@ package com.example.android.gamesredo.repository
 import android.content.Context
 import android.util.Log
 import com.example.android.gamesredo.MlbColorResponse
+import com.example.android.gamesredo.Records
+import com.example.android.gamesredo.TeamRecords
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.domain.GamesModel
 import com.example.android.gamesredo.domain.PeopleModel
 import com.example.android.gamesredo.domain.RosterModel
 import com.example.android.gamesredo.domain.StandingsModel
+import com.example.android.gamesredo.models.GamesDtoMapper
 import com.example.android.gamesredo.models.PeopleDtoMapper
 import com.example.android.gamesredo.models.RosterDtoMapper
 import com.example.android.gamesredo.models.TeamRecordsStandingsDtoMapper
@@ -21,7 +25,8 @@ class GameRepository @Inject constructor(
     val context: Context,
     val mapper: TeamRecordsStandingsDtoMapper,
     val rosterMapr: RosterDtoMapper,
-    val pplMappr: PeopleDtoMapper
+    val pplMappr: PeopleDtoMapper,
+    val gameMappr: GamesDtoMapper
 ) {
 
 //    suspend fun getSport(): List<SportModel> {
@@ -33,16 +38,26 @@ class GameRepository @Inject constructor(
 //    }
 
     suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
+      val list: List<StandingsModel>
         val result = api.getStandings(103, 104).body()!!.records[0].teamRecords +
                     api.getStandings(103, 104).body()!!.records[1].teamRecords +
                 api.getStandings(103, 104).body()!!.records[2].teamRecords +
                 api.getStandings(103, 104).body()!!.records[3].teamRecords
+
+
+//        api.getStandings(103, 104).body()!!.records.size
+
+//        while (i =0;i<api.getStandings(103, 104).body()!!.records.size; i++ ){
+
         return mapper.toDomainList(result)
     }
 
-    suspend fun getGames(sportId: Int) =
-        api.getGames(1)
-
+//    suspend fun getGames(sportId: Int) =
+//        api.getGames(1)
+suspend fun getGames(sportId: Int): List<GamesModel>{
+    val result = api.getGames(1).body()!!.dates[0].games
+    return gameMappr.toDomainList(result)
+}
 
 //    suspend fun getRecords(leagueId: Int, leagueId2: Int) =
 //        api.getStandings(103, 104)

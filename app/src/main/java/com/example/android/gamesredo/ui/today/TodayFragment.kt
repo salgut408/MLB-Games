@@ -17,6 +17,7 @@ import com.example.android.gamesredo.R
 import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.databinding.FragmentTodayBinding
 import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.domain.GamesModel
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.GamesAdapter
 import com.example.android.gamesredo.util.Constants
@@ -60,27 +61,29 @@ class TodayFragment : Fragment() {
 
         setUpRecyclerView()
 
-
-
-        todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->
-            when (response) {
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let { mlbresponse ->
-                        gameAdapter.differ.submitList(mlbresponse.dates[0].games)
-                    }
-                }
-                is Resource.Error -> {
-                    response.message?.let { message ->
-                        Log.e("Tag", "response not successfull")
-                    }
-                }
-                is Resource.Loading -> {
-                    hideProgressBar()
-                }
-            }
-
+        todayViewModel.allGames.observe(viewLifecycleOwner, Observer<List<GamesModel>>{ game ->
+            game.apply{gameAdapter.differ.submitList(game)}
         })
+
+//        todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->
+//            when (response) {
+//                is Resource.Success -> {
+//                    hideProgressBar()
+//                    response.data?.let { mlbresponse ->
+//                        gameAdapter.differ.submitList(mlbresponse.dates[0].games)
+//                    }
+//                }
+//                is Resource.Error -> {
+//                    response.message?.let { message ->
+//                        Log.e("Tag", "response not successfull")
+//                    }
+//                }
+//                is Resource.Loading -> {
+//                    hideProgressBar()
+//                }
+//            }
+//
+//        })
     }
 
     private fun hideProgressBar() {

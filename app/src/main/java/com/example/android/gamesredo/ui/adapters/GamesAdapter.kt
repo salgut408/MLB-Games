@@ -8,17 +8,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.gamesredo.*
 import com.example.android.gamesredo.databinding.ItemPreviewBinding
+import com.example.android.gamesredo.domain.GamesModel
 import com.example.android.gamesredo.ui.today.TodayViewModel
 
 class GamesAdapter(): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
     inner class GameViewHolder(val binding: ItemPreviewBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private val differCallback = object : DiffUtil.ItemCallback<Games>() {
-        override fun areItemsTheSame(oldItem: Games, newItem: Games): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<GamesModel>() {
+        override fun areItemsTheSame(oldItem: GamesModel, newItem: GamesModel): Boolean {
             return oldItem.gamePk == newItem.gamePk
         }
 
-        override fun areContentsTheSame(oldItem: Games, newItem: Games): Boolean {
+        override fun areContentsTheSame(oldItem: GamesModel, newItem: GamesModel): Boolean {
             return oldItem == newItem
         }
     }
@@ -58,9 +59,9 @@ class GamesAdapter(): RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Games)-> Unit)? = null
+    private var onItemClickListener: ((GamesModel)-> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Games)->Unit) {
+    fun setOnItemClickListener(listener: (GamesModel)->Unit) {
         onItemClickListener=listener
     }
 }

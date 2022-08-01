@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.gamesredo.Person
+import com.example.android.gamesredo.Team
 import com.example.android.gamesredo.databinding.FragmentTeamDetailBinding
 import com.example.android.gamesredo.domain.RosterModel
 import com.example.android.gamesredo.ui.adapters.RosterAdapter
@@ -110,7 +112,6 @@ class TeamDetailFragment() : Fragment() {
         }
     }
 
-//    private fun callRoster(teamId: Int, vm: TeamDetailViewModel) {
-//        vm.getRoster(teamId)
-//    }
+
+
 }

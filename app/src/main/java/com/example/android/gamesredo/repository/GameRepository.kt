@@ -3,8 +3,6 @@ package com.example.android.gamesredo.repository
 import android.content.Context
 import android.util.Log
 import com.example.android.gamesredo.MlbColorResponse
-import com.example.android.gamesredo.Records
-import com.example.android.gamesredo.TeamRecords
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.domain.*
@@ -22,6 +20,7 @@ class GameRepository @Inject constructor(
     val pplMappr: PeopleDtoMapper,
     val gameMappr: GamesDtoMapper,
     val leaderMapper: LeadersDtoMapper,
+    val histMapper: TeamsHistDtoMapper,
 //    val colorsDtoMapper: MlbColorsDtoMapper
 ) {
 
@@ -58,6 +57,11 @@ class GameRepository @Inject constructor(
     suspend fun getPersonInfo(personId: Int): PeopleModel {
         val result = api.getPersonInfo(personId).body()!!.people[0]
         return pplMappr.mapToDomainModel(result)
+    }
+
+    suspend fun getTeamHistoryInfo(teamIds: Int): TeamsHistModel {
+        val result = api.getTeamHistoryInfo(teamIds).body()!!.teamsHist[0]
+        return histMapper.mapToDomainModel(result)
     }
 
 

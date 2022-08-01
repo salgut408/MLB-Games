@@ -44,4 +44,10 @@ interface MlbApi {
 
         ): Response<LeagueLeadersResponse>
 
+    @GET("v1/teams/history")
+    suspend fun getTeamHistoryInfo(
+        @Query("teamIds")
+        teamIds: Int? = null
+    ): Response<TeamHistoryResponse>
+
 }

@@ -75,5 +75,22 @@
             android:name="teamArgs"
             app:argType="com.example.android.gamesredo.Team"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_teamHistoryFragment"
+            app:destination="@id/teamHistoryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/teamHistoryFragment"
+        android:name="com.example.android.gamesredo.ui.teamhistory.TeamHistoryFragment"
+        android:label="fragment_team_history"
+        tools:layout="@layout/fragment_team_history" >
+        <argument
+            android:name="teamHistArgs"
+            app:argType="com.example.android.gamesredo.Team" />
     </fragment>
 </navigation>

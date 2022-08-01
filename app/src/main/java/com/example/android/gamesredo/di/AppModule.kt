@@ -44,6 +44,7 @@ object AppModule {
             peopleDtoMapper: PeopleDtoMapper,
             gamesDtoMapper: GamesDtoMapper,
             leaderDtoMapper: LeadersDtoMapper,
+            histDtoMapper: TeamsHistDtoMapper,
     ): GameRepository = GameRepository(venueDb,
             api,
             context,
@@ -51,13 +52,16 @@ object AppModule {
             rosterDtoMapper,
             peopleDtoMapper,
             gamesDtoMapper,
-            leaderDtoMapper)
+            leaderDtoMapper,
+             histDtoMapper)
 
     @Provides
     fun provideLeaderDtoMapper(): LeadersDtoMapper = LeadersDtoMapper()
 
     @Provides
     fun provideGamesDtoMapper(): GamesDtoMapper = GamesDtoMapper()
+
+
 
     @Provides
     fun provideSportDtoMapper(): TeamRecordsStandingsDtoMapper = TeamRecordsStandingsDtoMapper()
@@ -67,6 +71,9 @@ object AppModule {
 
     @Provides
     fun providePeopleDtoMapper(): PeopleDtoMapper = PeopleDtoMapper()
+
+    @Provides
+    fun provideHistDtoMapper(): TeamsHistDtoMapper = TeamsHistDtoMapper()
 
     @Singleton
     @Provides

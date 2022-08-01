@@ -11,11 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.android.gamesredo.People
-import com.example.android.gamesredo.Person
-import com.example.android.gamesredo.R
-import com.example.android.gamesredo.Team
+import com.example.android.gamesredo.*
 import com.example.android.gamesredo.databinding.FragmentPersonDetailBinding
 import com.example.android.gamesredo.domain.PeopleModel
 import com.example.android.gamesredo.util.Resource
@@ -82,7 +80,13 @@ class PersonDetailFragment() : Fragment() {
                     personDetailViewModel.setTxtAndBgrndColor(team.name.toString(),
                         binding.teamDetName)
 
-
+                        binding.teamDetName.setOnClickListener {
+                            onItemClickListener.let {
+                                this@PersonDetailFragment.findNavController().navigate(
+                                    PersonDetailFragmentDirections.actionPersonDetailFragmentToTeamHistoryFragment( team)
+                                )
+                            }
+                        }
                 }
             })
 
@@ -145,9 +149,16 @@ class PersonDetailFragment() : Fragment() {
 //            }
 //        })
     }
+    private var onItemClickListener: ((Team) -> Unit)? = null
+//
+//    fun setOnItemClickListener(listener: (Team) -> Unit) {
+//        onItemClickListener = listener
+//    }
 
     override fun onResume() {
         super.onResume()
     }
+
+
 
 }

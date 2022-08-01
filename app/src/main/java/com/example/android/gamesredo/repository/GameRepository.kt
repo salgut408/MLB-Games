@@ -66,7 +66,7 @@ class GameRepository @Inject constructor(
         for (i in api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders) {
             result.addAll(i.leaders)
         }
-        //TODO fix index 0 added two times
+        //TODO fix index 0 added two
 
 
 

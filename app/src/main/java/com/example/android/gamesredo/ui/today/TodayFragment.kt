@@ -64,25 +64,6 @@ class TodayFragment : Fragment() {
             game.apply { gameAdapter.differ.submitList(game) }
         })
 
-//        todayViewModel.allGames.observe(viewLifecycleOwner, Observer { response ->
-//            when (response) {
-//                is Resource.Success -> {
-//                    hideProgressBar()
-//                    response.data?.let { mlbresponse ->
-//                        gameAdapter.differ.submitList(mlbresponse.dates[0].games)
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    response.message?.let { message ->
-//                        Log.e("Tag", "response not successfull")
-//                    }
-//                }
-//                is Resource.Loading -> {
-//                    hideProgressBar()
-//                }
-//            }
-//
-//        })
     }
 
     private fun hideProgressBar() {

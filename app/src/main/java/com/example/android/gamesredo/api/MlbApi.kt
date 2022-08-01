@@ -44,6 +44,16 @@ interface MlbApi {
 
         ): Response<LeagueLeadersResponse>
 
+    @GET("v1/stats/leaders")
+    suspend fun getHomeRunLeadersPerTeam(
+        @Query("season")
+        season: Int? = 2022,
+        @Query("leaderCategories")
+        leaderCategories: String? = "homeruns",
+        @Query("teamIds")
+        teamIds: Int? = null
+    ): Response<LeagueLeadersResponse>
+
     @GET("v1/teams/history")
     suspend fun getTeamHistoryInfo(
         @Query("teamIds")

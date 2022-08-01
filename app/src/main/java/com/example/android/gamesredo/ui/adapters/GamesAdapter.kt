@@ -37,8 +37,8 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = differ.currentList[position]
         holder.binding.apply {
-            awayTeam.text = game?.teams?.away?.team?.name
-            homeTeam.text = game?.teams?.home?.team?.name
+            awayTeam.text = game?.teams?.away?.team?.name +", "+ game?.teams?.away?.score
+            homeTeam.text = game?.teams?.home?.team?.name +", "+ game?.teams?.home?.score
 
 
 

@@ -74,8 +74,21 @@ class GameRepository @Inject constructor(
 
 
 
+
+
         return leaderMapper.toDomainList(result)
     }
+
+
+    suspend fun getHomeRunLeadsByTeam(season: Int, leadersCatagories: String, teamIds: Int): List<LeadersModel> {
+        val result=api.getHomeRunLeadersPerTeam(season, leadersCatagories, teamIds).body()!!.leagueLeaders[0].leaders
+        for (i in api.getHomeRunLeadersPerTeam(season, leadersCatagories, teamIds).body()!!.leagueLeaders){
+            result.addAll(i.leaders)
+        }
+        return leaderMapper.toDomainList(result)
+
+    }
+
     //TODO maybe make colors DTO also ?
 //    suspend fun getColorDataM(): List<MlbColorsModel>{
 //        val jsonFileString =

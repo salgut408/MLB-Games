@@ -33,6 +33,8 @@ class TodayViewModel
 
 
 
+
+
     var colors: List<MlbColors>? = null
 
     init {

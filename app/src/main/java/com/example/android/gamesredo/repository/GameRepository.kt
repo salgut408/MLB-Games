@@ -34,16 +34,11 @@ class GameRepository @Inject constructor(
 //    }
 
     suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
-        val list: List<StandingsModel>
-        val result = api.getStandings(103, 104).body()!!.records[0].teamRecords +
-                api.getStandings(103, 104).body()!!.records[1].teamRecords +
-                api.getStandings(103, 104).body()!!.records[2].teamRecords +
-                api.getStandings(103, 104).body()!!.records[3].teamRecords
-
-//  TODO make this better
-//        api.getStandings(103, 104).body()!!.records.size
-//        while (i =0;i<api.getStandings(103, 104).body()!!.records.size; i++ ){
-
+        var result = api.getStandings(103, 104).body()!!.records[0].teamRecords
+        for (i in api.getStandings(103, 104).body()!!.records) {
+           result.addAll(i.teamRecords)
+        //TODO fix first index getting added twice
+        }
         return mapper.toDomainList(result)
     }
 
@@ -67,8 +62,13 @@ class GameRepository @Inject constructor(
 
 
     suspend fun getHomeRunLeaders(season: Int, leadersCatagories: String): List<LeadersModel> {
-        val result =
-            api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
+        var result = api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
+//        for (i in api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders) {
+//            result.addAll(i.leaders)
+//        }
+
+
+
         return leaderMapper.toDomainList(result)
     }
     //TODO maybe make colors DTO also ?

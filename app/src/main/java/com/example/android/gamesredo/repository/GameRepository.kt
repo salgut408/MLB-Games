@@ -63,9 +63,10 @@ class GameRepository @Inject constructor(
 
     suspend fun getHomeRunLeaders(season: Int, leadersCatagories: String): List<LeadersModel> {
         var result = api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
-//        for (i in api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders) {
-//            result.addAll(i.leaders)
-//        }
+        for (i in api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders) {
+            result.addAll(i.leaders)
+        }
+        //TODO fix index 0 added twice
 
 
 

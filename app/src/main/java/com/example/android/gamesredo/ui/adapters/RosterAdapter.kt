@@ -3,6 +3,7 @@ package com.example.android.gamesredo.ui.adapters
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.alpha
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -47,10 +48,13 @@ class RosterAdapter(val colorPrimary: String, val colorSecondary: String) :
             positionAbv.text = singlePlayerRow?.position?.abbreviation
             playerId.text = singlePlayerRow?.person?.id?.toString()
 
+            playerName.setBackgroundColor(Color.WHITE)
+//TODO fix color assignment
 
 
             if (position % 2 == 0) {
                 card.setCardBackgroundColor(Color.parseColor(colorPrimary))
+
             } else {
                 card.setCardBackgroundColor(Color.parseColor(colorSecondary))
             }

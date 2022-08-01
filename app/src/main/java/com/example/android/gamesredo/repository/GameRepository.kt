@@ -37,7 +37,7 @@ class GameRepository @Inject constructor(
         var result = api.getStandings(103, 104).body()!!.records[0].teamRecords
         for (i in api.getStandings(103, 104).body()!!.records) {
            result.addAll(i.teamRecords)
-        //TODO fix first index getting added twice
+        //TODO fix first index getting added 2x
         }
         return mapper.toDomainList(result)
     }

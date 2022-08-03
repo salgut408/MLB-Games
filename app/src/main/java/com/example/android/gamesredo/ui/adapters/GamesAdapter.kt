@@ -18,6 +18,7 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 import kotlinx.coroutines.withContext
 
 class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
+
     inner class GameViewHolder(val binding: ItemPreviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -55,7 +56,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                     awayTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
 
-//                   Glide.with(holder.itemView.context).load(i.logo).into(holder.binding.imageViewTeam)
+                   Glide.with(holder.itemView.context).load(i.logo).into(holder.binding.imageViewTeam)
 
 
 

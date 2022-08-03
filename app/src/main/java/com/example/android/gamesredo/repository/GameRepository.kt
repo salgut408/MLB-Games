@@ -54,6 +54,8 @@ class GameRepository @Inject constructor(
     }
 
 
+
+
     suspend fun getPersonInfo(personId: Int): PeopleModel {
         val result = api.getPersonInfo(personId).body()!!.people[0]
         return pplMappr.mapToDomainModel(result)

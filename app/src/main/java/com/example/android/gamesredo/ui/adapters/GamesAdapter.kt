@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -52,6 +53,9 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
             }
 
             awayTeam.text = game?.teams?.away?.team?.name +", "+ game?.teams?.away?.score
+
+
+
             homeTeam.text = game?.teams?.home?.team?.name +", "+ game?.teams?.home?.score
 
 

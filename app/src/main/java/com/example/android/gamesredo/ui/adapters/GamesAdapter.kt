@@ -3,6 +3,7 @@ package com.example.android.gamesredo.ui.adapters
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -45,6 +46,11 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = differ.currentList[position]
         holder.binding.apply {
+
+            if (game.status?.abstractGameState.equals("Live")){
+                imageViewTeam.visibility=View.VISIBLE
+            }
+
             awayTeam.text = game?.teams?.away?.team?.name +", "+ game?.teams?.away?.score
             homeTeam.text = game?.teams?.home?.team?.name +", "+ game?.teams?.home?.score
 
@@ -56,7 +62,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                     awayTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
 
-                   Glide.with(holder.itemView.context).load(i.logo).into(holder.binding.imageViewTeam)
+//                   Glide.with(holder.itemView.context).load(i.logo).into(holder.binding.imageViewTeam)
 
 
 
@@ -67,10 +73,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                     homeTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
                 }
-//                if(i.name!!.equals(game.teams?.home?.team?.name )) {
-//
-//
-//                }
+
 
             }
 
@@ -99,6 +102,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
     fun setOnItemClickListener(listener: (GamesModel) -> Unit) {
         onItemClickListener = listener
     }
+
 }
 
 

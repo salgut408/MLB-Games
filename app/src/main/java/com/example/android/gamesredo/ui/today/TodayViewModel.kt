@@ -46,12 +46,18 @@ class TodayViewModel
     }
 
 
+//    fun getGames(sportId: Int) = viewModelScope.launch {
+//        val result = gameRepository.getGames(1)
+//        _allGames.postValue(result)
+////        allGames.postValue(Resource.Loading())
+////        val response = gameRepository.getGames(1)
+////        allGames.postValue(handleMLBResponse(response))
+//    }
+
     fun getGames(sportId: Int) = viewModelScope.launch {
-        val result = gameRepository.getGames(1)
-        _allGames.postValue(result)
-//        allGames.postValue(Resource.Loading())
-//        val response = gameRepository.getGames(1)
-//        allGames.postValue(handleMLBResponse(response))
+        gameRepository.games.collect { games->
+            _allGames.postValue(games)
+        }
     }
 
     private fun handleMLBResponse(response: Response<MlbResponse>): Resource<MlbResponse> {

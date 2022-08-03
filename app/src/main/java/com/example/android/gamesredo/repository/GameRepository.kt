@@ -2,6 +2,7 @@ package com.example.android.gamesredo.repository
 
 import android.content.Context
 import android.util.Log
+import com.example.android.gamesredo.Games
 import com.example.android.gamesredo.MlbColorResponse
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
@@ -9,6 +10,9 @@ import com.example.android.gamesredo.domain.*
 import com.example.android.gamesredo.models.*
 import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAsset
 import com.google.gson.Gson
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GameRepository @Inject constructor(
@@ -42,9 +46,21 @@ class GameRepository @Inject constructor(
     }
 
 
-    suspend fun getGames(sportId: Int): List<GamesModel> {
-        val result = api.getGames(1).body()!!.dates[0].games
-        return gameMappr.toDomainList(result)
+//    suspend fun getGames(sportId: Int): List<GamesModel> {
+//        val result = api.getGames(1).body()!!.dates[0].games
+//        return gameMappr.toDomainList(result)
+//    }
+
+    val games: Flow<List<GamesModel>> = flow {
+        while (true) {
+            val games = api.getGames(1).body()!!.dates[0].games
+            emit(gameMappr.toDomainList(games))
+            val x =0
+            Log.i("tag", "game api refresh")
+            //delay 1 minute
+            delay(60000)
+
+        }
     }
 
 

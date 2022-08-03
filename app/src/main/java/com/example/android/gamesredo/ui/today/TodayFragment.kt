@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.R
 import com.example.android.gamesredo.util.Resource
@@ -75,7 +76,7 @@ class TodayFragment : Fragment() {
         gameAdapter = GamesAdapter(colors!!)
         binding.rvGames.apply {
             adapter = gameAdapter
-            layoutManager = GridLayoutManager(this.context, 2)
+            layoutManager = LinearLayoutManager(this.context)
         }
     }
 

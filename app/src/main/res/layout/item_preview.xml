@@ -15,11 +15,12 @@
         android:textAlignment="viewStart">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="219dp"
-            android:layout_height="176dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@color/cardview_light_background"
             android:padding="8dp"
             app:cardElevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -54,6 +55,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/chivo_black"
+                    android:padding="4dp"
                     android:text="@string/away_team"
                     android:textAlignment="viewStart"
                     android:textColor="#000000"
@@ -67,7 +69,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mada"
-                    android:text="@string/at"
+                    android:padding="4dp"
+                    android:text="&quot;@&quot;"
                     android:textAlignment="viewStart"
                     android:textColor="#000000"
                     android:textSize="24sp"
@@ -77,16 +80,29 @@
 
                 <TextView
                     android:id="@+id/homeTeam"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/chivo_black"
+                    android:padding="4dp"
                     android:text="@string/home_team"
                     android:textAlignment="viewStart"
                     android:textColor="#000000"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView7"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                <ImageView
+                    android:id="@+id/imageViewTeam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

@@ -1,15 +1,21 @@
 package com.example.android.gamesredo.ui.adapters
 
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.android.gamesredo.*
 import com.example.android.gamesredo.databinding.ItemPreviewBinding
 import com.example.android.gamesredo.domain.GamesModel
 import com.example.android.gamesredo.ui.today.TodayViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.NonDisposableHandle.parent
+import kotlinx.coroutines.withContext
 
 class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
     inner class GameViewHolder(val binding: ItemPreviewBinding) :
@@ -27,7 +33,8 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        return GameViewHolder(ItemPreviewBinding.inflate(
+        return GameViewHolder(
+            ItemPreviewBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -48,6 +55,10 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                     awayTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
 
+//                   Glide.with(holder.itemView.context).load(i.logo).into(holder.binding.imageViewTeam)
+
+
+
                 }
                 if(i.name!!.equals(game.teams?.home?.team?.name )) {
 
@@ -55,6 +66,11 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                     homeTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
                 }
+//                if(i.name!!.equals(game.teams?.home?.team?.name )) {
+//
+//
+//                }
+
             }
 
 

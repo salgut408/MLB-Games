@@ -77,10 +77,10 @@ class PersonDetailViewModel @Inject constructor(
     }
 
 
-    fun getLogo(team: String): String {
+    fun getLogo(team: String): String? {
         for (i in colors!!) {
             if (i.name.equals(team)) {
-                return i.logo.toString()
+                return i.logo
             }
         }
         return "Null"

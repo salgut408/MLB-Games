@@ -35,13 +35,6 @@ class HomeViewModel
 
 
 
-
-
-//        allTeamsRecords.postValue(Resource.Loading())
-//
-//        // Don't return Response object from repository
-//        val response = gameRepository.getRecords(103, 104)
-//        allTeamsRecords.postValue(handleAmericanLeagueStandingResponse(response))
     }
 
 

@@ -76,6 +76,7 @@ class PersonDetailFragment() : Fragment() {
                     binding.playerInfoLastName.setBackgroundColor(Color.parseColor(second))
                     binding.playerInfoName.setBackgroundColor(Color.parseColor(second))
 
+
                     personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), binding.number)
                     personDetailViewModel.setTxtAndBgrndColor(team.name.toString(),
                         binding.teamDetName)
@@ -89,6 +90,10 @@ class PersonDetailFragment() : Fragment() {
                         }
                 }
             })
+
+        //TODO make glide work
+//        Glide.with(context!!.applicationContext).load(personDetailViewModel.getLogo(team.name.toString())).into(binding.teamLogoImg)
+
 
 //        personDetailViewModel.playerInfo.observe(viewLifecycleOwner, Observer { response ->
 //            when (response) {

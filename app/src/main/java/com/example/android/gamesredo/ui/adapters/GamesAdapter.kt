@@ -52,6 +52,8 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                 imageViewTeam.visibility=View.VISIBLE
             }
 
+
+
             awayTeam.text = game?.teams?.away?.team?.name +", "+ game?.teams?.away?.score
 
 
@@ -62,6 +64,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
 
             for (i in colors) {
                 if(i.name!!.equals(game.teams?.away?.team?.name )) {
+
                     awayTeam.setTextColor(Color.parseColor(i.colors?.primary))
                     awayTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 

@@ -100,6 +100,13 @@ class TodayViewModel
         }
         return "Null"
     }
+//    fun getShortName(fullNameOrId: Int) = viewModelScope.launch {
+//        val list = gameRepository.getTeamHistoryInfo(fullNameOrId)
+//        when(list.id == fullNameOrId){
+//            return list
+//        }}
+
+
 
 }
 

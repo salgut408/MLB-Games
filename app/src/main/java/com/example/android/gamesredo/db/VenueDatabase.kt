@@ -8,7 +8,8 @@ import com.example.android.gamesredo.Venue
 
 @Database(
     entities = [Venue::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class VenueDatabase: RoomDatabase() {
 

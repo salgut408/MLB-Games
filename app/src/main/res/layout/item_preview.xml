@@ -51,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
 
+                    app:layout_constraintEnd_toStartOf="@+id/startTime"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/awayTeam"
                     tools:text="@string/home_team" />
@@ -118,17 +119,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_constraintGuide_begin="37dp" />
-
-                <ImageView
-                    android:id="@+id/statusImage"
-                    android:layout_width="77dp"
-                    android:layout_height="76dp"
-                    android:contentDescription="@string/at"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="@+id/homeTeam"
-                    app:layout_constraintEnd_toStartOf="@+id/cardScore"
-                    app:layout_constraintTop_toTopOf="@+id/guideline12"
-                    tools:srcCompat="@drawable/ic_baseball_live" />
 
                 <TextView
                     android:id="@+id/startTime"

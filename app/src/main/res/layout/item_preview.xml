@@ -24,93 +24,122 @@
             android:padding="4dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center">
-
-                <View
-                    android:id="@+id/horizonalDivider"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/awayTeam"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <View
-                    android:id="@+id/verticalDivider"
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/awayTeam"
+                    style="@style/team_name_24sp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/chivo_black"
-                    android:padding="4dp"
-                    android:text="@string/away_team"
-                    android:textAlignment="viewStart"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/awayteam"
+                    app:layout_constraintEnd_toEndOf="@+id/homeTeam"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mada"
-                    android:padding="4dp"
-                    android:text="&quot;@&quot;"
-                    android:textAlignment="viewStart"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/awayTeam" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/away_team" />
 
                 <TextView
                     android:id="@+id/homeTeam"
+                    style="@style/team_name_24sp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/chivo_black"
-                    android:padding="4dp"
-                    android:text="@string/home_team"
-                    android:textAlignment="viewStart"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/awayTeam"
+                    tools:text="@string/home_team" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline11"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView7"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/awayTeamScore"
+                            style="@style/team_name_24sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="0" />
+
+                        <TextView
+                            android:id="@+id/homeTeamScore"
+                            style="@style/team_name_24sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:text="0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="90dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="0dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    app:layout_constraintGuide_begin="53dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="37dp" />
 
                 <ImageView
-                    android:id="@+id/imageViewTeam"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@color/white"
-                    android:outlineProvider="paddedBounds"
-                    android:scaleType="centerInside"
+                    android:id="@+id/statusImage"
+                    android:layout_width="77dp"
+                    android:layout_height="76dp"
+                    android:contentDescription="@string/at"
                     android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                    app:layout_constraintEnd_toEndOf="@+id/textView7"
-                    app:layout_constraintTop_toBottomOf="@+id/awayTeam"
-                    app:srcCompat="@drawable/ic_chat_live_svgrepo_com"
-                    tools:srcCompat="@drawable/ic_chat_live_svgrepo_com" />
+                    app:layout_constraintBottom_toBottomOf="@+id/homeTeam"
+                    app:layout_constraintEnd_toStartOf="@+id/cardScore"
+                    tools:srcCompat="@drawable/ic_baseball_live" />
 
+                <TextView
+                    android:id="@+id/startTime"
+                    style="@style/team_name_24sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/cardScore"
+                    app:layout_constraintTop_toTopOf="@+id/guideline12"
+                    tools:text="11:20" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

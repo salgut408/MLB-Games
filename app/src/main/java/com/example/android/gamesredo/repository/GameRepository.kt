@@ -46,16 +46,15 @@ class GameRepository @Inject constructor(
     }
 
 
-//    suspend fun getGames(sportId: Int): List<GamesModel> {
-//        val result = api.getGames(1).body()!!.dates[0].games
-//        return gameMappr.toDomainList(result)
-//    }
+    suspend fun getGames(sportId: Int): List<GamesModel> {
+        val result = api.getGames(1).body()!!.dates[0].games
+        return gameMappr.toDomainList(result)
+    }
 
     val games: Flow<List<GamesModel>> = flow {
         while (true) {
             val games = api.getGames(1).body()!!.dates[0].games
             emit(gameMappr.toDomainList(games))
-            val x =0
             Log.i("tag", "game api refresh")
             //delay 1 minute
             delay(60000)

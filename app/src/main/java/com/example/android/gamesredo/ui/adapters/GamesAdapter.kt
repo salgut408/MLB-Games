@@ -49,16 +49,19 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
         holder.binding.apply {
 
             if (game.status?.abstractGameState.equals("Live")){
-                imageViewTeam.visibility=View.VISIBLE
+                statusImage.visibility=View.VISIBLE
+            } else{
+                cardScore.visibility=View.INVISIBLE
+                startTime.visibility=View.VISIBLE
             }
 
+            startTime.text = game?.status?.detailedState
 
+            awayTeam.text = game?.teams?.away?.team?.name
+            awayTeamScore.text = game?.teams?.away?.score.toString()
 
-            awayTeam.text = game?.teams?.away?.team?.name +", "+ game?.teams?.away?.score
-
-
-
-            homeTeam.text = game?.teams?.home?.team?.name +", "+ game?.teams?.home?.score
+            homeTeam.text = game?.teams?.home?.team?.name
+            homeTeamScore.text = game?.teams?.home?.score.toString()
 
 
 
@@ -109,6 +112,8 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
     fun setOnItemClickListener(listener: (GamesModel) -> Unit) {
         onItemClickListener = listener
     }
+
+
 
 }
 

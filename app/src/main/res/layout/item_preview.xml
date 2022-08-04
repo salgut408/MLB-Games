@@ -124,9 +124,10 @@
                     android:layout_width="77dp"
                     android:layout_height="76dp"
                     android:contentDescription="@string/at"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="@+id/homeTeam"
                     app:layout_constraintEnd_toStartOf="@+id/cardScore"
+                    app:layout_constraintTop_toTopOf="@+id/guideline12"
                     tools:srcCompat="@drawable/ic_baseball_live" />
 
                 <TextView

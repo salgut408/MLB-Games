@@ -55,6 +55,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
             } else{
                 cardScore.visibility=View.INVISIBLE
                 startTime.visibility=View.VISIBLE
+                statusImage.visibility=View.INVISIBLE
             }
 
             startTime.text = game?.status?.detailedState

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.android.gamesredo.Games
 import com.example.android.gamesredo.MlbColorResponse
+import com.example.android.gamesredo.TeamRecords
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.domain.*
@@ -12,6 +13,7 @@ import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAss
 import com.google.gson.Gson
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -45,11 +47,26 @@ class GameRepository @Inject constructor(
         return mapper.toDomainList(result)
     }
 
+    val records: Flow<List<StandingsModel>> = flow {
+        while (true){
 
-    suspend fun getGames(sportId: Int): List<GamesModel> {
-        val result = api.getGames(1).body()!!.dates[0].games
-        return gameMappr.toDomainList(result)
+            var records = api.getStandings(103, 104).body()!!.records[0].teamRecords
+
+            for(i in api.getStandings(103, 104).body()!!.records){
+                records.addAll(i.teamRecords)
+                emit(mapper.toDomainList(records))
+
+            }
+
+
+        }
     }
+
+
+//    suspend fun getGames(sportId: Int): List<GamesModel> {
+//        val result = api.getGames(1).body()!!.dates[0].games
+//        return gameMappr.toDomainList(result)
+//    }
 
     val games: Flow<List<GamesModel>> = flow {
         while (true) {

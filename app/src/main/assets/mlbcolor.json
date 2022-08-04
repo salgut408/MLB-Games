@@ -12,8 +12,8 @@
             "logo": "https://www.mlbstatic.com/mlb.com/builds/site-core/52f9b8565cbfb77a553ebe8075945729d3a1bcd3_1520455084/images/logos/team-cap-on-light/158.svg",
             "name": "Milwaukee Brewers",
             "colors": {
-                "primary": "#13294B",
-                "secondary": "#85714D"
+                "primary": "#FFC52F",
+                "secondary": "#12284B"
             }
         },
         {
@@ -180,7 +180,7 @@
             "logo": "https://s3-us-west-2.amazonaws.com/scorestream-team-profile-pictures/teamPicThumb1161130-21134-1yuerb7.png",
             "name": "San Francisco Giants",
             "colors": {
-                "primary": "#FA4616",
+                "primary": "#FD5A1E",
                 "secondary": "#27251F"
             }
         },
@@ -188,8 +188,8 @@
             "logo": "https://www.mlbstatic.com/mlb.com/builds/site-core/52f9b8565cbfb77a553ebe8075945729d3a1bcd3_1520628201/images/logos/team-primary-on-dark/135.svg",
             "name": "San Diego Padres",
             "colors": {
-                "primary": "#041E42",
-                "secondary": "#A2AAAD"
+                "primary": "#2F241D",
+                "secondary": "#FFC425"
             }
         },
         {

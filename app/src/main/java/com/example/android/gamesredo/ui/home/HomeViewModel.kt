@@ -9,6 +9,7 @@ import com.example.android.gamesredo.domain.StandingsModel
 import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -27,12 +28,16 @@ class HomeViewModel
         getRecords(103, 104)
     }
 
-    fun getRecords(leagueId: Int,leagueId2: Int ) = viewModelScope.launch {
-        val result = gameRepository.getRecords(103,102)
-        _allTeamsRecords.postValue(result)
+//    fun getRecords(leagueId: Int,leagueId2: Int ) = viewModelScope.launch {
+//        val result = gameRepository.getRecords(103,102)
+//        _allTeamsRecords.postValue(result)
+//    }
+
+fun getRecords(leagueId1: Int, leagueId2: Int) = viewModelScope.launch {
+    gameRepository.records.collect {record ->
+        _allTeamsRecords.postValue(record)
     }
-
-
+}
 
     private fun handleAmericanLeagueStandingResponse(response: Response<AmericanLeagueStandingResponse>) : Resource<AmericanLeagueStandingResponse> {
         if (response.isSuccessful) {

@@ -31,10 +31,6 @@ class TodayViewModel
     private val _allGames: MutableLiveData<List<GamesModel>> = MutableLiveData()
     val allGames: LiveData<List<GamesModel>> get() = _allGames
 
-
-
-
-
     var colors: List<MlbColors>? = null
 
     init {

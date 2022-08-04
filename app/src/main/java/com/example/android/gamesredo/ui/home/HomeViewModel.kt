@@ -1,10 +1,13 @@
 package com.example.android.gamesredo.ui.home
 
+import android.graphics.Color
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.gamesredo.AmericanLeagueStandingResponse
+import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.domain.StandingsModel
 import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.repository.GameRepository
@@ -17,15 +20,18 @@ import javax.inject.Inject
 @HiltViewModel
 
 class HomeViewModel
-    @Inject constructor(
-    val gameRepository: GameRepository
+@Inject constructor(
+    val gameRepository: GameRepository,
 ) : ViewModel() {
 
-   private val _allTeamsRecords: MutableLiveData<List<StandingsModel>> = MutableLiveData()
+    private val _allTeamsRecords: MutableLiveData<List<StandingsModel>> = MutableLiveData()
     val allTeamsRecords: LiveData<List<StandingsModel>> get() = _allTeamsRecords
+
+    var colors: List<MlbColors>? = null
 
     init {
         getRecords(103, 104)
+        getColors()
     }
 
 //    fun getRecords(leagueId: Int,leagueId2: Int ) = viewModelScope.launch {
@@ -33,19 +39,49 @@ class HomeViewModel
 //        _allTeamsRecords.postValue(result)
 //    }
 
-fun getRecords(leagueId1: Int, leagueId2: Int) = viewModelScope.launch {
-    gameRepository.records.collect {record ->
-        _allTeamsRecords.postValue(record)
+    fun getRecords(leagueId1: Int, leagueId2: Int) = viewModelScope.launch {
+        gameRepository.records.collect { record ->
+            _allTeamsRecords.postValue(record)
+        }
     }
-}
 
-    private fun handleAmericanLeagueStandingResponse(response: Response<AmericanLeagueStandingResponse>) : Resource<AmericanLeagueStandingResponse> {
+    fun getColors() = viewModelScope.launch {
+        colors = gameRepository.getColorData().mlbColors
+    }
+
+    private fun handleAmericanLeagueStandingResponse(response: Response<AmericanLeagueStandingResponse>): Resource<AmericanLeagueStandingResponse> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
             }
         }
         return Resource.Error(response.message())
+    }
+
+    fun setTxtAndBgrndColor(team: String, txtView: TextView) {
+        for (i in colors!!) {
+            if(i.name.equals(team)) {
+                txtView.setTextColor(Color.parseColor(i.colors?.primary))
+                txtView.setBackgroundColor(Color.parseColor(i.colors?.secondary))
+            }
+        }
+    }
+    fun getPrimaryColor(team: String): String {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                return i.colors?.primary.toString()
+            }
+        }
+        return "Null"
+    }
+
+    fun getSecondaryColor(team: String): String {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                return i.colors?.secondary.toString()
+            }
+        }
+        return "Null"
     }
 
 }

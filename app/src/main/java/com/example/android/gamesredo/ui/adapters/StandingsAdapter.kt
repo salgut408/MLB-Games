@@ -3,15 +3,17 @@ package com.example.android.gamesredo.ui.adapters
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.TeamRecords
 import com.example.android.gamesredo.databinding.StandingsItemBinding
 import com.example.android.gamesredo.domain.StandingsModel
 
 
-class StandingsAdapter : RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHolder>() {
+class StandingsAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHolder>() {
     inner class TeamRecordViewHolder(val binding: StandingsItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -47,6 +49,18 @@ class StandingsAdapter : RecyclerView.Adapter<StandingsAdapter.TeamRecordViewHol
             winPercentNumber.text = singleRecord.winningPercentage
             divisionLeaderBool.text = singleRecord?.sportRank.toString()
 
+            for(i in colors) {
+                if(i.name!!.equals(singleRecord.team?.name)) {
+                    standingsCard.setCardBackgroundColor(Color.parseColor(i.colors?.primary))
+                    teamStandingsName.setTextColor(Color.parseColor(i.colors?.secondary))
+                    winPercentNumber.setTextColor(Color.parseColor(i.colors?.secondary))
+                    winsNumber.setTextColor(Color.parseColor(i.colors?.secondary))
+                    lossNumber.setTextColor(Color.parseColor(i.colors?.secondary))
+                    seasonTxt.setTextColor(Color.parseColor(i.colors?.secondary))
+                    divRank.setTextColor(Color.parseColor(i.colors?.secondary))
+                    divisionLeaderBool.setTextColor(Color.parseColor(i.colors?.secondary))
+                }
+            }
 
 
 

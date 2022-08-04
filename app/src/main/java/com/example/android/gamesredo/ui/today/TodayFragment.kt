@@ -33,8 +33,8 @@ class TodayFragment : Fragment() {
 
     private var _binding: FragmentTodayBinding? = null
     private val binding get() = _binding!!
-
     val todayViewModel: TodayViewModel by viewModels()
+
     lateinit var gameAdapter: GamesAdapter
 
 

@@ -64,7 +64,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        standingsAdapter = StandingsAdapter()
+        val colors = homeViewModel.colors
+        standingsAdapter = StandingsAdapter(colors!!)
         binding.rvStandings.apply {
             adapter = standingsAdapter
             layoutManager = LinearLayoutManager(this.context)

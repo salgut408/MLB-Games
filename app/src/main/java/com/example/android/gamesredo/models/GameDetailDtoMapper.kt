@@ -3,7 +3,7 @@ package com.example.android.gamesredo.models
 import com.example.android.gamesredo.domain.GameDetailModel
 import com.example.android.gamesredo.network.util.DomainMapper
 
-class GameDetailMapper: DomainMapper<GameDetailResponse, GameDetailModel> {
+class GameDetailDtoMapper: DomainMapper<GameDetailResponse, GameDetailModel> {
     override fun mapToDomainModel(model: GameDetailResponse): GameDetailModel {
         return GameDetailModel(
             balls = model.balls,

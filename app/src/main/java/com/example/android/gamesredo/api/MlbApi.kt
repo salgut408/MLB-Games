@@ -2,6 +2,7 @@ package com.example.android.gamesredo.api
 
 import com.example.android.gamesredo.*
 import com.example.android.gamesredo.models.GameDetailResponse
+import com.example.android.gamesredo.models.GamePredictionResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -61,10 +62,19 @@ interface MlbApi {
         teamIds: Int? = null
     ): Response<TeamHistoryResponse>
 
-    @GET("v1/teams/{gamePk}/linescore")
+    @GET("v1/game/{gamePk}/linescore")
     suspend fun getLineScore(
         @Path("gamePk")
         gamePk: Int? = null,
     ): Response<GameDetailResponse>
+
+    @GET("v1/game/{gamePk}/contextMetrics")
+    suspend fun getGamePredictions(
+        @Path("gamePk")
+        gamePk: Int? = null,
+    ): Response<GamePredictionResponse>
+
+
+
 
 }

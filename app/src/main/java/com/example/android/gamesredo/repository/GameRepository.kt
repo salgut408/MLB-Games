@@ -27,6 +27,8 @@ class GameRepository @Inject constructor(
     val gameMappr: GamesDtoMapper,
     val leaderMapper: LeadersDtoMapper,
     val histMapper: TeamsHistDtoMapper,
+    val gameDetailDtoMapper: GameDetailDtoMapper,
+    val gamePredictionDtoMapper: GamePredictionDtoMapper
 //    val colorsDtoMapper: MlbColorsDtoMapper
 ) {
 

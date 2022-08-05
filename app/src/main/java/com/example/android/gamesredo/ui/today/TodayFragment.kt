@@ -62,7 +62,10 @@ class TodayFragment : Fragment() {
         setUpRecyclerView()
 
         todayViewModel.allGames.observe(viewLifecycleOwner, Observer<List<GamesModel>> { game ->
-            game.apply { gameAdapter.differ.submitList(game) }
+            game.apply {
+
+                gameAdapter.differ.submitList(game)
+            }
         })
 
     }

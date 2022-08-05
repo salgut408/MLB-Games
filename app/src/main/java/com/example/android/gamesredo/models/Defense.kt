@@ -1,9 +1,11 @@
 package com.example.android.gamesredo.models
 
+import android.os.Parcelable
 import com.example.android.gamesredo.Team
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class Defense (
 
   @SerializedName("pitcher"      ) var pitcher2      : Pitcher2?   = Pitcher2(),
@@ -21,4 +23,4 @@ data class Defense (
   @SerializedName("battingOrder" ) var battingOrder : Int?       = null,
   @SerializedName("team"         ) var team         : Team?      = Team()
 
-)
+): Parcelable

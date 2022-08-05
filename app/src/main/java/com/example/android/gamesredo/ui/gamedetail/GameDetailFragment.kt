@@ -51,6 +51,14 @@ class GameDetailFragment : Fragment() {
                    binding.awayTeamPoints.text  = gameDetail.teams2?.away2?.runs.toString()
                     binding.homeTeamPoints.text=gameDetail.teams2?.home2?.runs.toString()
                     binding.homeTeamName.text=game?.teams?.home?.team?.name
+                    binding.currentInningOrd.text=gameDetail.currentInningOrdinal
+
+                    when(gameDetail.isTopInning) {
+                        true -> binding.inningArrowImg.setImageResource(R.drawable.ic_baseline_arrow_upward_24)
+                        false -> binding.inningArrowImg.setImageResource(R.drawable.ic_baseline_arrow_downward_24)
+                        else -> binding.inningArrowImg.visibility = View.INVISIBLE
+                    }
+
                 }
             })
 

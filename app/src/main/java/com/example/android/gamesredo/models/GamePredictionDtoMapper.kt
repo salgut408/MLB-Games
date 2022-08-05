@@ -6,10 +6,10 @@ import com.example.android.gamesredo.network.util.DomainMapper
 class GamePredictionDtoMapper: DomainMapper<GamePredictionResponse, GamePredictionModel> {
     override fun mapToDomainModel(model: GamePredictionResponse): GamePredictionModel {
         return GamePredictionModel(
-            awayWinProbability = model.awayWinProbability,
+            awayWinProbability = model.awayWinProbability?.toInt(),
             centerFieldSacFlyProbabilityFuture = model.centerFieldSacFlyProbabilityFuture,
             game = model.game,
-            homeWinProbability = model.homeWinProbability,
+            homeWinProbability = model.homeWinProbability?.toInt(),
             leftFieldSacFlyProbability = model.leftFieldSacFlyProbability,
             rightFieldSacFlyProbabilityFuture = model.rightFieldSacFlyProbabilityFuture,
             homeTeamFromPredictionsResp = model.game?.teamsFuture?.homeFuture,

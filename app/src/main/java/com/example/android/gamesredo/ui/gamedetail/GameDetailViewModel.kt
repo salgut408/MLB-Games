@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.gamedetail
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,9 +24,9 @@ class GameDetailViewModel
     private val _gamePrediction: MutableLiveData<GamePredictionModel> = MutableLiveData()
     val gamePredictions: LiveData<GamePredictionModel> get() = _gamePrediction
 
-//    init {
-//
-//    }
+    init {
+
+    }
 
     fun getLineScore(gamePk: Int) = viewModelScope.launch {
         val result = gameRepository.getGameDetailLineScore(gamePk)
@@ -33,8 +34,11 @@ class GameDetailViewModel
     }
 
     fun getPredictions(gamePk: Int) = viewModelScope.launch {
-        val result = gameRepository.getGamePredictions(gamePk)
-        _gamePrediction.postValue(result)
+       try {
+           val result = gameRepository.getGamePredictions(gamePk)
+           _gamePrediction.postValue(result)
+       } catch (e: Throwable) {
+       }
     }
 
 }

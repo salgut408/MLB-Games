@@ -36,8 +36,8 @@ class GameDetailFragment : Fragment() {
         binding.officialDate.text=game?.gamePk.toString()
         binding.awayTeamName.text=game?.teams?.away?.team?.name
 
-        gameDetailViewModel.getLineScore(game?.gamePk ?: 0)
-        gameDetailViewModel.getPredictions(game?.gamePk ?: 0)
+        gameDetailViewModel.getLineScore(game?.gamePk ?: 663374)
+        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
 
         return binding.root
     }
@@ -50,27 +50,34 @@ class GameDetailFragment : Fragment() {
                 gameDetail.apply {
                    binding.awayTeamPoints.text  = gameDetail.teams2?.away2?.runs.toString()
                     binding.homeTeamPoints.text=gameDetail.teams2?.home2?.runs.toString()
+
+                    binding.homeTeamErrors.text=gameDetail.teams2?.home2?.errors.toString()
+                    binding.homeTeamHits.text=gameDetail.teams2?.home2?.hits.toString()
+
+                    binding.awayTeamErrors.text=gameDetail.teams2?.away2?.errors.toString()
+                    binding.homeTeamHits.text=gameDetail.teams2?.away2?.hits.toString()
+
                     binding.homeTeamName.text=game?.teams?.home?.team?.name
                     binding.currentInningOrd.text=gameDetail.currentInningOrdinal
 
                     when(gameDetail.isTopInning) {
                         true -> binding.inningArrowImg.setImageResource(R.drawable.ic_baseline_arrow_upward_24)
                         false -> binding.inningArrowImg.setImageResource(R.drawable.ic_baseline_arrow_downward_24)
-                        else -> binding.inningArrowImg.visibility = View.INVISIBLE
+//                        else -> binding.inningArrowImg.visibility = View.INVISIBLE
                     }
 
                 }
             })
 
-            gameDetailViewModel.gamePredictions.observe(viewLifecycleOwner,
-            Observer<GamePredictionModel> { gamePrediction ->
-                gamePrediction.apply {
-                    binding.awayTeamWinPercent.text=gamePrediction.awayWinProbability.toString()
-                    binding.homeTeamWinPercent.text=gamePrediction.homeWinProbability.toString()
-
-                }
-
-            })
+//            gameDetailViewModel.gamePredictions.observe(viewLifecycleOwner,
+//            Observer<GamePredictionModel> { gamePrediction ->
+//                gamePrediction.apply {
+//                    binding.awayTeamWinPercent.text=gamePrediction.awayWinProbability.toString()
+//                    binding.homeTeamWinPercent.text=gamePrediction.homeWinProbability.toString()
+//
+//                }
+//
+//            })
 
 
 

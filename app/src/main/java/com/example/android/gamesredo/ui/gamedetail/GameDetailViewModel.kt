@@ -21,6 +21,8 @@ class GameDetailViewModel
     private val _gameLineScore: MutableLiveData<GameDetailModel> = MutableLiveData()
     val gameLineScore: LiveData<GameDetailModel> get() = _gameLineScore
 
+     val imgsrc: MutableLiveData<String> = MutableLiveData()
+
     private val _gamePrediction: MutableLiveData<GamePredictionModel> = MutableLiveData()
     val gamePredictions: LiveData<GamePredictionModel> get() = _gamePrediction
 
@@ -31,6 +33,12 @@ class GameDetailViewModel
     fun getLineScore(gamePk: Int) = viewModelScope.launch {
         val result = gameRepository.getGameDetailLineScore(gamePk)
         _gameLineScore.postValue(result)
+    }
+
+
+    fun getImg(gamePk: Int) = viewModelScope.launch {
+        val result = gameRepository.getContent(gamePk)
+        imgsrc.postValue(result.img!!)
     }
 
     fun getPredictions(gamePk: Int) = viewModelScope.launch {

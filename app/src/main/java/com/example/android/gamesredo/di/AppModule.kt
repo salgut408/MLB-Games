@@ -6,6 +6,7 @@ import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDao
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.models.*
+import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Constants.Companion.BASE_URL
 import dagger.Module
@@ -45,7 +46,8 @@ object AppModule {
             leaderDtoMapper: LeadersDtoMapper,
             histDtoMapper: TeamsHistDtoMapper,
             gameDetailDtoMapper: GameDetailDtoMapper,
-            gamePredictionDtoMapper: GamePredictionDtoMapper
+            gamePredictionDtoMapper: GamePredictionDtoMapper,
+            gameContentResponseDtoMapper: ContentResponseDtoMapper
     ): GameRepository = GameRepository(venueDb,
             api,
             context,
@@ -56,8 +58,13 @@ object AppModule {
             leaderDtoMapper,
              histDtoMapper,
         gameDetailDtoMapper,
-        gamePredictionDtoMapper)
+        gamePredictionDtoMapper,
+        gameContentResponseDtoMapper
+    )
 
+
+    @Provides
+    fun provideContentMapper(): ContentResponseDtoMapper = ContentResponseDtoMapper()
     @Provides
     fun provideLeaderDtoMapper(): LeadersDtoMapper = LeadersDtoMapper()
 

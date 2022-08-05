@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.gamedetail
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.android.gamesredo.R
 import com.example.android.gamesredo.databinding.FragmentGameDetailBinding
 import com.example.android.gamesredo.domain.GameDetailModel
@@ -59,6 +61,9 @@ class GameDetailFragment : Fragment() {
 
                     binding.homeTeamName.text=game?.teams?.home?.team?.name
                     binding.currentInningOrd.text=gameDetail.currentInningOrdinal
+
+                    binding.imageView.setImageURI(Uri.parse(gameDetailViewModel.imgsrc.toString()))
+//                    Glide.with(this@GameDetailFragment).load(gameDetailViewModel.imgsrc).into(binding.imageView)
 
                     when(gameDetail.isTopInning) {
                         true -> binding.inningArrowImg.setImageResource(R.drawable.ic_baseline_arrow_upward_24)

@@ -9,6 +9,7 @@ import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.domain.*
 import com.example.android.gamesredo.models.*
+import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
 import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAsset
 import com.google.gson.Gson
 import kotlinx.coroutines.delay
@@ -28,11 +29,15 @@ class GameRepository @Inject constructor(
     val leaderMapper: LeadersDtoMapper,
     val histMapper: TeamsHistDtoMapper,
     val gameDetailDtoMapper: GameDetailDtoMapper,
-    val gamePredictionDtoMapper: GamePredictionDtoMapper
+    val gamePredictionDtoMapper: GamePredictionDtoMapper,
+    val contentResponseDtoMapper: ContentResponseDtoMapper
 //    val colorsDtoMapper: MlbColorsDtoMapper
 ) {
 
-
+    suspend fun getContent(gamePk: Int): ContentDetailModel {
+        var result = api.getGameContent(gamePk).body()
+        return contentResponseDtoMapper.mapToDomainModel(result!!)
+    }
 
     suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
         var result = api.getStandings(103, 104).body()!!.records[0].teamRecords

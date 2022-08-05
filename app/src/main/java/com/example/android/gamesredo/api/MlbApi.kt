@@ -74,7 +74,11 @@ interface MlbApi {
         gamePk: Int? = null,
     ): Response<GamePredictionResponse>
 
-
+    @GET("v1/game/{gamePk}/content")
+        suspend fun getGameContent(
+        @Path("gamePk")
+        gamePk: Int? = null,
+    ): Response<GameContentResponse>
 
 
 }

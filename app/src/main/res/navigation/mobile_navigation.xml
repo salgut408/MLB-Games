@@ -37,9 +37,14 @@
 
     <fragment
         android:id="@+id/gameDetail"
-        android:name="com.example.android.gamesredo.ui.gamedetail.gameDetail"
+        android:name="com.example.android.gamesredo.ui.gamedetail.GameDetailFragment"
         android:label="fragment_game_detail"
-        tools:layout="@layout/fragment_game_detail" />
+        tools:layout="@layout/fragment_game_detail" >
+        <argument
+            android:name="gamesPkModelArgs"
+            app:argType="com.example.android.gamesredo.domain.GamesModel"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.android.gamesredo.ui.leaders.LeadersFragment"

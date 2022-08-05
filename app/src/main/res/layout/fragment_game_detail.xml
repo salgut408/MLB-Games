@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@+id/awayTeamName"
+        style="@style/team_name_24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,6 +20,7 @@
 
     <TextView
         android:id="@+id/homeTeamName"
+        style="@style/team_name_24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -70,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text="12"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintStart_toStartOf="@+id/awayTeamName"
         app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
 
@@ -83,4 +85,49 @@
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="@+id/homeTeamName"
         app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
+
+    <TextView
+        android:id="@+id/homeTeamWinProdDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeTeamPoints"
+        tools:text="@string/homeWinProb" />
+
+    <TextView
+        android:id="@+id/awayTeamWinProdDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeTeamWinPercent"
+        tools:text="@string/awayTeamWinPercent" />
+
+    <TextView
+        android:id="@+id/homeTeamWinPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeTeamWinProdDisplay"
+        tools:text="100%" />
+
+    <TextView
+        android:id="@+id/awayTeamWinPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/awayTeamWinProdDisplay"
+        tools:text="100%" />
 </androidx.constraintlayout.widget.ConstraintLayout>

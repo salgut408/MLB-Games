@@ -32,13 +32,7 @@ class GameRepository @Inject constructor(
 //    val colorsDtoMapper: MlbColorsDtoMapper
 ) {
 
-//    suspend fun getSport(): List<SportModel> {
-////        return mapper.toDomainList()
-////        or
-////       val result = api.getGames(1).body()?.dates[0].games
-////        return mapper.toDomainList(result)
-//
-//    }
+
 
     suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
         var result = api.getStandings(103, 104).body()!!.records[0].teamRecords
@@ -81,6 +75,16 @@ class GameRepository @Inject constructor(
         }
     }
 
+    suspend fun getGamePredictions(gamePk: Int): GamePredictionModel {
+        val result = api.getGamePredictions(gamePk).body()
+        return gamePredictionDtoMapper.mapToDomainModel(result!!)
+    }
+
+    suspend fun getGameDetailLineScore(gamePk: Int): GameDetailModel {
+        val result = api.getLineScore(gamePk).body()
+        return gameDetailDtoMapper.mapToDomainModel(result!!)
+    }
+
 
     suspend fun getRoster(teamId: Int): List<RosterModel> {
         val result = api.getTeamInfo(teamId).body()!!.roster
@@ -99,6 +103,8 @@ class GameRepository @Inject constructor(
         val result = api.getTeamHistoryInfo(teamIds).body()!!.teamsHist[0]
         return histMapper.mapToDomainModel(result)
     }
+
+
 
 
     suspend fun getHomeRunLeaders(season: Int, leadersCatagories: String): List<LeadersModel> {

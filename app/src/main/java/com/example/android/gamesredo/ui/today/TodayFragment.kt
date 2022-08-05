@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.MlbColors
@@ -60,6 +61,11 @@ class TodayFragment : Fragment() {
 
 
         setUpRecyclerView()
+        gameAdapter.setOnItemClickListener {
+            this.findNavController().navigate(
+                TodayFragmentDirections.actionNavigationDashboardToGameDetail(it)
+            )
+        }
 
         todayViewModel.allGames.observe(viewLifecycleOwner, Observer<List<GamesModel>> { game ->
             game.apply {

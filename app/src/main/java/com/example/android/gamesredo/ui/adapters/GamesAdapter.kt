@@ -65,7 +65,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
             homeTeam.text = game?.teams?.home?.team?.name
             homeTeamScore.text = game?.teams?.home?.score.toString()
 
-
+//            cardLayout.se
 
 
             for (i in colors) {
@@ -82,6 +82,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                 }
                 if(i.name!!.equals(game.teams?.home?.team?.name )) {
 
+
                     homeTeam.setTextColor(Color.parseColor(i.colors?.primary))
                     homeTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
@@ -89,19 +90,13 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
 
 
             }
-
-
-//            for(team in colorList) {
-//                if (game?.teams?.away?.team?.name == team.mlbColors[0].name) {
-//                    awayTeam.setTextColor(Color.parseColor(team.mlbColors[0].colors?.primary))
-//                } else if (game?.teams?.home?.team?.name == team.mlbColors[0].name) {
-//                    homeTeam.setTextColor(Color.parseColor(team.mlbColors[0].colors?.primary))
-//                }
-//            }
-
-            setOnItemClickListener {
-                onItemClickListener?.let { it(game) }
+            cardLayout.setOnClickListener {
+                onItemClickListener?.let {
+                    it(game)
+                }
             }
+
+
 
         }
     }

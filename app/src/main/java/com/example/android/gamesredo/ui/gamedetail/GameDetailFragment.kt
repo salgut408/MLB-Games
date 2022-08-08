@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.gamedetail
 
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,13 +34,19 @@ class GameDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentGameDetailBinding.inflate(inflater)
         val game = GameDetailFragmentArgs.fromBundle(requireArguments()).gamesPkModelArgs
+        val homeName = game?.teams?.home?.team?.name
+        val awayName = game?.teams?.away?.team?.name
+
+
         binding.gameVenue.text=game?.venue?.name
+        binding.gameVenue.setTextColor(Color.parseColor(gameDetailViewModel.getPrimaryColor(homeName!!)))
         binding.statusAbstractGameState.text=game?.status?.detailedState
         binding.officialDate.text=game?.gamePk.toString()
         binding.awayTeamName.text=game?.teams?.away?.team?.name
-
+//        binding.awayTeamName.setTextColor(Color.parseColor(gameDetailViewModel.getSecondaryColor(awayName!!)))
+        binding.homeTeamName.setTextColor(Color.parseColor(gameDetailViewModel.getSecondaryColor(homeName!!)))
         gameDetailViewModel.getLineScore(game?.gamePk ?: 663374)
-        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
+//        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
 
         return binding.root
     }
@@ -47,6 +54,9 @@ class GameDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val game = GameDetailFragmentArgs.fromBundle(requireArguments()).gamesPkModelArgs
+
+        val homeName = game?.teams?.home?.team?.name
+
             gameDetailViewModel.gameLineScore.observe(viewLifecycleOwner,
             Observer<GameDetailModel> { gameDetail ->
                 gameDetail.apply {
@@ -60,6 +70,7 @@ class GameDetailFragment : Fragment() {
                     binding.homeTeamHits.text=gameDetail.teams2?.away2?.hits.toString()
 
                     binding.homeTeamName.text=game?.teams?.home?.team?.name
+
                     binding.currentInningOrd.text=gameDetail.currentInningOrdinal
 
 //                    binding.imageView.setImageURI(Uri.parse(gameDetailViewModel.imgsrc.toString()))

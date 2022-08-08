@@ -44,7 +44,7 @@ class HomeViewModel
 
     fun getAmericanLeagueStandings(leagueId: Int = 103) = viewModelScope.launch {
         gameRepository.records.collect {record ->
-            _allTeamsRecords.postValue(record)
+            _americanLeagueRecords.postValue(record)
         }
     }
 

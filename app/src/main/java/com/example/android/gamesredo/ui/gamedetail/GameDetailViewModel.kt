@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.domain.GameDetailModel
 import com.example.android.gamesredo.domain.GamePredictionModel
 import com.example.android.gamesredo.repository.GameRepository
@@ -22,12 +23,13 @@ class GameDetailViewModel
     val gameLineScore: LiveData<GameDetailModel> get() = _gameLineScore
 
      val imgsrc: MutableLiveData<String> = MutableLiveData()
+    var colors: List<MlbColors>? = null
 
     private val _gamePrediction: MutableLiveData<GamePredictionModel> = MutableLiveData()
     val gamePredictions: LiveData<GamePredictionModel> get() = _gamePrediction
 
     init {
-
+        getColors()
     }
 
     fun getLineScore(gamePk: Int) = viewModelScope.launch {
@@ -48,5 +50,29 @@ class GameDetailViewModel
        } catch (e: Throwable) {
        }
     }
+
+    fun getColors() = viewModelScope.launch {
+        colors = gameRepository.getColorData().mlbColors
+    }
+
+    fun getPrimaryColor(team: String): String {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                val  color = i.colors?.primary.toString()
+                return color
+            }
+        }
+        return "Null"
+    }
+
+    fun getSecondaryColor(team: String): String {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                return i.colors?.secondary.toString()
+            }
+        }
+        return "Null"
+    }
+
 
 }

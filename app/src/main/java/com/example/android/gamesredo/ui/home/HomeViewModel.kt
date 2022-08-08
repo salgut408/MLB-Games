@@ -27,6 +27,9 @@ class HomeViewModel
     private val _allTeamsRecords: MutableLiveData<List<StandingsModel>> = MutableLiveData()
     val allTeamsRecords: LiveData<List<StandingsModel>> get() = _allTeamsRecords
 
+    private val _americanLeagueRecords: MutableLiveData<List<StandingsModel>> = MutableLiveData()
+    val americanLeagueRecords: LiveData<List<StandingsModel>> get() = _americanLeagueRecords
+
     var colors: List<MlbColors>? = null
 
     init {
@@ -38,6 +41,12 @@ class HomeViewModel
 //        val result = gameRepository.getRecords(103,102)
 //        _allTeamsRecords.postValue(result)
 //    }
+
+    fun getAmericanLeagueStandings(leagueId: Int = 103) = viewModelScope.launch {
+        gameRepository.records.collect {record ->
+            _allTeamsRecords.postValue(record)
+        }
+    }
 
     fun getRecords(leagueId1: Int, leagueId2: Int) = viewModelScope.launch {
         gameRepository.records.collect { record ->

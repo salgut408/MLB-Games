@@ -22,6 +22,7 @@ import com.example.android.gamesredo.domain.StandingsModel
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.StandingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -47,35 +48,36 @@ class HomeFragment : Fragment() {
 
         val menuHost: MenuHost = requireActivity()
 
-        // Add menu items without using the Fragment Menu APIs
-        // Note how we can tie the MenuProvider to the viewLifecycleOwner
-        // and an optional Lifecycle.State (here, RESUMED) to indicate when
-        // the menu should be visible
+
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // Add menu items here
                 menuInflater.inflate(R.menu.options_menu, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                TODO("Not yet implemented")
+                return when(menuItem.itemId) {
+                    R.id.al_central ->
+//                        homeViewModel.getAmericanLeagueStandings(103)
+                        true.apply { homeViewModel.getAmericanLeagueStandings(103) }
+                    R.id.americanLeague ->
+                        true
+//                        homeViewModel.getAmericanLeagueStandings(103)
+                    R.id.nationalLeague ->
+                        true
+//                        homeViewModel.getAmericanLeagueStandings(103)
+                    else -> false
+                }
             }
-
-
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
 
 
         setUpRecyclerView()
@@ -89,9 +91,6 @@ class HomeFragment : Fragment() {
             Observer<List<StandingsModel>> { standing ->
                 standing.apply { standingsAdapter.differ.submitList(standing) }
             })
-
-
-
     }
 
     private fun setUpRecyclerView() {
@@ -109,11 +108,5 @@ class HomeFragment : Fragment() {
     }
 
 
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        val inflater: MenuInflater = menuInflater
-//        inflater.inflate(R.menu.options_menu, menu)
-//        return true
-//    }
 
 }

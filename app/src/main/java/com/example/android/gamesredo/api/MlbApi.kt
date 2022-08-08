@@ -81,4 +81,10 @@ interface MlbApi {
     ): Response<GameContentResponse>
 
 
+    @GET("v1/game/{gamePk}/playByPlay")
+    suspend fun getGamePlayByPlay(
+        @Path("gamePk")
+        gamePk: Int? = null,
+    ): Response<PlayByPlayResponse>
+
 }

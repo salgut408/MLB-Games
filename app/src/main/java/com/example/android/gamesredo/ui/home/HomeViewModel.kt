@@ -35,6 +35,7 @@ class HomeViewModel
     init {
         getRecords(103, 104)
         getColors()
+        getAmericanLeagueStandings(103)
     }
 
 //    fun getRecords(leagueId: Int,leagueId2: Int ) = viewModelScope.launch {

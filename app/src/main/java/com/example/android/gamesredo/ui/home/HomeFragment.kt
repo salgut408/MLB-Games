@@ -58,7 +58,12 @@ class HomeFragment : Fragment() {
                 return when(menuItem.itemId) {
                     R.id.al_central ->
 //                        homeViewModel.getAmericanLeagueStandings(103)
-                        true.apply { homeViewModel.getAmericanLeagueStandings(103) }
+                        true.apply {
+                            homeViewModel.americanLeagueRecords.observe(viewLifecycleOwner,
+                                Observer<List<StandingsModel>> { standing ->
+                                    standing.apply { standingsAdapter.differ.submitList(standing) }
+                                })
+                        }
                     R.id.americanLeague ->
                         true
 //                        homeViewModel.getAmericanLeagueStandings(103)

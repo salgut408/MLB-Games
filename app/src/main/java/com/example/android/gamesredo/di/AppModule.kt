@@ -7,6 +7,7 @@ import com.example.android.gamesredo.db.VenueDao
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.models.*
 import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
+import com.example.android.gamesredo.models.playbyplay.json2kt_Kotlin_07.PlayByPlayDtoMapper
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.util.Constants.Companion.BASE_URL
 import dagger.Module
@@ -47,7 +48,8 @@ object AppModule {
             histDtoMapper: TeamsHistDtoMapper,
             gameDetailDtoMapper: GameDetailDtoMapper,
             gamePredictionDtoMapper: GamePredictionDtoMapper,
-            gameContentResponseDtoMapper: ContentResponseDtoMapper
+            gameContentResponseDtoMapper: ContentResponseDtoMapper,
+            playByPlayDtoMapper: PlayByPlayDtoMapper
     ): GameRepository = GameRepository(venueDb,
             api,
             context,
@@ -59,9 +61,12 @@ object AppModule {
              histDtoMapper,
         gameDetailDtoMapper,
         gamePredictionDtoMapper,
-        gameContentResponseDtoMapper
+        gameContentResponseDtoMapper,
+        playByPlayDtoMapper
     )
 
+    @Provides
+    fun providePlayByPlayMApper(): PlayByPlayDtoMapper = PlayByPlayDtoMapper()
 
     @Provides
     fun provideContentMapper(): ContentResponseDtoMapper = ContentResponseDtoMapper()

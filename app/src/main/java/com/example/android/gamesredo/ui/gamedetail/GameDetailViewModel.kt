@@ -28,6 +28,8 @@ class GameDetailViewModel
     private val _gamePrediction: MutableLiveData<GamePredictionModel> = MutableLiveData()
     val gamePredictions: LiveData<GamePredictionModel> get() = _gamePrediction
 
+
+
     init {
         getColors()
     }

@@ -1,11 +1,12 @@
-package com.example.android.gamesredo.models
+package com.example.android.gamesredo
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class LeftFieldSacFlyProbabilityFuture (
-var id: Int = 1
+data class Type (
+
+  @SerializedName("displayName" ) var displayName : String? = null
 
 ): Parcelable

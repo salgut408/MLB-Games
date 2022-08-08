@@ -62,7 +62,7 @@ class GameDetailFragment : Fragment() {
                     binding.homeTeamName.text=game?.teams?.home?.team?.name
                     binding.currentInningOrd.text=gameDetail.currentInningOrdinal
 
-                    binding.imageView.setImageURI(Uri.parse(gameDetailViewModel.imgsrc.toString()))
+//                    binding.imageView.setImageURI(Uri.parse(gameDetailViewModel.imgsrc.toString()))
 //                    Glide.with(this@GameDetailFragment).load(gameDetailViewModel.imgsrc).into(binding.imageView)
 
                     when(gameDetail.isTopInning) {

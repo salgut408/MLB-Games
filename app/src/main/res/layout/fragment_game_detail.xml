@@ -23,7 +23,8 @@
         style="@style/team_name_24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/home_team"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -102,11 +103,12 @@
         android:id="@+id/currentInningOrd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="12"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintStart_toEndOf="@+id/inningArrowImg"
-        app:layout_constraintTop_toBottomOf="@+id/awayTeamWinPercent" />
+        app:layout_constraintTop_toTopOf="@+id/inningArrowImg" />
 
     <TextView
         android:id="@+id/homeTeamPoints"
@@ -140,68 +142,13 @@
         app:layout_constraintStart_toEndOf="@+id/homeTeamHits"
         app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
 
-    <TextView
-        android:id="@+id/homeTeamWinProdDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeTeamPoints"
-        tools:text="@string/homeWinProb" />
-
-    <TextView
-        android:id="@+id/awayTeamWinProdDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeTeamWinPercent"
-        tools:text="@string/awayTeamWinPercent" />
-
-    <TextView
-        android:id="@+id/homeTeamWinPercent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeTeamWinProdDisplay"
-        tools:text="100%" />
-
-    <TextView
-        android:id="@+id/awayTeamWinPercent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/awayTeamWinProdDisplay"
-        tools:text="100%" />
-
     <ImageView
         android:id="@+id/inningArrowImg"
         android:layout_width="53dp"
         android:layout_height="46dp"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/awayTeamWinPercent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentInningOrd"
+        tools:layout_editor_absoluteY="409dp"
         tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

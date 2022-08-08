@@ -20,8 +20,8 @@
             "logo": "https://www.mlbstatic.com/mlb.com/builds/site-core/52f9b8565cbfb77a553ebe8075945729d3a1bcd3_1520628201/images/logos/team-primary-on-light/146.svg",
             "name": "Miami Marlins",
             "colors": {
-                "primary": "#ED6F2E",
-                "secondary": "#0077C8"
+                "primary": "#41748D",
+                "secondary": "#000000"
             }
         },
         {
@@ -204,8 +204,8 @@
             "logo": "https://www.mlbstatic.com/mlb.com/builds/site-core/52f9b8565cbfb77a553ebe8075945729d3a1bcd3_1520628201/images/logos/team-wordmark-on-light/143.svg",
             "name": "Philadelphia Phillies",
             "colors": {
-                "primary": "#BA0C2F",
-                "secondary": "#003087"
+                "primary": "#003087",
+                "secondary": "#BA0C2F"
             }
         },
         {

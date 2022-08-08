@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/drawable/ic_new_york_yankees.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.192481884057971" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.192481884057971" />
+        <entry key="app/src/main/res/layout/fragment_divisions.xml" value="0.15462962962962962" />
+        <entry key="app/src/main/res/layout/fragment_dvisions.xml" value="0.2640625" />
         <entry key="app/src/main/res/layout/fragment_game_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.192481884057971" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.192481884057971" />
@@ -24,6 +26,7 @@
         <entry key="app/src/main/res/layout/team_lead_item.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/trap.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/menu/options_menu.xml" value="0.15462962962962962" />
       </map>
     </option>
   </component>

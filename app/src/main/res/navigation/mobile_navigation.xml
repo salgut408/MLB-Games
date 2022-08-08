@@ -19,6 +19,8 @@
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
+
+
     <fragment
         android:id="@+id/navigation_dashboard_today"
         android:name="com.example.android.gamesredo.ui.today.TodayFragment"
@@ -38,7 +40,7 @@
     <fragment
         android:id="@+id/gameDetail"
         android:name="com.example.android.gamesredo.ui.gamedetail.GameDetailFragment"
-        android:label="fragment_game_detail"
+        android:label="@string/gameDetail"
         tools:layout="@layout/fragment_game_detail" >
         <argument
             android:name="gamesPkModelArgs"
@@ -48,12 +50,12 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.android.gamesredo.ui.leaders.LeadersFragment"
-        android:label="fragment_notifications"
+        android:label="@string/leaders"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/teamDetail"
         android:name="com.example.android.gamesredo.ui.teamdetail.TeamDetailFragment"
-        android:label="fragment_team_detail"
+        android:label="@string/teamDetail"
         tools:layout="@layout/fragment_team_detail" >
         <argument
             android:name="teamRecordsArgs"
@@ -71,7 +73,7 @@
     <fragment
         android:id="@+id/personDetailFragment"
         android:name="com.example.android.gamesredo.ui.persondetail.PersonDetailFragment"
-        android:label="fragment_person_detail"
+        android:label="@string/playerDetail"
         tools:layout="@layout/fragment_person_detail" >
         <argument
             android:name="personArg"
@@ -92,7 +94,7 @@
     <fragment
         android:id="@+id/teamHistoryFragment"
         android:name="com.example.android.gamesredo.ui.teamhistory.TeamHistoryFragment"
-        android:label="fragment_team_history"
+        android:label="@string/teamInfo"
         tools:layout="@layout/fragment_team_history" >
         <argument
             android:name="teamHistArgs"

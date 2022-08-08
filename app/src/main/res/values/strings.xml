@@ -18,4 +18,9 @@
     <string name="division">division</string>
     <string name="homeWinProb">Home Team Win Probability</string>
     <string name="awayTeamWinPercent">Away Team Win Probability</string>
+    <string name="gameDetail">Game Detail</string>
+    <string name="leaders">Leaders</string>
+    <string name="teamDetail">Team Detail</string>
+    <string name="playerDetail">Player Detail</string>
+    <string name="teamInfo">Team Info</string>
 </resources>

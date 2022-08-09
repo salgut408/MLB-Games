@@ -3,7 +3,7 @@
 
 # MLB Games 
 
-App to view MLB Games line scores, standings and current scores
+App to view MLB Games line scores, standings and current scores, view Highlights from a game
 
 ## Description
 
@@ -29,3 +29,4 @@ An app to view MLB Games, Teams, Players and stats, create favorites list.
   ### Gson
   ### MLB Stats API 
   ### Bottom Navigation + SafeArgs 
+  ### VideoView

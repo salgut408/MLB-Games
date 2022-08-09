@@ -65,13 +65,15 @@ class GameDetailFragment : Fragment() {
 
         val homeName = game?.teams?.home?.team?.name
 
+
+//         Highlight text Observer
         gameDetailViewModel.hilightText.observe(viewLifecycleOwner,
         Observer { txt ->
             txt.apply {
                 binding.hilightTextBlurb.text = txt
             }
         })
-
+//            img url observer
         gameDetailViewModel.imgsrc.observe(viewLifecycleOwner,
         Observer { img ->
             img.apply {
@@ -80,7 +82,7 @@ class GameDetailFragment : Fragment() {
 
             }
         })
-
+            //game line score observer
             gameDetailViewModel.gameLineScore.observe(viewLifecycleOwner,
             Observer<GameDetailModel> { gameDetail ->
                 gameDetail.apply {
@@ -102,8 +104,8 @@ class GameDetailFragment : Fragment() {
                     binding.currentInningOrd.text=gameDetail.currentInningOrdinal
 
                     //TODO fix these
-                    binding.batter.text ="AB: " + gameDetail.offense?.batter2?.fullName + ", " + gameDetail.offense?.team?.name
-                    binding.pitcher.text = "P: " + gameDetail.defense?.pitcher2?.fullName +", " + gameDetail.defense?.team?.name
+                    binding.batter.text = gameDetail.offense?.batter2?.fullName + ", " + gameDetail.offense?.team?.name
+                    binding.pitcher.text = gameDetail.defense?.pitcher2?.fullName +", " + gameDetail.defense?.team?.name
 
                     binding.description.text = "Strikes " +gameDetail.strikes.toString() +
                                                 " Balls " + gameDetail.balls.toString() +
@@ -125,6 +127,7 @@ class GameDetailFragment : Fragment() {
                 }
             })
 
+            //game winning odds observer
 //            gameDetailViewModel.gamePredictions.observe(viewLifecycleOwner,
 //            Observer<GamePredictionModel> { gamePrediction ->
 //                gamePrediction.apply {

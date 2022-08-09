@@ -6,9 +6,15 @@ import com.example.android.gamesredo.network.util.DomainMapper
 
 class ContentResponseDtoMapper: DomainMapper<GameContentResponse, ContentDetailModel> {
     override fun mapToDomainModel(model: GameContentResponse): ContentDetailModel {
+
+
+
         return ContentDetailModel(
             highlights = model.highlights?.highlights2,
-            img = model.highlights?.highlights2?.items!![0].image?.cuts!![0].src.toString()
+            img = model.highlights?.highlights2?.items?.get(0)?.image?.cuts?.get(0)?.src.toString(),
+//            img = model.highlights?.highlights2?.items!![0].image?.cuts!![0].src.toString(),
+//            vid = model.highlights?.highlights2?.items!![0].mediaPlaybackUrl
+
 
         )
     }

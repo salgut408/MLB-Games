@@ -61,7 +61,11 @@ class GameDetailViewModel
 
     fun getImgBlurb(gamePk: Int) = viewModelScope.launch {
         val result = gameRepository.getContent(gamePk   )
-        hilightText.postValue(result.highlights?.items?.get(0)?.blurb!!)
+        if ( result.highlights?.items?.get(0)?.blurb == null) {
+            hilightText.postValue("N/a")
+        } else {
+            hilightText.postValue(result.highlights?.items?.get(0)?.blurb!!)
+        }
     }
 
 
@@ -97,6 +101,15 @@ class GameDetailViewModel
         for (i in colors!!) {
             if (i.name.equals(team)) {
                 return i.colors?.secondary.toString()
+            }
+        }
+        return "Null"
+    }
+
+    fun getTeamLogo(team: String): String {
+        for (i in colors!!) {
+            if (i.name.equals(team)) {
+                return i.logo.toString()
             }
         }
         return "Null"

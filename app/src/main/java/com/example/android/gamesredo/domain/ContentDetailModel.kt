@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ContentDetailModel(
     var highlights : Highlights2? = Highlights2(),
-    var img: String? = null
+    var img: String? = null,
+    var vid: String? = null
 ) {
 }

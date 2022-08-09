@@ -108,6 +108,11 @@ class GameDetailFragment : Fragment() {
 
                     binding.currentInningOrd.text=gameDetail.currentInningOrdinal
 
+                    binding.onDeckFullName.text = gameDetail.offense?.onDeck?.fullName
+                    binding.inHoleFullName.text=gameDetail.offense?.inHole?.fullName
+
+//                    + gameDetail.offense?.onDeck?.fullName.toString()
+
                     //TODO fix these
                     binding.batter.text = gameDetail.offense?.batter2?.fullName + ", " + gameDetail.offense?.team?.name
                     binding.pitcher.text = gameDetail.defense?.pitcher2?.fullName +", " + gameDetail.defense?.team?.name

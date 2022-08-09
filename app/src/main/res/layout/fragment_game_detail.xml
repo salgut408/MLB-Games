@@ -8,260 +8,307 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/awayTeamName"
-            style="@style/team_name_24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/away_team"
-            android:textAlignment="viewStart"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status_abstractGameState" />
 
-        <TextView
-            android:id="@+id/homeTeamName"
-            style="@style/team_name_24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/home_team"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/awayTeamPoints" />
-
-        <TextView
-            android:id="@+id/gameVenue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/chivo_black"
-            android:text="@string/venue"
-            android:textColor="#000000"
-            android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/officialDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/date"
-            android:textColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gameVenue" />
-
-        <TextView
-            android:id="@+id/status_abstractGameState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/abstractgamestate"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/officialDate" />
-
-        <TextView
-            android:id="@+id/awayTeamPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/awayTeamName"
-            app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
-
-        <TextView
-            android:id="@+id/awayTeamHits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/awayTeamPoints"
-            app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
-
-        <TextView
-            android:id="@+id/awayTeamErrors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="12"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/awayTeamHits"
-            app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
-
-        <TextView
-            android:id="@+id/currentInningOrd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="12"
-            android:textColor="#000000"
-            android:textSize="34sp"
-            app:layout_constraintStart_toEndOf="@+id/inningArrowImg"
-            app:layout_constraintTop_toTopOf="@+id/inningArrowImg" />
-
-        <TextView
-            android:id="@+id/homeTeamPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/homeTeamName"
-            app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
-
-        <TextView
-            android:id="@+id/homeTeamHits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="1"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/homeTeamPoints"
-            app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
-
-        <TextView
-            android:id="@+id/homeTeamErrors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="1"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/homeTeamHits"
-            app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
-
-        <ImageView
-            android:id="@+id/inningArrowImg"
-            android:layout_width="53dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/homeTeamPoints"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="929dp" />
-
-        <TextView
-            android:id="@+id/abTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:padding="4dp"
-            android:text="AB: "
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/currentInningOrd"
-            app:layout_constraintTop_toTopOf="@+id/inningArrowImg" />
-
-        <TextView
-            android:id="@+id/pTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="P:"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/abTxt"
-            app:layout_constraintTop_toBottomOf="@+id/abTxt" />
-
-        <TextView
-            android:id="@+id/batter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:padding="4dp"
-            android:text="batter"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/abTxt"
-            app:layout_constraintTop_toTopOf="@+id/abTxt" />
-
-        <TextView
-            android:id="@+id/pitcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="pitcher"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/batter"
-            app:layout_constraintTop_toBottomOf="@+id/batter" />
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:padding="4dp"
-            android:text="desc"
-            app:layout_constraintStart_toEndOf="@+id/homeTeamErrors"
-            app:layout_constraintTop_toTopOf="@+id/homeTeamErrors" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/gameInfoCardView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currentInningOrd">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <TextView
+                android:id="@+id/awayTeamName"
+                style="@style/team_name_24sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/away_team"
+                android:textAlignment="viewStart"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status_abstractGameState" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="411dp"
-                    android:layout_height="232dp"
-                    android:scaleType="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    tools:srcCompat="@tools:sample/avatars" />
+            <TextView
+                android:id="@+id/homeTeamName"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/home_team"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/awayTeamPoints" />
 
-                <TextView
-                    android:id="@+id/hilightTextBlurb"
-                    android:layout_width="411dp"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="TextView"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/imageView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/gameVenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/chivo_black"
+                android:text="@string/venue"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/officialDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gameVenue" />
 
-        </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/status_abstractGameState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/abstractgamestate"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/officialDate" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/awayTeamPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/awayTeamName"
+                app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
+
+            <TextView
+                android:id="@+id/awayTeamHits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/awayTeamPoints"
+                app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
+
+            <TextView
+                android:id="@+id/awayTeamErrors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="12"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/awayTeamHits"
+                app:layout_constraintTop_toBottomOf="@+id/awayTeamName" />
+
+            <TextView
+                android:id="@+id/currentInningOrd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="12"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                app:layout_constraintStart_toEndOf="@+id/inningArrowImg"
+                app:layout_constraintTop_toTopOf="@+id/inningArrowImg" />
+
+            <TextView
+                android:id="@+id/homeTeamPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/homeTeamName"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
+
+            <TextView
+                android:id="@+id/homeTeamHits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/homeTeamPoints"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
+
+            <TextView
+                android:id="@+id/homeTeamErrors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/homeTeamHits"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamName" />
+
+            <ImageView
+                android:id="@+id/inningArrowImg"
+                android:layout_width="53dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamPoints"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="929dp" />
+
+            <TextView
+                android:id="@+id/abTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="AB: "
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currentInningOrd" />
+
+            <TextView
+                android:id="@+id/pTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="P:"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/abTxt"
+                app:layout_constraintTop_toBottomOf="@+id/abTxt" />
+
+            <TextView
+                android:id="@+id/batter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                android:text="batter"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/abTxt"
+                app:layout_constraintTop_toTopOf="@+id/abTxt" />
+
+            <TextView
+                android:id="@+id/pitcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="pitcher"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/batter"
+                app:layout_constraintTop_toBottomOf="@+id/batter" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:padding="4dp"
+                android:text="desc"
+                app:layout_constraintStart_toEndOf="@+id/homeTeamErrors"
+                app:layout_constraintTop_toTopOf="@+id/homeTeamErrors" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/gameInfoCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currentInningOrd">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="411dp"
+                        android:layout_height="232dp"
+                        android:scaleType="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/hilightTextBlurb"
+                        android:layout_width="411dp"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/onDeckDisplyTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                android:text="On Deck: "
+                app:layout_constraintBottom_toTopOf="@+id/gameInfoCardView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inningArrowImg" />
+
+            <TextView
+                android:id="@+id/inHoleDisplyTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="On Deck: "
+                app:layout_constraintStart_toStartOf="@+id/onDeckDisplyTxt"
+                app:layout_constraintTop_toBottomOf="@+id/onDeckDisplyTxt" />
+
+            <TextView
+                android:id="@+id/onDeckFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                android:text="On Deck: "
+                app:layout_constraintStart_toEndOf="@+id/onDeckDisplyTxt"
+                app:layout_constraintTop_toTopOf="@+id/onDeckDisplyTxt" />
+
+            <TextView
+                android:id="@+id/inHoleFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                android:text="On Deck: "
+                app:layout_constraintStart_toEndOf="@+id/inHoleDisplyTxt"
+                app:layout_constraintTop_toBottomOf="@+id/onDeckFullName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

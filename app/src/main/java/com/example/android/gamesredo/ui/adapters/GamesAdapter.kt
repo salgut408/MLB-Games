@@ -60,6 +60,8 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
 
             awayTeam.text = game?.teams?.away?.team?.name
 
+//            + game?.teams?.away?.leagueRecord?.toString()
+
             awayTeamScore.text = game?.teams?.away?.score.toString()
 
             homeTeam.text = game?.teams?.home?.team?.name

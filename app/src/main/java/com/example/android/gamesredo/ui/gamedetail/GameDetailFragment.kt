@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.example.android.gamesredo.R
 import com.example.android.gamesredo.databinding.FragmentGameDetailBinding
 import com.example.android.gamesredo.domain.GameDetailModel
@@ -49,10 +50,10 @@ class GameDetailFragment : Fragment() {
 //        binding.awayTeamName.setTextColor(Color.parseColor(gameDetailViewModel.getSecondaryColor(awayName!!)))
         binding.homeTeamName.setTextColor(Color.parseColor(gameDetailViewModel.getSecondaryColor(homeName!!)))
 
-        gameDetailViewModel.getImg(game?.gamePk!!)
-        gameDetailViewModel.getImgBlurb(game?.gamePk!!)
+        gameDetailViewModel.getImg(game.gamePk!!)
+        gameDetailViewModel.getImgBlurb(game.gamePk)
 
-        gameDetailViewModel.getLineScore(game?.gamePk ?: 663374)
+        gameDetailViewModel.getLineScore(game.gamePk ?: 663374)
 //        gameDetailViewModel.getPlayByPlay(game?.gamePk ?: 663374)
 //        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
 
@@ -66,7 +67,7 @@ class GameDetailFragment : Fragment() {
         val homeName = game?.teams?.home?.team?.name
 
 
-//         Highlight text Observer
+//         Highlight blurb text Observer
         gameDetailViewModel.hilightText.observe(viewLifecycleOwner,
         Observer { txt ->
             txt.apply {
@@ -77,7 +78,11 @@ class GameDetailFragment : Fragment() {
         gameDetailViewModel.imgsrc.observe(viewLifecycleOwner,
         Observer { img ->
             img.apply {
-                Glide.with(this@GameDetailFragment).load(img).into(binding.imageView)
+                Glide.with(this@GameDetailFragment)
+                    .load(img)
+                    .transition(withCrossFade())
+                    .placeholder(R.drawable.ic_baseline_sports_handball_24)
+                    .into(binding.imageView)
 
 
             }
@@ -86,7 +91,7 @@ class GameDetailFragment : Fragment() {
             gameDetailViewModel.gameLineScore.observe(viewLifecycleOwner,
             Observer<GameDetailModel> { gameDetail ->
                 gameDetail.apply {
-                   binding.awayTeamPoints.text  = gameDetail.teams2?.away2?.runs.toString()
+                   binding.awayTeamPoints.text  = gameDetail.teams2?.away2?.runs.toString() ?: "0"
                     binding.homeTeamPoints.text=gameDetail.teams2?.home2?.runs.toString()
 
                     binding.homeTeamErrors.text=gameDetail.teams2?.home2?.errors.toString()
@@ -96,7 +101,7 @@ class GameDetailFragment : Fragment() {
                     binding.homeTeamHits.text=gameDetail.teams2?.away2?.hits.toString()
 
                     binding.homeTeamName.text=game?.teams?.home?.team?.name
-//                    +
+////                    +
 //                            game?.teams?.home?.leagueRecord?.wins.toString() +
 //                            " - " +
 //                            game?.teams?.home?.leagueRecord?.losses.toString()

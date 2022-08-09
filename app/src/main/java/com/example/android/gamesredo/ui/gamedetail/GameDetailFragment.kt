@@ -75,6 +75,7 @@ class GameDetailFragment : Fragment() {
             src.apply {
 
                 binding.videoView.setVideoPath(src)
+                binding.videoView.start()
             }
         })
 

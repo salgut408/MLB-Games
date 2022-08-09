@@ -14,7 +14,7 @@ class ContentResponseDtoMapper: DomainMapper<GameContentResponse, ContentDetailM
             img = model.highlights?.highlights2?.items?.get(0)?.image?.cuts?.get(0)?.src.toString(),
 //            img = model.highlights?.highlights2?.items!![0].image?.cuts!![0].src.toString(),
 //            vid = model.highlights?.highlights2?.items!![0].mediaPlaybackUrl
-        vid = model.highlights?.highlights2?.items?.get(0)?.mediaPlaybackUrl
+        vid = model.highlights?.highlights2?.items?.get(0)?.playbacks?.get(0)?.url
 
 
         )

@@ -28,3 +28,4 @@ An app to view MLB Games, Teams, Players and stats, create favorites list.
   ### Retrofit
   ### Gson
   ### MLB Stats API 
+  ### Bottom Navigation + SafeArgs 

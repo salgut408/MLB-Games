@@ -50,6 +50,7 @@ class GameDetailFragment : Fragment() {
         binding.homeTeamName.setTextColor(Color.parseColor(gameDetailViewModel.getSecondaryColor(homeName!!)))
 
         gameDetailViewModel.getImg(game?.gamePk!!)
+        gameDetailViewModel.getImgBlurb(game?.gamePk!!)
 
         gameDetailViewModel.getLineScore(game?.gamePk ?: 663374)
 //        gameDetailViewModel.getPlayByPlay(game?.gamePk ?: 663374)
@@ -64,10 +65,18 @@ class GameDetailFragment : Fragment() {
 
         val homeName = game?.teams?.home?.team?.name
 
+        gameDetailViewModel.hilightText.observe(viewLifecycleOwner,
+        Observer { txt ->
+            txt.apply {
+                binding.hilightTextBlurb.text = txt
+            }
+        })
+
         gameDetailViewModel.imgsrc.observe(viewLifecycleOwner,
         Observer { img ->
             img.apply {
                 Glide.with(this@GameDetailFragment).load(img).into(binding.imageView)
+
 
             }
         })
@@ -92,7 +101,7 @@ class GameDetailFragment : Fragment() {
 
                     binding.currentInningOrd.text=gameDetail.currentInningOrdinal
 
-
+                    //TODO fix these
                     binding.batter.text ="AB: " + gameDetail.offense?.batter2?.fullName + ", " + gameDetail.offense?.team?.name
                     binding.pitcher.text = "P: " + gameDetail.defense?.pitcher2?.fullName +", " + gameDetail.defense?.team?.name
 

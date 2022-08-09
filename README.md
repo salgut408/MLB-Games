@@ -1,16 +1,16 @@
-# GameRedo
+# MLB Games
 
 
-# Artworks 
+# MLB Games 
 
-App to view MLB Games
+App to view MLB Games line scores, standings and current scores
 
 ## Description
 
 An app to view MLB Games, Teams, Players and stats, create favorites list.
 
 
-2nd iteration of an app using the MLB Stats API.
+<s>2nd</s> 4th iteration of an app using the MLB Stats API.
 
 
 
@@ -23,6 +23,7 @@ An app to view MLB Games, Teams, Players and stats, create favorites list.
   ### MVVM
   ### Glide
   ### Kotlin Coroutines
+  ### Kotlin Flow
   ### Hilt for dependency injection
   ### Retrofit
   ### Gson

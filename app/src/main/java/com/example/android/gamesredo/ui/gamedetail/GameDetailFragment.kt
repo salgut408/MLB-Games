@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -53,6 +54,8 @@ class GameDetailFragment : Fragment() {
         gameDetailViewModel.getImg(game.gamePk!!)
         gameDetailViewModel.getImgBlurb(game.gamePk)
 
+        gameDetailViewModel.getVidSrc(game.gamePk)
+
         gameDetailViewModel.getLineScore(game.gamePk ?: 663374)
 //        gameDetailViewModel.getPlayByPlay(game?.gamePk ?: 663374)
 //        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
@@ -65,6 +68,15 @@ class GameDetailFragment : Fragment() {
         val game = GameDetailFragmentArgs.fromBundle(requireArguments()).gamesPkModelArgs
 
         val homeName = game?.teams?.home?.team?.name
+
+        // vid src observer
+        gameDetailViewModel.vidImg.observe(viewLifecycleOwner,
+        Observer { src->
+            src.apply {
+
+                binding.videoView.setVideoPath(src)
+            }
+        })
 
 
 //         Highlight blurb text Observer

@@ -26,6 +26,8 @@ class GameDetailViewModel
 
      val imgsrc: MutableLiveData<String> = MutableLiveData()
 
+    val vidImg: MutableLiveData<String> = MutableLiveData()
+
     val hilightText: MutableLiveData<String> = MutableLiveData()
 
     var colors: List<MlbColors>? = null
@@ -65,6 +67,15 @@ class GameDetailViewModel
             hilightText.postValue("N/a")
         } else {
             hilightText.postValue(result.highlights?.items?.get(0)?.blurb!!)
+        }
+    }
+
+    fun getVidSrc(gamePk: Int) = viewModelScope.launch {
+        val result = gameRepository.getContent(gamePk)
+        if(result.vid == null) {
+            vidImg.postValue("N/a")
+        } else {
+            vidImg.postValue(result.vid!!)
         }
     }
 

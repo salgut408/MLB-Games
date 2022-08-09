@@ -308,6 +308,16 @@
                 app:layout_constraintStart_toEndOf="@+id/inHoleDisplyTxt"
                 app:layout_constraintTop_toBottomOf="@+id/onDeckFullName" />
 
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gameInfoCardView" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

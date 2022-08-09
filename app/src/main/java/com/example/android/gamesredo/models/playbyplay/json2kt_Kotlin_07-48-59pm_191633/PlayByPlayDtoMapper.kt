@@ -9,8 +9,14 @@ import com.example.android.gamesredo.network.util.DomainMapper
 class PlayByPlayDtoMapper: DomainMapper <PlayByPlayResponse, PlayByPlayModel>  {
     override fun mapToDomainModel(model: PlayByPlayResponse): PlayByPlayModel {
         return PlayByPlayModel(
-            allPlays = model.allPlays,
-            currentPlay = model.currentPlay
+           result = model.currentPlay?.result,
+            desc = model.currentPlay?.result?.description,
+
+            playEvents = model.currentPlay?.playEvents ?: arrayListOf(),
+            runners = model.currentPlay?.runners ?: arrayListOf(),
+
+
+
         )
     }
 }

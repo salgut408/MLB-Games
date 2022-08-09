@@ -41,10 +41,7 @@ class GameRepository @Inject constructor(
         return contentResponseDtoMapper.mapToDomainModel(result!!)
     }
 
-    suspend fun getGamePlayByPlay(gamePk: Int): PlayByPlayModel {
-        var result = api.getGamePlayByPlay(gamePk).body()
-        return playByPlayDtoMapper.mapToDomainModel(result!!)
-    }
+
 
     suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
         var result = api.getStandings(103, 104).body()!!.records[0].teamRecords
@@ -53,6 +50,11 @@ class GameRepository @Inject constructor(
         //TODO fix first index getting added 2x
         }
         return mapper.toDomainList(result)
+    }
+
+    suspend fun getGamePlayByPlay(gamePk: Int): PlayByPlayModel {
+        var result = api.getGamePlayByPlay(gamePk).body()
+        return playByPlayDtoMapper.mapToDomainModel(result!!)
     }
 
     val records: Flow<List<StandingsModel>> = flow {

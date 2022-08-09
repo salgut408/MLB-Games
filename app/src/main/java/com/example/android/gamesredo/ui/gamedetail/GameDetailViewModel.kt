@@ -5,9 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.gamesredo.Live
 import com.example.android.gamesredo.MlbColors
 import com.example.android.gamesredo.domain.GameDetailModel
 import com.example.android.gamesredo.domain.GamePredictionModel
+import com.example.android.gamesredo.domain.PlayByPlayModel
 import com.example.android.gamesredo.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -28,10 +30,25 @@ class GameDetailViewModel
     private val _gamePrediction: MutableLiveData<GamePredictionModel> = MutableLiveData()
     val gamePredictions: LiveData<GamePredictionModel> get() = _gamePrediction
 
+    private val _playByPlayInfo: MutableLiveData<PlayByPlayModel> = MutableLiveData()
+    val playByPlayInfo: LiveData<PlayByPlayModel> get() = _playByPlayInfo
+
 
 
     init {
         getColors()
+    }
+
+
+    fun getPlayByPlay(gamePk: Int) = viewModelScope.launch {
+        try {
+            val result = gameRepository.getGamePlayByPlay(gamePk)
+            _playByPlayInfo.postValue(result)
+        } catch (e: Throwable) {
+
+        }
+
+
     }
 
     fun getLineScore(gamePk: Int) = viewModelScope.launch {

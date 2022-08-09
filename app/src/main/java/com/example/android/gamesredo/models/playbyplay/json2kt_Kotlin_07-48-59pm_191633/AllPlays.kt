@@ -11,7 +11,7 @@ data class AllPlays (
   @SerializedName("about"       ) var about       : About?                = About(),
   @SerializedName("count"       ) var count       : Count?                = Count(),
   @SerializedName("matchup"     ) var matchup     : Matchup?              = Matchup(),
-  @SerializedName("pitchIndex"  ) var pitchIndex  : String?               = null,
+  @SerializedName("pitchIndex"  ) var pitchIndex  : ArrayList<Int>        = arrayListOf(),
   @SerializedName("actionIndex" ) var actionIndex : String?               = null,
   @SerializedName("runnerIndex" ) var runnerIndex : ArrayList<Int>        = arrayListOf(),
   @SerializedName("runners"     ) var runners     : ArrayList<Runners>    = arrayListOf(),

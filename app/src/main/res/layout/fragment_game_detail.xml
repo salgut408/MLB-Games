@@ -32,6 +32,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/status_abstractGameState" />
 
             <TextView
+                android:id="@+id/awayTeamLeagueRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/away_team"
+                android:textAlignment="viewStart"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/awayTeamHits"
+                app:layout_constraintStart_toStartOf="@+id/awayTeamName"
+                app:layout_constraintTop_toBottomOf="@+id/awayTeamName"
+                tools:text="Away Record" />
+
+            <TextView
+                android:id="@+id/homeTeamLeagueRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/away_team"
+                android:textAlignment="viewStart"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/homeTeamHits"
+                app:layout_constraintStart_toStartOf="@+id/homeTeamName"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamName"
+                tools:text="Home Record" />
+
+            <TextView
                 android:id="@+id/homeTeamName"
                 style="@style/team_name_24sp"
                 android:layout_width="wrap_content"
@@ -84,6 +110,7 @@
                 android:id="@+id/awayTeamPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="12"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -95,6 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:text="0"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -106,6 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:text="12"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -127,6 +156,7 @@
                 android:id="@+id/homeTeamPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="1"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -138,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:text="1"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -149,6 +180,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:text="1"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -178,7 +210,8 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="AB: "
-                android:textSize="24sp"
+                android:textColor="#000000"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/currentInningOrd" />
 
@@ -188,7 +221,8 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="P:"
-                android:textSize="24sp"
+                android:textColor="#000000"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/abTxt"
                 app:layout_constraintTop_toBottomOf="@+id/abTxt" />
 
@@ -199,7 +233,8 @@
                 android:layout_marginStart="16dp"
                 android:padding="4dp"
                 android:text="batter"
-                android:textSize="24sp"
+                android:textColor="#000000"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/abTxt"
                 app:layout_constraintTop_toTopOf="@+id/abTxt" />
 
@@ -209,7 +244,8 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:text="pitcher"
-                android:textSize="24sp"
+                android:textColor="#000000"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/batter"
                 app:layout_constraintTop_toBottomOf="@+id/batter" />
 
@@ -240,12 +276,12 @@
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="411dp"
+                        android:layout_width="0dp"
                         android:layout_height="232dp"
+                        android:padding="4dp"
                         android:scaleType="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0"
@@ -311,6 +347,10 @@
                 android:id="@+id/videoView"
                 android:layout_width="393dp"
                 android:layout_height="253dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

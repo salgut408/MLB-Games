@@ -118,10 +118,9 @@ class GameDetailFragment : Fragment() {
                     binding.homeTeamHits.text = gameDetail.teams2?.away2?.hits.toString()
 
                     binding.homeTeamName.text = game?.teams?.home?.team?.name
-////                    +
-//                            game?.teams?.home?.leagueRecord?.wins.toString() +
-//                            " - " +
-//                            game?.teams?.home?.leagueRecord?.losses.toString()
+                    binding.homeTeamLeagueRecord.text = game?.teams?.home?.leagueRecord.toString()
+                    binding.awayTeamLeagueRecord.text = game?.teams?.away?.leagueRecord.toString()
+
 
                     binding.currentInningOrd.text = gameDetail.currentInningOrdinal
 

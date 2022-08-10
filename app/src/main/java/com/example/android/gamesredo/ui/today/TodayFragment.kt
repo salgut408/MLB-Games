@@ -1,5 +1,6 @@
 package com.example.android.gamesredo.ui.today
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,8 @@ import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.databinding.FragmentTodayBinding
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.domain.GamesModel
+import com.example.android.gamesredo.notifications.Counter
+import com.example.android.gamesredo.notifications.services.ScoreNotificationService
 import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.GamesAdapter
 import com.example.android.gamesredo.util.Constants
@@ -56,7 +59,16 @@ class TodayFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val service = ScoreNotificationService(this.context!!)
+
+
         _binding?.todaysDate?.text = setDate()
+
+
+        // notification atm TODO update
+        _binding?.baseballimage?.setOnClickListener {
+            service.showNotification(Counter.value)
+        }
 
 
 

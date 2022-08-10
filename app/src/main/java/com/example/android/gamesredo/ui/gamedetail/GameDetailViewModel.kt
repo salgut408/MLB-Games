@@ -24,7 +24,7 @@ class GameDetailViewModel
     private val _gameLineScore: MutableLiveData<GameDetailModel> = MutableLiveData()
     val gameLineScore: LiveData<GameDetailModel> get() = _gameLineScore
 
-     val imgsrc: MutableLiveData<String> = MutableLiveData()
+    val imgsrc: MutableLiveData<String> = MutableLiveData()
 
     val vidImg: MutableLiveData<String> = MutableLiveData()
 
@@ -37,7 +37,6 @@ class GameDetailViewModel
 
     private val _playByPlayInfo: MutableLiveData<PlayByPlayModel> = MutableLiveData()
     val playByPlayInfo: LiveData<PlayByPlayModel> get() = _playByPlayInfo
-
 
 
     init {
@@ -62,8 +61,8 @@ class GameDetailViewModel
     }
 
     fun getImgBlurb(gamePk: Int) = viewModelScope.launch {
-        val result = gameRepository.getContent(gamePk   )
-        if ( result.highlights?.items?.get(0)?.blurb == null) {
+        val result = gameRepository.getContent(gamePk)
+        if (result.highlights?.items?.get(0)?.blurb == null) {
             hilightText.postValue("N/a")
         } else {
             hilightText.postValue(result.highlights?.items?.get(0)?.blurb!!)
@@ -72,7 +71,7 @@ class GameDetailViewModel
 
     fun getVidSrc(gamePk: Int) = viewModelScope.launch {
         val result = gameRepository.getContent(gamePk)
-        if(result.vid == null) {
+        if (result.vid == null) {
             vidImg.postValue("N/a")
         } else {
             vidImg.postValue(result.vid!!)
@@ -87,11 +86,11 @@ class GameDetailViewModel
     }
 
     fun getPredictions(gamePk: Int) = viewModelScope.launch {
-       try {
-           val result = gameRepository.getGamePredictions(gamePk)
-           _gamePrediction.postValue(result)
-       } catch (e: Throwable) {
-       }
+        try {
+            val result = gameRepository.getGamePredictions(gamePk)
+            _gamePrediction.postValue(result)
+        } catch (e: Throwable) {
+        }
     }
 
     fun getColors() = viewModelScope.launch {
@@ -101,7 +100,7 @@ class GameDetailViewModel
     fun getPrimaryColor(team: String): String {
         for (i in colors!!) {
             if (i.name.equals(team)) {
-                val  color = i.colors?.primary.toString()
+                val color = i.colors?.primary.toString()
                 return color
             }
         }

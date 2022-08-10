@@ -284,7 +284,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="On Deck: "
+                android:text="In the Hole"
                 app:layout_constraintStart_toStartOf="@+id/onDeckDisplyTxt"
                 app:layout_constraintTop_toBottomOf="@+id/onDeckDisplyTxt" />
 
@@ -302,16 +302,15 @@
                 android:id="@+id/inHoleFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:padding="4dp"
-                android:text="On Deck: "
-                app:layout_constraintStart_toEndOf="@+id/inHoleDisplyTxt"
+                android:text="In Hole"
+                app:layout_constraintStart_toStartOf="@+id/onDeckFullName"
                 app:layout_constraintTop_toBottomOf="@+id/onDeckFullName" />
 
             <VideoView
                 android:id="@+id/videoView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="393dp"
+                android:layout_height="253dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

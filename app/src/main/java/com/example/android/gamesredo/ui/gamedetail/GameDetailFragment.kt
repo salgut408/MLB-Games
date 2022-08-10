@@ -67,6 +67,15 @@ class GameDetailFragment : Fragment() {
         gameDetailViewModel.getLineScore(game.gamePk ?: 663374)
 //        gameDetailViewModel.getPlayByPlay(game?.gamePk ?: 663374)
 //        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
+        val service = ScoreNotificationService(this.context!!)
+
+
+        when (game.status?.detailedState) {
+            "Warmup" -> {
+                service.showNotification(game.gamePk)
+
+            }
+        }
 
         return binding.root
     }
@@ -90,6 +99,7 @@ class GameDetailFragment : Fragment() {
         // vid src observer
         gameDetailViewModel.vidImg.observe(viewLifecycleOwner,
             Observer { src ->
+
                 src.apply {
 
                     binding.videoView.setVideoPath(src)
@@ -171,6 +181,8 @@ class GameDetailFragment : Fragment() {
                         false -> binding.inningArrowImg.setImageResource(R.drawable.ic_baseline_arrow_downward_24)
                         else -> binding.inningArrowImg.visibility = View.INVISIBLE
                     }
+
+
 
                 }
             })

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.android.gamesredo.*
 import com.example.android.gamesredo.databinding.ItemPreviewBinding
 import com.example.android.gamesredo.domain.GamesModel
+import com.example.android.gamesredo.notifications.services.ScoreNotificationService
 import com.example.android.gamesredo.ui.today.TodayViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.NonDisposableHandle.parent
@@ -55,6 +56,8 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                 cardScore.visibility=View.GONE
                 startTime.visibility=View.VISIBLE
             }
+
+
 
 
             startTime.text = game?.status?.detailedState

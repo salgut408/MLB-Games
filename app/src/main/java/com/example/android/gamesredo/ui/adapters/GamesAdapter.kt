@@ -56,6 +56,7 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                 startTime.visibility=View.VISIBLE
             }
 
+
             startTime.text = game?.status?.detailedState
 
             awayTeam.text = game?.teams?.away?.team?.name

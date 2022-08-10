@@ -12,4 +12,10 @@ data class LeagueRecord (
   @SerializedName("ties"   ) var ties   : Int?    = null,
   @SerializedName("pct"    ) var pct    : String? = null
 
-): Parcelable
+): Parcelable {
+
+//  override fun toString(): String {
+//    return wins.toString() +" - " + losses.toString() +" " + pct.toString()
+//  }
+}
+

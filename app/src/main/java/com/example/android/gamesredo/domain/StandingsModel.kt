@@ -23,7 +23,7 @@ data class StandingsModel(
     val runDifferential: Int? = null,
     val winningPercentage: String? = null,
    val teamId: Int? = null,
-    val teamName : String?
+    val teamName : String
 
 
 

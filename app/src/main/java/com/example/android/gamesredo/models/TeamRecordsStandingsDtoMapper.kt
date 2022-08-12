@@ -23,21 +23,21 @@ class TeamRecordsStandingsDtoMapper: DomainMapper<TeamRecords, StandingsModel> {
             runDifferential = model.runDifferential,
             winningPercentage = model.winningPercentage,
         teamId = model.team?.id,
-            teamName = model.team?.name
+            teamName = model.team?.name.toString()
         )
     }
 
     fun mapToDatabaseObj(model: TeamRecords) : StandingsDatabaseObj {
        return StandingsDatabaseObj(
            teamName = model.team?.name.toString(),
-           divisionRank = model.divisionRank,
+           divisionRank = model.divisionRank.toString(),
            gamesPlayed = model.gamesPlayed,
            id = model.team?.id!!,
            leagueRank = model.leagueRank,
            losses = model.losses,
            runDifferential = model.runDifferential,
            season = model.season,
-           sportRank = model.sportRank,
+           sportRank = model.sportRank.toString(),
            wins = model.wins,
            winningPercentage = model.winningPercentage
        )

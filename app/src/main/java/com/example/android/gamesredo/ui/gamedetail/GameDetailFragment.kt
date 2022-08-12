@@ -18,7 +18,10 @@ import com.example.android.gamesredo.databinding.FragmentGameDetailBinding
 import com.example.android.gamesredo.domain.GameDetailModel
 import com.example.android.gamesredo.domain.GamePredictionModel
 import com.example.android.gamesredo.domain.PlayByPlayModel
+import com.example.android.gamesredo.notifications.Counter
+import com.example.android.gamesredo.notifications.services.ScoreNotificationService
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.item_preview.*
 
 
 @AndroidEntryPoint
@@ -38,6 +41,8 @@ class GameDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val game = GameDetailFragmentArgs.fromBundle(requireArguments()).gamesPkModelArgs
+
+
 
         binding = FragmentGameDetailBinding.inflate(inflater)
         val homeName = game?.teams?.home?.team?.name
@@ -62,6 +67,15 @@ class GameDetailFragment : Fragment() {
         gameDetailViewModel.getLineScore(game.gamePk ?: 663374)
 //        gameDetailViewModel.getPlayByPlay(game?.gamePk ?: 663374)
 //        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
+        val service = ScoreNotificationService(this.context!!)
+
+
+        when (game.status?.detailedState) {
+            "Warmup" -> {
+                service.showNotification(game.gamePk)
+
+            }
+        }
 
         return binding.root
     }
@@ -70,6 +84,16 @@ class GameDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val game = GameDetailFragmentArgs.fromBundle(requireArguments()).gamesPkModelArgs
 
+        val service = ScoreNotificationService(this.context!!)
+
+        if (game?.teams?.away?.isWinner==true) {
+            service.showNotification(game?.teams?.away?.score?.toInt() ?: Counter.value)
+        } else if (game?.teams?.home?.isWinner==true) {
+            service.showNotification(game?.teams?.home?.score?.toInt() ?: Counter.value)
+
+        }
+
+
         val homeName = game?.teams?.home?.team?.name
 
         val mediaController = MediaController(this.context)
@@ -77,6 +101,7 @@ class GameDetailFragment : Fragment() {
         // vid src observer
         gameDetailViewModel.vidImg?.observe(viewLifecycleOwner,
             Observer { src ->
+
                 src.apply {
 
                     binding.videoView.setVideoPath(src)
@@ -113,6 +138,11 @@ class GameDetailFragment : Fragment() {
                     binding.awayTeamPoints.text = gameDetail.teams2?.away2?.runs.toString() ?: "0"
                     binding.homeTeamPoints.text = gameDetail.teams2?.home2?.runs.toString()
 
+
+
+//                        binding.homeTeamPoints.addTextChangedListener(privateval: Watcher )
+
+
                     binding.homeTeamErrors.text = gameDetail.teams2?.home2?.errors.toString()
                     binding.homeTeamHits.text = gameDetail.teams2?.home2?.hits.toString()
 
@@ -125,6 +155,8 @@ class GameDetailFragment : Fragment() {
 
 
                     binding.currentInningOrd.text = gameDetail.currentInningOrdinal
+
+
 
                     binding.onDeckFullName.text = gameDetail.offense?.onDeck?.fullName
                     binding.inHoleFullName.text = gameDetail.offense?.inHole?.fullName
@@ -152,8 +184,11 @@ class GameDetailFragment : Fragment() {
                         else -> binding.inningArrowImg.visibility = View.INVISIBLE
                     }
 
+
+
                 }
             })
+
 
         //game winning odds observer
 //            gameDetailViewModel.gamePredictions.observe(viewLifecycleOwner,

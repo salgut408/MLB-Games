@@ -42,6 +42,8 @@ class TodayFragment : Fragment() {
     lateinit var gameAdapter: GamesAdapter
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -73,6 +75,7 @@ class TodayFragment : Fragment() {
 
 
         setUpRecyclerView()
+
         gameAdapter.setOnItemClickListener {
             this.findNavController().navigate(
                 TodayFragmentDirections.actionNavigationDashboardToGameDetail(it)
@@ -92,8 +95,10 @@ class TodayFragment : Fragment() {
         binding.progressBar.visibility = View.INVISIBLE
     }
 
-    private fun setUpRecyclerView() {
+    private fun setUpRecyclerView( ) {
         val colors  = todayViewModel.colors
+        val service = ScoreNotificationService(this.context!!)
+
         gameAdapter = GamesAdapter(colors!!)
         binding.rvGames.apply {
             adapter = gameAdapter

@@ -59,16 +59,16 @@ class TodayFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val service = ScoreNotificationService(this.context!!)
+//        val service = ScoreNotificationService(this.context!!)
 
 
         _binding?.todaysDate?.text = setDate()
 
 
         // notification atm TODO update
-        _binding?.baseballimage?.setOnClickListener {
-            service.showNotification(Counter.value)
-        }
+//        _binding?.baseballimage?.setOnClickListener {
+//            service.showNotification(Counter.value)
+//        }
 
 
 

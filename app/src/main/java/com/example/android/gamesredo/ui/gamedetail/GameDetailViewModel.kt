@@ -24,11 +24,11 @@ class GameDetailViewModel
     private val _gameLineScore: MutableLiveData<GameDetailModel> = MutableLiveData()
     val gameLineScore: LiveData<GameDetailModel> get() = _gameLineScore
 
-    val imgsrc: MutableLiveData<String> = MutableLiveData()
+    val imgsrc: MutableLiveData<String>? = MutableLiveData()
 
-    val vidImg: MutableLiveData<String> = MutableLiveData()
+    val vidImg: MutableLiveData<String>? = MutableLiveData()
 
-    val hilightText: MutableLiveData<String> = MutableLiveData()
+    val hilightText: MutableLiveData<String>? = MutableLiveData()
 
     var colors: List<MlbColors>? = null
 
@@ -60,28 +60,36 @@ class GameDetailViewModel
         _gameLineScore.postValue(result)
     }
 
+    fun getImgBlurb2(gamePk: Int) = viewModelScope.launch {
+        val result = gameRepository.getContent(gamePk)
+        if (result.highlights?.items?.get(0)?.blurb != null) {
+            hilightText?.postValue(result.highlights?.items?.get(0)?.blurb!!)
+        } else {
+            hilightText?.postValue("not a")
+        }
+    }
     fun getImgBlurb(gamePk: Int) = viewModelScope.launch {
         val result = gameRepository.getContent(gamePk)
-        if (result.highlights?.items?.get(0)?.blurb == null) {
-            hilightText.postValue("N/a")
+        if (result.highlights?.items?.isEmpty() == false) {
+            hilightText?.postValue(result.highlights?.items?.get(0)?.blurb!!)
         } else {
-            hilightText.postValue(result.highlights?.items?.get(0)?.blurb!!)
+            hilightText?.postValue("not a")
         }
     }
 
     fun getVidSrc(gamePk: Int) = viewModelScope.launch {
         val result = gameRepository.getContent(gamePk)
-        if (result.vid == null) {
-            vidImg.postValue("N/a")
+        if (result.vid != null) {
+            vidImg?.postValue(result.vid!!)
         } else {
-            vidImg.postValue(result.vid!!)
+            vidImg?.postValue("NA")
         }
     }
 
 
     fun getImg(gamePk: Int) = viewModelScope.launch {
-        val result = gameRepository.getContent(gamePk)
-        imgsrc.postValue(result.img!!)
+        val result = gameRepository.getContent(gamePk).img
+        imgsrc?.postValue(result?:"Na")
 
     }
 

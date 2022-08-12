@@ -71,9 +71,11 @@ class GameDetailFragment : Fragment() {
         val game = GameDetailFragmentArgs.fromBundle(requireArguments()).gamesPkModelArgs
 
         val homeName = game?.teams?.home?.team?.name
-            val mediaController = MediaController(this.context)
+
+        val mediaController = MediaController(this.context)
+
         // vid src observer
-        gameDetailViewModel.vidImg.observe(viewLifecycleOwner,
+        gameDetailViewModel.vidImg?.observe(viewLifecycleOwner,
             Observer { src ->
                 src.apply {
 
@@ -85,14 +87,14 @@ class GameDetailFragment : Fragment() {
 
 
 //         Highlight blurb text Observer
-        gameDetailViewModel.hilightText.observe(viewLifecycleOwner,
+        gameDetailViewModel.hilightText?.observe(viewLifecycleOwner,
             Observer { txt ->
                 txt.apply {
                     binding.hilightTextBlurb.text = txt
                 }
             })
 //            img url observer
-        gameDetailViewModel.imgsrc.observe(viewLifecycleOwner,
+        gameDetailViewModel.imgsrc?.observe(viewLifecycleOwner,
             Observer { img ->
                 img.apply {
                     Glide.with(this@GameDetailFragment)

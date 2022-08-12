@@ -19,6 +19,7 @@ class ScoreNotificationService(
 
     fun showNotification(counter: Int) {
         val activityIntent = Intent(context, MainActivity::class.java)
+
         val activityPendingIntent = PendingIntent.getActivity(
             context,
             1,
@@ -39,6 +40,7 @@ class ScoreNotificationService(
             .setContentTitle("Score!")
             .setContentText("The score is $counter")
             .setContentIntent(activityPendingIntent)
+            .setAutoCancel(true)
             .addAction(
                 R.drawable.ic_baseline_sports_baseball_24,
                 "incrementIntent",

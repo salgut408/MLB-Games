@@ -2,15 +2,15 @@ package com.example.android.gamesredo.repository
 
 import android.content.Context
 import android.util.Log
-import com.example.android.gamesredo.Games
-import com.example.android.gamesredo.MlbColorResponse
-import com.example.android.gamesredo.TeamRecords
+import com.example.android.gamesredo.*
 import com.example.android.gamesredo.api.MlbApi
 import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.domain.*
 import com.example.android.gamesredo.models.*
 import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
+import com.example.android.gamesredo.models.contentresponspkg.Highlights2
 import com.example.android.gamesredo.models.playbyplay.json2kt_Kotlin_07.PlayByPlayDtoMapper
+import com.example.android.gamesredo.util.Constants.Companion.dummyContentModel
 import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAsset
 import com.google.gson.Gson
 import kotlinx.coroutines.delay
@@ -35,22 +35,28 @@ class GameRepository @Inject constructor(
     val playByPlayDtoMapper: PlayByPlayDtoMapper
 //    val colorsDtoMapper: MlbColorsDtoMapper
 ) {
-
+//this is problem when an array list is empty...
     suspend fun getContent(gamePk: Int): ContentDetailModel {
         var result = api.getGameContent(gamePk).body()
+
+    if (result?.highlights?.highlights2?.items?.isEmpty()==false) {
         return contentResponseDtoMapper.mapToDomainModel(result!!)
+
+    }
+
+    return dummyContentModel
     }
 
 
 
-    suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
-        var result = api.getStandings(103, 104).body()!!.records[0].teamRecords
-        for (i in api.getStandings(103, 104).body()!!.records) {
-           result.addAll(i.teamRecords)
-        //TODO fix first index getting added 2x
-        }
-        return mapper.toDomainList(result)
-    }
+//    suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
+//        var result = api.getStandings(103, 104).body()!!.records[0].teamRecords
+//        for (i in api.getStandings(103, 104).body()!!.records) {
+//           result.addAll(i.teamRecords)
+//        //TODO fix first index getting added 2x
+//        }
+//        return mapper.toDomainList(result)
+//    }
 
     suspend fun getGamePlayByPlay(gamePk: Int): PlayByPlayModel {
         var result = api.getGamePlayByPlay(gamePk).body()

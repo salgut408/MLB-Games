@@ -35,6 +35,7 @@ class HomeViewModel
     init {
         getRecords(103, 104)
         getColors()
+        getRecordsForDb(103, 104)
         getAmericanLeagueStandings(103)
     }
 
@@ -42,6 +43,11 @@ class HomeViewModel
 //        val result = gameRepository.getRecords(103,102)
 //        _allTeamsRecords.postValue(result)
 //    }
+
+
+    fun getRecordsForDb(leagueId: Int, leagueId2: Int)     = viewModelScope.launch {
+        gameRepository.getStandingsForDatabase()
+    }
 
     fun getAmericanLeagueStandings(leagueId: Int = 103) = viewModelScope.launch {
         gameRepository.records.collect {record ->

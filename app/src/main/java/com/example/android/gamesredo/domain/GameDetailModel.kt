@@ -19,7 +19,9 @@ data class GameDetailModel(
    val offense              : Offense?           = Offense(),
    val balls                : Int?               = null,
    val strikes              : Int?               = null,
-   val outs                 : Int?               = null
+   val outs                 : Int?               = null,
+   val homeScore: Int? = null,
+   val awaySCore: Int? = null
 
 
 )

@@ -1,7 +1,6 @@
 package com.example.android.gamesredo.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -9,20 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.R
-import com.example.android.gamesredo.Team
-import com.example.android.gamesredo.TeamRecords
-import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.databinding.FragmentHomeBinding
-import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.domain.StandingsModel
-import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.StandingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {

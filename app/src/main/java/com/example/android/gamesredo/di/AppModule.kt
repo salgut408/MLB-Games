@@ -3,8 +3,13 @@ package com.example.android.gamesredo.di
 import android.content.Context
 import androidx.room.Room
 import com.example.android.gamesredo.api.MlbApi
-import com.example.android.gamesredo.db.VenueDao
-import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.db.Converters
+import com.example.android.gamesredo.db.standingsdb.StandingsDao
+import com.example.android.gamesredo.db.standingsdb.StandingsDatabase
+import com.example.android.gamesredo.db.venuedb.VenueDao
+import com.example.android.gamesredo.db.venuedb.VenueDatabase
+import com.example.android.gamesredo.db.todaysgamesdb.TodaysGamesDao
+import com.example.android.gamesredo.db.todaysgamesdb.TodaysGamesDatabase
 import com.example.android.gamesredo.models.*
 import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
 import com.example.android.gamesredo.models.playbyplay.json2kt_Kotlin_07.PlayByPlayDtoMapper
@@ -36,21 +41,52 @@ object AppModule {
         ).build()
 
     @Provides
+    fun providesTodaysGamesDao(todaysGamesDatabase: TodaysGamesDatabase): TodaysGamesDao = todaysGamesDatabase.getTodaysGamesDao()
+
+    @Provides
+    @Singleton
+    fun provideTodaysGamesDatabase(@ApplicationContext context: Context): TodaysGamesDatabase =
+        Room.databaseBuilder(
+            context,
+            TodaysGamesDatabase::class.java,
+            "Todays_Games"
+        ).build()
+
+    @Provides
+    fun providesStandingsDao(standingsDatabase: StandingsDatabase): StandingsDao = standingsDatabase.getStandingsDao()
+
+    @Provides
+    @Singleton
+    fun provideStandingsDatabase(@ApplicationContext context: Context) : StandingsDatabase =
+        Room.databaseBuilder(
+            context,
+            StandingsDatabase::class.java,
+            "Standings"
+        )
+
+            .build()
+
+    @Provides
     fun provideGameRepository(
-            venueDb: VenueDatabase,
-            api: MlbApi,
-            @ApplicationContext context: Context,
-            teamRecordMapper: TeamRecordsStandingsDtoMapper,
-            rosterDtoMapper: RosterDtoMapper,
-            peopleDtoMapper: PeopleDtoMapper,
-            gamesDtoMapper: GamesDtoMapper,
-            leaderDtoMapper: LeadersDtoMapper,
-            histDtoMapper: TeamsHistDtoMapper,
-            gameDetailDtoMapper: GameDetailDtoMapper,
-            gamePredictionDtoMapper: GamePredictionDtoMapper,
-            gameContentResponseDtoMapper: ContentResponseDtoMapper,
-            playByPlayDtoMapper: PlayByPlayDtoMapper
-    ): GameRepository = GameRepository(venueDb,
+        standingsDatabase: StandingsDatabase,
+        todaysGamesDatabase: TodaysGamesDatabase,
+        venueDb: VenueDatabase,
+        api: MlbApi,
+        @ApplicationContext context: Context,
+        teamRecordMapper: TeamRecordsStandingsDtoMapper,
+        rosterDtoMapper: RosterDtoMapper,
+        peopleDtoMapper: PeopleDtoMapper,
+        gamesDtoMapper: GamesDtoMapper,
+        leaderDtoMapper: LeadersDtoMapper,
+        histDtoMapper: TeamsHistDtoMapper,
+        gameDetailDtoMapper: GameDetailDtoMapper,
+        gamePredictionDtoMapper: GamePredictionDtoMapper,
+        gameContentResponseDtoMapper: ContentResponseDtoMapper,
+        playByPlayDtoMapper: PlayByPlayDtoMapper
+    ): GameRepository = GameRepository(
+        standingsDatabase,
+        todaysGamesDatabase,
+        venueDb,
             api,
             context,
             teamRecordMapper,

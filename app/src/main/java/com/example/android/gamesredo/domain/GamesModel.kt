@@ -29,6 +29,11 @@ data class GamesModel(
     val seriesGameNumber       : Int?     = null,
     val seriesDescription      : String?  = null,
     val recordSource           : String?  = null,
+    val homeScore: Int? = null,
+    val awayScore: Int? = null,
+    val homeTeamName: String? = null,
+    val awayTeamName:String? = null
+
 
 
 ): Parcelable

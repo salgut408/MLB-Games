@@ -18,7 +18,9 @@ class GameDetailDtoMapper: DomainMapper<GameDetailResponse, GameDetailModel> {
             outs = model.outs,
             scheduledInnings = model.scheduledInnings,
             strikes = model.strikes,
-            teams2 = model.teams2
+            teams2 = model.teams2,
+            homeScore = model.teams2?.home2?.runs,
+            awaySCore = model.teams2?.away2?.runs
 
         )
     }

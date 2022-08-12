@@ -4,22 +4,26 @@ import android.content.Context
 import android.util.Log
 import com.example.android.gamesredo.*
 import com.example.android.gamesredo.api.MlbApi
-import com.example.android.gamesredo.db.VenueDatabase
+import com.example.android.gamesredo.db.standingsdb.StandingsDatabase
+import com.example.android.gamesredo.db.venuedb.VenueDatabase
+import com.example.android.gamesredo.db.todaysgamesdb.TodaysGamesDatabase
 import com.example.android.gamesredo.domain.*
 import com.example.android.gamesredo.models.*
 import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
-import com.example.android.gamesredo.models.contentresponspkg.Highlights2
 import com.example.android.gamesredo.models.playbyplay.json2kt_Kotlin_07.PlayByPlayDtoMapper
 import com.example.android.gamesredo.util.Constants.Companion.dummyContentModel
 import com.example.android.gamesredo.util.Constants.Companion.getJsonDataFromAsset
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GameRepository @Inject constructor(
+    val standingsDatabase: StandingsDatabase,
+    val todaysGamesDatabase: TodaysGamesDatabase,
     val db: VenueDatabase,
     val api: MlbApi,
     val context: Context,
@@ -32,21 +36,21 @@ class GameRepository @Inject constructor(
     val gameDetailDtoMapper: GameDetailDtoMapper,
     val gamePredictionDtoMapper: GamePredictionDtoMapper,
     val contentResponseDtoMapper: ContentResponseDtoMapper,
-    val playByPlayDtoMapper: PlayByPlayDtoMapper
+    val playByPlayDtoMapper: PlayByPlayDtoMapper,
 //    val colorsDtoMapper: MlbColorsDtoMapper
 ) {
-//this is problem when an array list is empty...
+    //this is problem when an array list is empty...
     suspend fun getContent(gamePk: Int): ContentDetailModel {
         var result = api.getGameContent(gamePk).body()
 
-    if (result?.highlights?.highlights2?.items?.isEmpty()==false) {
-        return contentResponseDtoMapper.mapToDomainModel(result!!)
+        if (result?.highlights?.highlights2?.items?.isEmpty() == false) {
 
+            return contentResponseDtoMapper.mapToDomainModel(result!!)
+
+        }
+
+        return dummyContentModel
     }
-
-    return dummyContentModel
-    }
-
 
 
 //    suspend fun getRecords(leagueId: Int, leagueId2: Int): List<StandingsModel> {
@@ -64,11 +68,12 @@ class GameRepository @Inject constructor(
     }
 
     val records: Flow<List<StandingsModel>> = flow {
-        while (true){
+        while (true) {
 
             var records = api.getStandings(103, 104).body()!!.records[0].teamRecords
 
-            for(i in api.getStandings(103, 104).body()!!.records){
+            for (i in api.getStandings(103, 104).body()!!.records) {
+
                 records.addAll(i.teamRecords)
                 emit(mapper.toDomainList(records))
 
@@ -79,10 +84,40 @@ class GameRepository @Inject constructor(
     }
 
 
-//    suspend fun getGames(sportId: Int): List<GamesModel> {
-//        val result = api.getGames(1).body()!!.dates[0].games
-//        return gameMappr.toDomainList(result)
-//    }
+    suspend fun getGames(sportId: Int): List<GamesModel> {
+        val result = api.getGames(1).body()!!.dates[0].games
+        return gameMappr.toDomainList(result)
+    }
+    suspend fun getGamesForDatabase() {
+        withContext(Dispatchers.IO) {
+            try {
+                val games = api.getGames(1).body()!!.dates[0].games
+
+                val games2 = gameMappr.toDatabaseList(games)
+                todaysGamesDatabase.getTodaysGamesDao().insertAll(games2)
+                Log.i("ZUNK", "add to today game db works")
+            } catch (err: Exception) {
+                Log.i("ZUNK", "FAIL")
+
+            }
+        }
+    }
+
+    suspend fun getStandingsForDatabase() {
+        withContext(Dispatchers.IO) {
+            try{
+                val standings = api.getStandings(103, 104).body()!!.records[0].teamRecords
+                for (i in api.getStandings(103, 104).body()!!.records){
+                    standings.addAll(i.teamRecords)
+                }
+                val standings2 = mapper.toDatabaseList(standings)
+                standingsDatabase.getStandingsDao().insertAll(standings2)
+                Log.i("Zunk", "Added standings db")
+            } catch (err: Exception){
+                Log.i("Zunk", "db fail")
+            }
+        }
+    }
 
     val games: Flow<List<GamesModel>> = flow {
         while (true) {
@@ -112,8 +147,6 @@ class GameRepository @Inject constructor(
     }
 
 
-
-
     suspend fun getPersonInfo(personId: Int): PeopleModel {
         val result = api.getPersonInfo(personId).body()!!.people[0]
         return pplMappr.mapToDomainModel(result)
@@ -125,26 +158,28 @@ class GameRepository @Inject constructor(
     }
 
 
-
-
     suspend fun getHomeRunLeaders(season: Int, leadersCatagories: String): List<LeadersModel> {
-        var result = api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
+        var result =
+            api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders[0].leaders
         for (i in api.getHomeRunLeaders(season, leadersCatagories).body()!!.leagueLeaders) {
             result.addAll(i.leaders)
         }
         //TODO fix index 0 added
 
 
-
-
-
         return leaderMapper.toDomainList(result)
     }
 
 
-    suspend fun getHomeRunLeadsByTeam(season: Int, leadersCatagories: String, teamIds: Int): List<LeadersModel> {
-        val result=api.getHomeRunLeadersPerTeam(season, leadersCatagories, teamIds).body()!!.leagueLeaders[0].leaders
-        for (i in api.getHomeRunLeadersPerTeam(season, leadersCatagories, teamIds).body()!!.leagueLeaders){
+    suspend fun getHomeRunLeadsByTeam(
+        season: Int,
+        leadersCatagories: String,
+        teamIds: Int,
+    ): List<LeadersModel> {
+        val result = api.getHomeRunLeadersPerTeam(season, leadersCatagories, teamIds)
+            .body()!!.leagueLeaders[0].leaders
+        for (i in api.getHomeRunLeadersPerTeam(season, leadersCatagories, teamIds)
+            .body()!!.leagueLeaders) {
             result.addAll(i.leaders)
         }
         return leaderMapper.toDomainList(result)
@@ -164,7 +199,7 @@ class GameRepository @Inject constructor(
 
     fun getColorData(): MlbColorResponse {
         val jsonFileString =
-            getJsonDataFromAsset(this.context!!.applicationContext, "mlbcolor.json")
+            getJsonDataFromAsset(this.context.applicationContext, "mlbcolor.json")
         Log.i("data", jsonFileString ?: "NOTHING")
         val gson = Gson()
 //        val listMlbColorType = object : TypeToken<List<MlbColors>>() {}.type

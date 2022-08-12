@@ -1,4 +1,4 @@
-package com.example.android.gamesredo.db
+package com.example.android.gamesredo.db.venuedb
 
 import android.content.Context
 import androidx.room.Database

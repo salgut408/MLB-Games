@@ -1,4 +1,4 @@
-package com.example.android.gamesredo.db
+package com.example.android.gamesredo.db.venuedb
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

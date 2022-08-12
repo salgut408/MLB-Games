@@ -35,20 +35,19 @@ class TodayViewModel
 
     init {
         getGames(1)
+        getGamesForDB(1)
 
         getColors()
+
+        //populate the db??
 
 
     }
 
 
-//    fun getGames(sportId: Int) = viewModelScope.launch {
-//        val result = gameRepository.getGames(1)
-//        _allGames.postValue(result)
-////        allGames.postValue(Resource.Loading())
-////        val response = gameRepository.getGames(1)
-////        allGames.postValue(handleMLBResponse(response))
-//    }
+    fun getGamesForDB(sportId: Int) = viewModelScope.launch {
+           gameRepository.getGamesForDatabase()
+    }
 
     fun getGames(sportId: Int) = viewModelScope.launch {
         gameRepository.games.collect { games->

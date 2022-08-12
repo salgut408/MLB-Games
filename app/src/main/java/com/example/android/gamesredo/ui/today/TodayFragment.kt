@@ -1,9 +1,7 @@
 package com.example.android.gamesredo.ui.today
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,23 +9,12 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.gamesredo.MlbColors
-import com.example.android.gamesredo.R
-import com.example.android.gamesredo.util.Resource
 import com.example.android.gamesredo.databinding.FragmentTodayBinding
-import com.example.android.gamesredo.db.VenueDatabase
 import com.example.android.gamesredo.domain.GamesModel
-import com.example.android.gamesredo.notifications.Counter
 import com.example.android.gamesredo.notifications.services.ScoreNotificationService
-import com.example.android.gamesredo.repository.GameRepository
 import com.example.android.gamesredo.ui.adapters.GamesAdapter
-import com.example.android.gamesredo.util.Constants
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

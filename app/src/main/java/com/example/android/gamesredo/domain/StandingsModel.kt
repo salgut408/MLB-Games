@@ -22,6 +22,9 @@ data class StandingsModel(
     val losses: Int? = null,
     val runDifferential: Int? = null,
     val winningPercentage: String? = null,
+   val teamId: Int? = null,
+    val teamName : String?
+
 
 
     ) : Parcelable

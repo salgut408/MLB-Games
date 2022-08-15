@@ -58,11 +58,13 @@ object AppModule {
     @Provides
     @Singleton
     fun provideStandingsDatabase(@ApplicationContext context: Context) : StandingsDatabase =
+
         Room.databaseBuilder(
             context,
             StandingsDatabase::class.java,
             "Standings"
         )
+
 
             .build()
 

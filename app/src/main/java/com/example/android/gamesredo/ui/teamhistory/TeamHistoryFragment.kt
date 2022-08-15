@@ -52,6 +52,8 @@ class TeamHistoryFragment : Fragment() {
             leader.apply{leaderAdapter.differ.submitList(leader)}
         })
 
+
+
         teamHistoryViewModel.teamInfo.observe(viewLifecycleOwner,
         Observer<TeamsHistModel>{team ->
             team.apply {

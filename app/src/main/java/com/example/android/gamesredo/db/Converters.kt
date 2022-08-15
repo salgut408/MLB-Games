@@ -5,7 +5,7 @@ import androidx.room.TypeConverter
 import com.example.android.gamesredo.Team
 import com.example.android.gamesredo.Teams
 @ProvidedTypeConverter
-class Converters {
+class Converters() {
     @TypeConverter
     fun fromTeam(team: Team): String {
         return team.name.toString()

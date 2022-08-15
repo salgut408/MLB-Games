@@ -11,6 +11,8 @@ interface StandingsDao {
     @Query("SELECT * FROM standings_database" )
     fun getAllStandingsinDb(): LiveData<List<StandingsDatabaseObj>>
 
+    @Query("SELECT * FROM standings_database ORDER BY wins ASC")
+   fun getStandingsAscOrder(): LiveData<List<StandingsDatabaseObj>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(standings: List<StandingsDatabaseObj>)

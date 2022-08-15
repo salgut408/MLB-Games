@@ -81,8 +81,9 @@ class GamesAdapter(val colors: List<MlbColors>) : RecyclerView.Adapter<GamesAdap
                     awayTeam.setBackgroundColor(Color.parseColor(i.colors?.secondary))
 
 //                    val j = i.logo
-//                   Glide.with(holder.itemView.context).load(j).into(holder.binding.imgView)
-
+//                   Glide.with(holder.itemView.context).load(j).into(holder.binding.imageView)
+//                    Glide.with(holder.itemView.context).load(j).into(imageView)
+//                    load(j).into(holder.binding.imageView)
                 }
                 if(i.name!!.equals(game.teams?.home?.team?.name )) {
 

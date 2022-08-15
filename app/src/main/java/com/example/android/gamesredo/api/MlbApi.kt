@@ -8,6 +8,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+
+//enum class StandingsFilter(val value: String) {SHOW_AL("103"), SHOW_NL("104")}
+
+
 interface MlbApi {
     @GET("v1/schedule")
     suspend fun getGames(
@@ -86,5 +90,7 @@ interface MlbApi {
         @Path("gamePk")
         gamePk: Int? = null,
     ): Response<PlayByPlayResponse>
+
+
 
 }

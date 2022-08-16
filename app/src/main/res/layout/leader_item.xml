@@ -39,22 +39,21 @@
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/catagoryTxt"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/division"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/division"
                 tools:text="Team" />
 
             <TextView
                 android:id="@+id/division"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:padding="5dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/leaderTeam"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/leaderName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/leaderName"
                 tools:text="division" />
 
             <TextView
@@ -66,8 +65,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/leaderTeam"
+                app:layout_constraintStart_toEndOf="@+id/leaderTeam"
                 tools:text="div" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

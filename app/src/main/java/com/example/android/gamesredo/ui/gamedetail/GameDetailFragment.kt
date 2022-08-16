@@ -98,6 +98,7 @@ class GameDetailFragment : Fragment() {
 
         val mediaController = MediaController(this.context)
 
+
         // vid src observer
         gameDetailViewModel.vidImg?.observe(viewLifecycleOwner,
             Observer { src ->

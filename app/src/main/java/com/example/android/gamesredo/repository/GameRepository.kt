@@ -109,6 +109,7 @@ class GameRepository @Inject constructor(
                 val standings = api.getStandings(103, 104).body()!!.records[0].teamRecords
                 for (i in api.getStandings(103, 104).body()!!.records){
                     standings.addAll(i.teamRecords)
+
                 }
                 val standings2 = mapper.toDatabaseList(standings)
                 standingsDatabase.getStandingsDao().insertAll(standings2)

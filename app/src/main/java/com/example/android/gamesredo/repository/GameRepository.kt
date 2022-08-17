@@ -9,6 +9,7 @@ import com.example.android.gamesredo.db.venuedb.VenueDatabase
 import com.example.android.gamesredo.db.todaysgamesdb.TodaysGamesDatabase
 import com.example.android.gamesredo.domain.*
 import com.example.android.gamesredo.models.*
+import com.example.android.gamesredo.models.allteamslistresponse.json2kt_Kotlin_06.AllTeamDtoMApper
 import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
 import com.example.android.gamesredo.models.playbyplay.json2kt_Kotlin_07.PlayByPlayDtoMapper
 import com.example.android.gamesredo.util.Constants.Companion.dummyContentModel
@@ -22,6 +23,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GameRepository @Inject constructor(
+    val allTeamDtoMApper: AllTeamDtoMApper,
     val standingsDatabase: StandingsDatabase,
     val todaysGamesDatabase: TodaysGamesDatabase,
     val db: VenueDatabase,
@@ -66,6 +68,9 @@ class GameRepository @Inject constructor(
         var result = api.getGamePlayByPlay(gamePk).body()
         return playByPlayDtoMapper.mapToDomainModel(result!!)
     }
+
+
+
 
     val records: Flow<List<StandingsModel>> = flow {
         while (true) {
@@ -157,6 +162,14 @@ class GameRepository @Inject constructor(
     suspend fun getRoster(teamId: Int): List<RosterModel> {
         val result = api.getTeamInfo(teamId).body()!!.roster
         return rosterMapr.toDomainList(result)
+    }
+
+    suspend fun getAllTeamsInHistory(): List<AllTeamModel> {
+        var result = api.getAllTheTeamsInHistory().body()!!.allTeams
+
+        return allTeamDtoMApper.toDomainList(result)
+
+
     }
 
 

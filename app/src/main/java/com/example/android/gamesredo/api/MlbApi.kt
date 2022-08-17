@@ -19,6 +19,11 @@ interface MlbApi {
         sportId: Int = 1,
     ): Response<MlbResponse>
 
+    @GET("v1/teams")
+    suspend fun getAllTheTeamsInHistory(
+
+    ): Response<AllTeamsResponse>
+
 
     @GET("v1/standings")
     suspend fun getStandings(

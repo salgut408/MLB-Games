@@ -11,6 +11,7 @@ import com.example.android.gamesredo.db.venuedb.VenueDatabase
 import com.example.android.gamesredo.db.todaysgamesdb.TodaysGamesDao
 import com.example.android.gamesredo.db.todaysgamesdb.TodaysGamesDatabase
 import com.example.android.gamesredo.models.*
+import com.example.android.gamesredo.models.allteamslistresponse.json2kt_Kotlin_06.AllTeamDtoMApper
 import com.example.android.gamesredo.models.contentresponspkg.ContentResponseDtoMapper
 import com.example.android.gamesredo.models.playbyplay.json2kt_Kotlin_07.PlayByPlayDtoMapper
 import com.example.android.gamesredo.repository.GameRepository
@@ -70,6 +71,7 @@ object AppModule {
 
     @Provides
     fun provideGameRepository(
+        allTeamDtoMApper: AllTeamDtoMApper,
         standingsDatabase: StandingsDatabase,
         todaysGamesDatabase: TodaysGamesDatabase,
         venueDb: VenueDatabase,
@@ -86,6 +88,7 @@ object AppModule {
         gameContentResponseDtoMapper: ContentResponseDtoMapper,
         playByPlayDtoMapper: PlayByPlayDtoMapper
     ): GameRepository = GameRepository(
+        allTeamDtoMApper,
         standingsDatabase,
         todaysGamesDatabase,
         venueDb,
@@ -102,6 +105,9 @@ object AppModule {
         gameContentResponseDtoMapper,
         playByPlayDtoMapper
     )
+
+    @Provides
+    fun provideAllTeamsModelMapper(): AllTeamDtoMApper = AllTeamDtoMApper()
 
     @Provides
     fun providePlayByPlayMApper(): PlayByPlayDtoMapper = PlayByPlayDtoMapper()

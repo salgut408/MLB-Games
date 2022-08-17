@@ -59,6 +59,12 @@ class TodayFragment : Fragment() {
 //            service.showNotification(Counter.value)
 //        }
 
+        _binding?.baseballimage?.setOnClickListener {
+            this.findNavController().navigate(
+                TodayFragmentDirections.actionNavigationDashboardTodayToAllTeamsInHistoryFragment()
+            )
+        }
+
 
 
         setUpRecyclerView()

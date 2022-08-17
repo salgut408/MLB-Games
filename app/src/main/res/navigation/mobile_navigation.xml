@@ -34,6 +34,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             />
+        <action
+            android:id="@+id/action_navigation_dashboard_today_to_allTeamsInHistoryFragment"
+            app:destination="@id/allTeamsInHistoryFragment" />
 
     </fragment>
 
@@ -100,4 +103,9 @@
             android:name="teamHistArgs"
             app:argType="com.example.android.gamesredo.Team" />
     </fragment>
+    <fragment
+        android:id="@+id/allTeamsInHistoryFragment"
+        android:name="com.example.android.gamesredo.ui.allteamsinhistory.AllTeamsInHistoryFragment"
+        android:label="fragment_all_teams_in_history"
+        tools:layout="@layout/fragment_all_teams_in_history" />
 </navigation>

@@ -49,8 +49,7 @@ class HomeFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when(menuItem.itemId) {
                     R.id.al_central ->
-//                        homeViewModel.getAmericanLeagueStandings(103)
-                        true.apply {
+     true.apply {
                             homeViewModel.americanLeagueRecords.observe(viewLifecycleOwner,
                                 Observer<List<StandingsModel>> { standing ->
                                     standing.apply { standingsAdapter.differ.submitList(standing) }

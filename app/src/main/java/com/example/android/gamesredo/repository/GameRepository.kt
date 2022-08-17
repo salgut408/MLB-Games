@@ -72,6 +72,18 @@ class GameRepository @Inject constructor(
 
             var records = api.getStandings(103, 104).body()!!.records[0].teamRecords
 
+
+//            for(i in 0 until  records.size) {
+//                var hold = 0
+//                emit(mapper.toDomainList(records[i].teamRecords))
+//
+//            }
+
+//            for (i in api.getStandings(103, 104).body()!!.records) {
+//                emit(mapper.toDomainList(i.teamRecords))
+//            }
+
+
             for (i in api.getStandings(103, 104).body()!!.records) {
 
                 records.addAll(i.teamRecords)

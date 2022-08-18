@@ -26,6 +26,7 @@ class AllTeamsInHistoryViewModel
 
     fun getAllTeamsInHistory() = viewModelScope.launch {
         val result = gameRepository.getAllTeamsInHistory()
+      val newList =result.sortedBy { it.league?.name }
         _allTeamsEver.postValue(result)
     }
 

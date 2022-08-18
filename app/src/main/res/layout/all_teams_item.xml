@@ -77,12 +77,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+                android:layout_marginBottom="8dp"
                 android:padding="8dp"
                 android:text="Roster"
                 android:textColor="@color/black"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/allTeamsTeamClubName"
                 tools:text="Roster" />
 
             <TextView
@@ -94,9 +95,9 @@
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roster"
+                app:layout_constraintStart_toEndOf="@+id/parentOrgTxt"
+                app:layout_constraintTop_toTopOf="@+id/parentOrgTxt"
                 tools:text="Abv" />
 
             <TextView
@@ -104,15 +105,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginEnd="16dp"
                 android:padding="8dp"
-                android:text="League Standing"
+                android:text="Stndg"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/parentOrgTxt"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/abrv"
-                tools:text="League Standing" />
+                app:layout_constraintBottom_toTopOf="@+id/roster"
+                app:layout_constraintEnd_toEndOf="@+id/roster"
+                tools:text="Stndg" />
 
             <TextView
                 android:id="@+id/leagueDisplayTxt"

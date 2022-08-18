@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.gamesredo.Team
 import com.example.android.gamesredo.databinding.AllTeamsItemBinding
 import com.example.android.gamesredo.domain.AllTeamModel
 
@@ -52,21 +53,34 @@ class AllTeamsEverAdapter: RecyclerView.Adapter<AllTeamsEverAdapter.TeamViewHold
                 leagueDisplayTxt.visibility = View.GONE
             }
 
-            allTeamsTeamName.text= team.franchiseName ?: team.teamName
+            allTeamsTeamName.text= team.franchiseName+ "-" +team.id ?: team.teamName
             allTeamsTeamClubName.text = team.clubName ?: team.name
-            leagueName.text = team.league?.name
+            leagueName.text = team.league?.name + " " + team.league?.id
             divisionName.text = team.division?.name
             parentOrgTxt.text = team.parentOrgName
             isActiveTxt.text=team.active.toString()
             venueTxt.text = team.venue?.name
             abrv.text = team.abbreviation
+
+
+            roster.setOnClickListener {
+                onItemClickListener?.let {
+                    it(team)
+                }
+            }
 //            + team.league?.name + " "+ team.league?.id +" "+ team.parentOrgName+ " " + team.active
         }
     }
+
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
+    private var onItemClickListener: ((AllTeamModel)->Unit)? = null
+
+    fun  setOnItemClickListener(listener: (AllTeamModel)-> Unit){
+        onItemClickListener = listener
+    }
 
 }

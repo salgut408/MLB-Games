@@ -1,6 +1,8 @@
 package com.example.android.gamesredo.ui.adapters
 
+import android.opengl.Visibility
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -34,7 +36,31 @@ class AllTeamsEverAdapter: RecyclerView.Adapter<AllTeamsEverAdapter.TeamViewHold
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         val team = differ.currentList[position]
         holder.binding.apply {
-            allTeamsTeamName.text= team.clubName + " " + team.league?.name + " "+ team.league?.id +" "+ team.parentOrgName+ " " + team.active
+
+            if(team.parentOrgName.isNullOrBlank()){
+                parentOrgTxt.visibility = View.GONE
+                parentDisplayTxt.visibility = View.GONE
+            }
+
+            if(team.division?.name.isNullOrBlank()){
+                divisionName.visibility = View.GONE
+                divisionDisplayTxt.visibility = View.GONE
+            }
+
+            if(team.league?.name.isNullOrBlank()){
+                leagueName.visibility = View.GONE
+                leagueDisplayTxt.visibility = View.GONE
+            }
+
+            allTeamsTeamName.text= team.franchiseName ?: team.teamName
+            allTeamsTeamClubName.text = team.clubName ?: team.name
+            leagueName.text = team.league?.name
+            divisionName.text = team.division?.name
+            parentOrgTxt.text = team.parentOrgName
+            isActiveTxt.text=team.active.toString()
+            venueTxt.text = team.venue?.name
+            abrv.text = team.abbreviation
+//            + team.league?.name + " "+ team.league?.id +" "+ team.parentOrgName+ " " + team.active
         }
     }
 

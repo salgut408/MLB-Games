@@ -3,15 +3,208 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:backgroundTint="#EAC3C3">
 
-    <TextView
-        android:id="@+id/allTeamsTeamName"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        app:cardBackgroundColor="#CC9191"
+        app:cardCornerRadius="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/allTeamsTeamName"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Team Name" />
+
+            <TextView
+                android:id="@+id/allTeamsTeamClubName"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/allTeamsTeamName"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="ClubName" />
+
+            <TextView
+                android:id="@+id/leagueName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/leagueDisplayTxt"
+                app:layout_constraintTop_toBottomOf="@+id/allTeamsTeamClubName"
+                tools:text="League" />
+
+            <TextView
+                android:id="@+id/divisionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/leagueName"
+                app:layout_constraintTop_toBottomOf="@+id/leagueName"
+                tools:text="Division" />
+
+            <TextView
+                android:id="@+id/roster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="8dp"
+                android:text="Roster"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/allTeamsTeamClubName"
+                tools:text="Roster" />
+
+            <TextView
+                android:id="@+id/abrv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="16dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roster"
+                tools:text="Abv" />
+
+            <TextView
+                android:id="@+id/leagueDisplayTxt"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="League:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/allTeamsTeamName"
+                app:layout_constraintTop_toBottomOf="@+id/allTeamsTeamName"
+                tools:text="League:" />
+
+            <TextView
+                android:id="@+id/divisionDisplayTxt"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/division"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/leagueDisplayTxt"
+                app:layout_constraintTop_toBottomOf="@+id/leagueDisplayTxt"
+                tools:text="@string/division" />
+
+            <TextView
+                android:id="@+id/parentDisplayTxt"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Parent Org:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divisionDisplayTxt"
+                tools:text="Parent Org:" />
+
+            <TextView
+                android:id="@+id/isActiveDisplayTxt"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Is Active:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/parentDisplayTxt"
+                tools:text="Is Active:" />
+
+            <TextView
+                android:id="@+id/venueDisplayTxt"
+                style="@style/team_name_24sp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Venue:"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/isActiveDisplayTxt"
+                tools:text="Venue:" />
+
+            <TextView
+                android:id="@+id/venueTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/venueDisplayTxt"
+                app:layout_constraintTop_toBottomOf="@+id/isActiveTxt"
+                tools:text="Stadium" />
+
+            <TextView
+                android:id="@+id/isActiveTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/isActiveDisplayTxt"
+                app:layout_constraintTop_toBottomOf="@+id/parentOrgTxt"
+                tools:text="False" />
+
+            <TextView
+                android:id="@+id/parentOrgTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/parentDisplayTxt"
+                app:layout_constraintTop_toBottomOf="@+id/divisionName"
+                tools:text="Parent Team Name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

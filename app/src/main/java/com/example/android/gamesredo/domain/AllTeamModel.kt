@@ -1,11 +1,14 @@
 package com.example.android.gamesredo.domain
 
+import android.os.Parcelable
 import com.example.android.gamesredo.DivisionTeam
 import com.example.android.gamesredo.LeagueTeam
 import com.example.android.gamesredo.SportTeam
 import com.example.android.gamesredo.VenueTeams
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class AllTeamModel(
    var id              : Int?      = null,
     var name            : String?   = null,
@@ -27,4 +30,4 @@ data class AllTeamModel(
      var clubName        : String?   = null,
     var active          : Boolean?  = null
 
-)
+): Parcelable

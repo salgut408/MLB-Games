@@ -107,5 +107,19 @@
         android:id="@+id/allTeamsInHistoryFragment"
         android:name="com.example.android.gamesredo.ui.allteamsinhistory.AllTeamsInHistoryFragment"
         android:label="fragment_all_teams_in_history"
-        tools:layout="@layout/fragment_all_teams_in_history" />
+        tools:layout="@layout/fragment_all_teams_in_history" >
+        <action
+            android:id="@+id/action_allTeamsInHistoryFragment_to_allTeamsInHistoryDetailFragment"
+            app:destination="@id/allTeamsInHistoryDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTeamsInHistoryDetailFragment"
+        android:name="com.example.android.gamesredo.ui.allteamsroster.AllTeamsInHistoryDetailFragment"
+        android:label="fragment_all_teams_in_history_detail"
+        tools:layout="@layout/fragment_all_teams_in_history_detail" >
+        <argument
+            android:name="allTeamsTeamArg"
+            app:argType="com.example.android.gamesredo.domain.AllTeamModel"
+            app:nullable="true" />
+    </fragment>
 </navigation>

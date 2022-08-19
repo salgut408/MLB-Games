@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.gamesredo.databinding.FragmentAllTeamsInHistoryBinding
 import com.example.android.gamesredo.domain.AllTeamModel
 import com.example.android.gamesredo.ui.adapters.AllTeamsEverAdapter
+import com.example.android.gamesredo.ui.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,6 +42,15 @@ class AllTeamsInHistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpRecyclerView()
+
+
+        allTeamsEverAdapter.setOnItemClickListener {
+            this.findNavController().navigate(
+                AllTeamsInHistoryFragmentDirections.actionAllTeamsInHistoryFragmentToAllTeamsInHistoryDetailFragment(it)
+            )
+        }
+
+
         allTeamsInHistoryViewModel.allTeamsEver.observe(viewLifecycleOwner,
         Observer<List<AllTeamModel>> { teams ->
             teams.apply{

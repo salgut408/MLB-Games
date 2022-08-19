@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_new_york_yankees.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.192481884057971" />
         <entry key="app/src/main/res/layout/all_teams_item.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/all_teams_roster_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/all_teams_roster_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_all_teams_in_history.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_all_teams_in_history_detail.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.192481884057971" />

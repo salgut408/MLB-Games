@@ -33,6 +33,12 @@ interface MlbApi {
         leagueId2: Int = 104,
     ): Response<AmericanLeagueStandingResponse>
 
+    @GET("v1/standings")
+    suspend fun getStandingsGeneral(
+        @Query("leagueId")
+        leagueId: Int = 103,
+    ): Response<AmericanLeagueStandingResponse>
+
     @GET("v1/teams/{teamId}/roster")
     suspend fun getTeamInfo(
         @Path("teamId")

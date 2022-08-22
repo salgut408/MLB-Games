@@ -40,7 +40,8 @@ class OtherTeamsRosterAdapter():
         val singleRosterRow = differ.currentList[position]
         holder.binding.apply{
             allTeamPlayerName.text = singleRosterRow.person?.fullName
-            allTeamPosition.text=singleRosterRow.jerseyNumber + " - " + singleRosterRow.position?.name
+            allTeamPosition.text=singleRosterRow.position?.name
+            numberAll.text=singleRosterRow.jerseyNumber
         }
     }
 

@@ -49,7 +49,7 @@ class RosterAdapter(val colorPrimary: String, val colorSecondary: String) :
             playerId.text = singlePlayerRow?.person?.id?.toString()
 
             playerName.setBackgroundColor(Color.WHITE)
-//TODO fix color assignment
+// fix color assignment
 
 
             if (position % 2 == 0) {

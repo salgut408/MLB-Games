@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "184460024448",
+    "project_id": "games-app-f7d6c",
+    "storage_bucket": "games-app-f7d6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184460024448:android:b6d2326bd122d699212465",
+        "android_client_info": {
+          "package_name": "com.example.android.gamesredo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184460024448-q0iiperbfh9nnfpqtdmq0remkog0kqn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXFH2bfTFcZa9EY5lLWFJm-moJ4rIIcOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184460024448-q0iiperbfh9nnfpqtdmq0remkog0kqn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

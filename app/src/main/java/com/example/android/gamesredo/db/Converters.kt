@@ -11,8 +11,8 @@ class Converters() {
         return team.name.toString()
     }
 
-    @TypeConverter
-    fun toTeam(id: Int, name: String, link: String) :Team {
-        return Team(id, name, link)
-    }
+//    @TypeConverter
+//    fun toTeam(id: Int, name: String, link: String) :Team {
+//        return Team(id, name, link)
+//    }
 }

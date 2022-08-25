@@ -91,68 +91,10 @@ class PersonDetailFragment() : Fragment() {
                 }
             })
 
-        //TODO make glide work
+        // make glide work
 //        Glide.with(context!!.applicationContext).load(personDetailViewModel.getLogo(team.name.toString())).into(binding.teamLogoImg)
 
 
-//        personDetailViewModel.playerInfo.observe(viewLifecycleOwner, Observer { response ->
-//            when (response) {
-//                is Resource.Success -> {
-//                    response.data?.let {
-//                        peopleResponse ->
-//                         newPerson = peopleResponse.people[0]
-//                       binding.apply {
-//                           val second = personDetailViewModel.getPrimaryColor(team.name.toString())
-//                           val prim = personDetailViewModel.getSecondaryColor(team.name.toString())
-//                           birthday.text=newPerson.birthDate
-//                           position.text = newPerson.primaryPosition?.name + " " + newPerson.primaryPosition?.abbreviation
-//                           birthCity.text=newPerson.birthCity + ", " + newPerson.birthCountry
-//                           tvBatSideDesc.text=newPerson.batSide?.description
-//                           number.text = newPerson.primaryNumber
-//                           currentAge.text=newPerson.currentAge.toString()
-//                           heightTxt.text=newPerson.height
-//                           weightTxt.text=newPerson.weight.toString()
-//                           mlbTxt.text=newPerson.mlbDebutDate
-//                           teamDetName.text=team.name
-//
-//                           playerInfoName.text=newPerson.firstName
-//                           playerInfoName.setTextColor(Color.parseColor(prim))
-//
-//                         playerInfoLastName.text=newPerson.lastName
-//                           playerInfoLastName.setTextColor(Color.parseColor(prim))
-//
-//                           playerInfoLastName.setBackgroundColor(Color.parseColor(second))
-//                           playerInfoName.setBackgroundColor(Color.parseColor(second))
-//
-//                           personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), number)
-//                           personDetailViewModel.setTxtAndBgrndColor(team.name.toString(), teamDetName)
-//
-//                           val logo = personDetailViewModel.getLogo(team.name.toString())
-//
-//
-//
-////                               Glide.with(context!!.applicationContext).load(Uri.parse(logo)).into(teamLogoImg)
-//
-//
-////                           Glide.with(Activity()).load(logo).into(teamLogoImg)
-////                           Glide.with(view.context).load(logo).into(teamLogoImg)
-////                           Glide.with(this@PersonDetailFragment).load(logo).into(teamLogoImg)
-//
-//
-//                       }
-//
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    response.message?.let {
-//                        Log.e("tag", "Resp not working")
-//                    }
-//                }
-//                is Resource.Loading-> {
-//                    Log.e("tag", "Resp not working")
-//                }
-//            }
-//        })
     }
     private var onItemClickListener: ((Team) -> Unit)? = null
 //

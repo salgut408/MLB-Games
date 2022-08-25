@@ -12,7 +12,7 @@
     <string name="venue">venue</string>
     <string name="date">date</string>
     <string name="abstractgamestate">abstractGameState</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <!--  Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="standings">Standings</string>
     <string name="division">division</string>

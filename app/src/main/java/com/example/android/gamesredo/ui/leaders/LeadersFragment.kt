@@ -49,26 +49,7 @@ class LeadersFragment : Fragment() {
                 leader.apply { leadersAdapter.differ.submitList(leader) }
             })
 
-//        leadersViewModel.allLeaders.observe(viewLifecycleOwner, Observer { response ->
-//            when (response) {
-//                is Resource.Success -> {
-//                    response.data?.let { leagueLeaderResponse ->
-//                        val list = leagueLeaderResponse.leagueLeaders[0].leaders
-//                        list.addAll(leagueLeaderResponse.leagueLeaders[1].leaders)
-//                        list.addAll(leagueLeaderResponse.leagueLeaders[2].leaders)
-//                        leadersAdapter.differ.submitList(list)
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    response.message?.let { message ->
-//                        Log.e("tag", "resp not successful")
-//                    }
-//                }
-//                is Resource.Loading -> {
-//                    Log.e("tag", "Resp loading")
-//                }
-//            }
-//        })
+
 
     }
 

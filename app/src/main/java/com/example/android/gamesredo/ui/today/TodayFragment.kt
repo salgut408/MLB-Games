@@ -54,7 +54,7 @@ class TodayFragment : Fragment() {
         _binding?.todaysDate?.text = setDate()
 
 
-        // notification atm TODO update
+        // notification atm  update
 //        _binding?.baseballimage?.setOnClickListener {
 //            service.showNotification(Counter.value)
 //        }

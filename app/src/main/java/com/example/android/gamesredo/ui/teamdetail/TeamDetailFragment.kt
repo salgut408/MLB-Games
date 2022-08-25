@@ -76,25 +76,7 @@ class TeamDetailFragment() : Fragment() {
             Observer<List<RosterModel>> { roster ->
                 roster.apply { rosterAdapter.differ.submitList(roster) }
             })
-//        teamDetailViewModel.teamRoster.observe(viewLifecycleOwner, Observer { response ->
-//            when (response) {
-//                is Resource.Success -> {
-//                    response.data?.let {
-//                        teamRosterResponse ->
-//                        val roster = teamRosterResponse.roster
-//                        rosterAdapter.differ.submitList(roster)
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    response.message?.let{
-//                        Log.e("tag", "resp not successfull")
-//                    }
-//                }
-//                is Resource.Loading -> {
-//                    Log.e("tag", "resp to loading")
-//                }
-//            }
-//        })
+
 
     }
 

@@ -164,7 +164,7 @@ class GameDetailFragment : Fragment() {
 
 //                    + gameDetail.offense?.onDeck?.fullName.toString()
 
-                    //TODO fix these
+                    // fix these
                     binding.batter.text =
                         gameDetail.offense?.batter2?.fullName + ", " + gameDetail.offense?.team?.name
                     binding.pitcher.text =

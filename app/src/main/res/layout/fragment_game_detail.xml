@@ -348,6 +348,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/homeTeamWinChance"
                 app:layout_constraintTop_toBottomOf="@+id/inHoleFullName"
                 tools:text="win" />
@@ -358,6 +359,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/awayTeamWinChance"
                 app:layout_constraintTop_toBottomOf="@+id/homeTeamWinChance"
                 tools:text="win" />

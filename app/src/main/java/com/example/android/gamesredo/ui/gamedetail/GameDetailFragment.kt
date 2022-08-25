@@ -57,7 +57,7 @@ class GameDetailFragment : Fragment() {
         binding.awayTeamName.text = game.teams.away?.team?.name
 //        binding.awayTeamName.setTextColor(Color.parseColor(gameDetailViewModel.getSecondaryColor(awayName!!)))
         binding.homeTeamName.setTextColor(Color.parseColor(gameDetailViewModel.getSecondaryColor(
-            homeName!!)))
+            homeName)))
 
         gameDetailViewModel.getImg(game.gamePk!!)
         gameDetailViewModel.getImgBlurb(game.gamePk)
@@ -66,16 +66,13 @@ class GameDetailFragment : Fragment() {
 
         gameDetailViewModel.getLineScore(game.gamePk ?: 663374)
 //        gameDetailViewModel.getPlayByPlay(game?.gamePk ?: 663374)
-//        gameDetailViewModel.getPredictions(game?.gamePk ?: 663374)
+
+        gameDetailViewModel.getPredictions(game.gamePk ?: 663374)
+
         val service = ScoreNotificationService(this.context!!)
 
 
-        when (game.status?.detailedState) {
-            "Warmup" -> {
-                service.showNotification(game.gamePk)
 
-            }
-        }
 
         return binding.root
     }
@@ -87,9 +84,9 @@ class GameDetailFragment : Fragment() {
         val service = ScoreNotificationService(this.context!!)
 
         if (game?.teams?.away?.isWinner==true) {
-            service.showNotification(game?.teams?.away?.score?.toInt() ?: Counter.value)
+            service.showNotification(game.teams.away?.score?.toInt() ?: Counter.value)
         } else if (game?.teams?.home?.isWinner==true) {
-            service.showNotification(game?.teams?.home?.score?.toInt() ?: Counter.value)
+            service.showNotification(game.teams.home?.score?.toInt() ?: Counter.value)
 
         }
 
@@ -192,15 +189,16 @@ class GameDetailFragment : Fragment() {
 
 
         //game winning odds observer
-//            gameDetailViewModel.gamePredictions.observe(viewLifecycleOwner,
-//            Observer<GamePredictionModel> { gamePrediction ->
-//                gamePrediction.apply {
+            gameDetailViewModel.gamePredictions.observe(viewLifecycleOwner,
+            Observer<GamePredictionModel> { gamePrediction ->
+                gamePrediction.apply {
 //                    binding.awayTeamWinPercent.text=gamePrediction.awayWinProbability.toString()
-//                    binding.homeTeamWinPercent.text=gamePrediction.homeWinProbability.toString()
-//
-//                }
-//
-//            })
+                    binding.homeTeamWinChance.text=gamePrediction.homeWinProbability?.toString()
+                    binding.awayTeamWinChance.text=gamePrediction.awayWinProbability.toString()
+
+                }
+
+            })
 
 
     }

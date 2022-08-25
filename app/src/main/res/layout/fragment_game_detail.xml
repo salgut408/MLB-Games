@@ -325,6 +325,44 @@
                 app:layout_constraintTop_toBottomOf="@+id/onDeckDisplyTxt" />
 
             <TextView
+                android:id="@+id/homeTeamWinChance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Home Team Win Chance"
+                app:layout_constraintStart_toStartOf="@+id/inHoleDisplyTxt"
+                app:layout_constraintTop_toBottomOf="@+id/inHoleDisplyTxt" />
+
+            <TextView
+                android:id="@+id/awayTeamWinChance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Away Team Win Chance"
+                app:layout_constraintStart_toStartOf="@+id/homeTeamWinChance"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamWinChance" />
+
+            <TextView
+                android:id="@+id/homeTeamWinChanceTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                app:layout_constraintStart_toEndOf="@+id/homeTeamWinChance"
+                app:layout_constraintTop_toBottomOf="@+id/inHoleFullName"
+                tools:text="win" />
+
+            <TextView
+                android:id="@+id/awayTeamWinChanceTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                app:layout_constraintStart_toEndOf="@+id/awayTeamWinChance"
+                app:layout_constraintTop_toBottomOf="@+id/homeTeamWinChance"
+                tools:text="win" />
+
+            <TextView
                 android:id="@+id/onDeckFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

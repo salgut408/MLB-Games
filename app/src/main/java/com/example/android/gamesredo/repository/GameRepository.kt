@@ -93,7 +93,8 @@ class GameRepository @Inject constructor(
             for (i in api.getStandings(103, 104).body()!!.records) {
 
                 records.addAll(i.teamRecords)
-                emit(mapper.toDomainList(records))
+
+                emit(mapper.toDomainList(records.sortedBy { it.sportRank?.toInt() }))
 
             }
 

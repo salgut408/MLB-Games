@@ -82,9 +82,7 @@ class GameRepository @Inject constructor(
 //            for(i in 0 until  records.size) {
 //                var hold = 0
 //                emit(mapper.toDomainList(records[i].teamRecords))
-//
 //            }
-
 //            for (i in api.getStandings(103, 104).body()!!.records) {
 //                emit(mapper.toDomainList(i.teamRecords))
 //            }
@@ -94,7 +92,9 @@ class GameRepository @Inject constructor(
 
                 records.addAll(i.teamRecords)
 
-                emit(mapper.toDomainList(records.sortedBy { it.sportRank?.toInt() }))
+                emit(mapper.toDomainList(records.sortedWith(compareBy { it.sportRank?.toInt() })))
+
+//                emit(mapper.toDomainList(records.sortedBy { it.sportRank?.toInt() }))
 
             }
 
@@ -114,9 +114,9 @@ class GameRepository @Inject constructor(
 
                 val games2 = gameMappr.toDatabaseList(games)
                 todaysGamesDatabase.getTodaysGamesDao().insertAll(games2)
-                Log.i("ZUNK", "add to today game db works")
+                Log.i("i", "add to today game db works")
             } catch (err: Exception) {
-                Log.i("ZUNK", "FAIL")
+                Log.i("i", "FAIL")
 
             }
         }

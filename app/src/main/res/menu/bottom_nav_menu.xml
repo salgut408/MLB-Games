@@ -16,10 +16,6 @@
         android:icon="@drawable/ic_baseline_sports_handball_24"
         android:title="Leaders" />
 
-    <item
-        android:id="@+id/navigation_somthing_else"
-        android:icon="@drawable/ic_baseline_sports_handball_24"
-        android:title="Leaders" />
 
 
 
